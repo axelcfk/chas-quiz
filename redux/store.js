@@ -1,7 +1,7 @@
-import { configureStore } from "redux";
-import reducer from "./reducer";
+// import { configureStore } from "redux";
+// import reducer from "./reducer";
 
-const store = configureStore({
-  reducer,
-});
-export default store;
+// const store = configureStore({
+//   reducer,
+// });
+// export default store;

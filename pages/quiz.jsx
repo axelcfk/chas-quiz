@@ -1,7 +1,3 @@
-function FunctionName() {
+export default function QuizPage() {
   return <h1>quiz page</h1>;
 }
-
-export default FunctionName;
-
-// TODO: Choose a better function name
