@@ -53,14 +53,12 @@ export default function QuizPage() {
           <button
             key={i}
             onClick={() => handleButtonClick(option)}
-            className={`m-5 h-36 w-36 p-2 border-none hover:bg-slate-300 rounded-md hover:cursor-pointer ${
-              buttonClicked &&
-              option === defaultQuiz.results[index].correct_answer
-                ? "bg-green-500 text-zinc-950"
-                : buttonClicked &&
-                  option === defaultQuiz.results[index].incorrect_answers
-                ? "bg-red-500"
-                : "bg-slate-200"
+            className={`m-5 h-36 w-36 p-2 border-none font-semibold rounded-md ${
+              buttonClicked
+                ? option === defaultQuiz.results[index].correct_answer
+                  ? "bg-green-500 text-zinc-950"
+                  : "bg-slate-200"
+                : "hover:bg-slate-300 hover:cursor-pointer"
             }`}
             disabled={buttonClicked}
           >
@@ -68,13 +66,13 @@ export default function QuizPage() {
           </button>
         ))}
       </div>
-      <p>
+      <p className="font-semibold text-lg">
         {buttonClicked && isCorrect
-          ? "Correct Answer"
-          : buttonClicked && !isCorrect && "Wrong Answer"}
+          ? "Correct Answer!"
+          : buttonClicked && !isCorrect && "Wrong Answer!"}
       </p>
       <button
-        className="border-none h-10 w-40 rounded-md bg-amber-400 font-semibold hover:cursor-pointer"
+        className="border-none h-10 w-40 rounded-md bg-amber-400  hover:cursor-pointer font-semibold"
         onClick={buttonClicked ? handleClickNext : null}
       >
         Next Question
