@@ -65,7 +65,8 @@ export default function QuizPage() {
 
   return (
     <div className="flex justify-center flex-col items-center mx-10 bg">
-      <h1>Quizzes</h1>
+      <h1>Take a Quiz</h1>
+      <p>Take one of our quizzes or one of your own!</p>
       {!quizIsSelected ? (
         <div>
           <div className="flex flex-col justify-center">
