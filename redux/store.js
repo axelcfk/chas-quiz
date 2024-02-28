@@ -3,6 +3,6 @@ import customQuizSlice from "./CustomQuizSlice";
 
 export default configureStore({
   reducer: {
-    quiz: customQuizSlice,
+    customQuiz: customQuizSlice,
   },
 });

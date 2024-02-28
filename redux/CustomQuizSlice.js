@@ -2,41 +2,48 @@ import { createSlice } from "@reduxjs/toolkit";
 
 export const customQuizSlice = createSlice({
   name: "customQuiz",
-  initialState: [],
-
+  initialState: {
+    questions: [],
+  },
   reducers: {
     addCustomQuiz: (state, action) => {
       const newCustomQuiz = {
         id: Date.now(),
-        customQuizTitle: action.payload,
+        question: action.payload,
         done: false,
       };
-      state.push(newCustomQuiz);
+      return {
+        ...state,
+        questions: [...state.questions, newCustomQuiz],
+      };
     },
 
-    //Osäker ifall det fungerar
     editCustomQuiz: (state, action) => {
       const { id, newTitle } = action.payload;
-      const editQuiz = state.find((quiz) => quiz.id === id);
+      const editQuiz = state.questions.find((quiz) => quiz.id === id);
       if (editQuiz) {
         editQuiz.customQuizTitle = newTitle;
       }
     },
-    //Osäker ifall det fungerar
 
     removeCustomQuiz: (state, action) => {
-      const index = state.findIndex((custom) => custom.id === action.payload);
-      if (index !== -1);
-      {
-        state.splice(index, 1);
-      }
+      const updatedQuestions = state.questions.filter(
+        custom => custom.id !== action.payload);
+          return {
+            ...state,
+            questions: updatedQuestions,
+          };
     },
+
     toggleCompleteQuiz: (state, action) => {
       const quizId = action.payload;
-      constcompleteQuizIndex = state.findIndex((quiz) => quiz.id === quizId);
+      const completeQuizIndex = state.questions.findIndex(
+        (quiz) => quiz.id === quizId
+      );
 
       if (completeQuizIndex !== -1) {
-        state[completeQuizIndex].done = !state[completeQuizIndex].done;
+        state.questions[completeQuizIndex].done =
+          !state.questions[completeQuizIndex].done;
       }
     },
   },
