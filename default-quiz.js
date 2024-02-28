@@ -112,7 +112,7 @@ export const defaultQuiz = {
   ],
 };
 
-export const additionalQuestion1 = {
+export const hardQuiz = {
   results: [
     {
       type: "multiple",
@@ -266,6 +266,152 @@ export const additionalQuestion1 = {
         "In &quot;Resident Evil 3&quot;, how many inventory slots does Jill have at the start of the game?",
       correct_answer: "10",
       incorrect_answers: ["6", "8", "12"],
+    },
+  ],
+};
+
+export const easyQuiz = {
+  results: [
+    {
+      type: "multiple",
+      difficulty: "easy",
+      category: "General Knowledge",
+      question:
+        "What machine element is located in the center of fidget spinners?",
+      correct_answer: "Bearings",
+      incorrect_answers: ["Axles", "Gears", "Belts"],
+    },
+    {
+      type: "multiple",
+      difficulty: "easy",
+      category: "General Knowledge",
+      question:
+        "Foie gras is a French delicacy typically made from what part of a duck or goose?",
+      correct_answer: "Liver",
+      incorrect_answers: ["Heart", "Stomach", "Intestines"],
+    },
+    {
+      type: "multiple",
+      difficulty: "easy",
+      category: "General Knowledge",
+      question:
+        "According to the nursery rhyme, what fruit did Little Jack Horner pull out of his Christmas pie?",
+      correct_answer: "Plum",
+      incorrect_answers: ["Apple", "Peach", "Pear"],
+    },
+    {
+      type: "multiple",
+      difficulty: "easy",
+      category: "General Knowledge",
+      question: "What does a funambulist walk on?",
+      correct_answer: "A Tight Rope",
+      incorrect_answers: ["Broken Glass", "Balls", "The Moon"],
+    },
+    {
+      type: "multiple",
+      difficulty: "easy",
+      category: "General Knowledge",
+      question:
+        "Which of these colours is NOT featured in the logo for Google?",
+      correct_answer: "Pink",
+      incorrect_answers: ["Yellow", "Blue", "Green"],
+    },
+    {
+      type: "multiple",
+      difficulty: "easy",
+      category: "General Knowledge",
+      question:
+        "The New York Times slogan is, &ldquo;All the News That&rsquo;s Fit to&hellip;&rdquo;",
+      correct_answer: "Print",
+      incorrect_answers: ["Digest", "Look", "Read"],
+    },
+    {
+      type: "multiple",
+      difficulty: "easy",
+      category: "General Knowledge",
+      question: "What is the name of the company in Lethal Company?",
+      correct_answer: "The Company",
+      incorrect_answers: [
+        "Planet Scrap Co.",
+        "Lethal Robotics",
+        "Gordian Shipping Co.",
+      ],
+    },
+    {
+      type: "multiple",
+      difficulty: "easy",
+      category: "General Knowledge",
+      question:
+        "The likeness of which president is featured on the rare $2 bill of USA currency?",
+      correct_answer: "Thomas Jefferson",
+      incorrect_answers: [
+        "Martin Van Buren",
+        "Ulysses Grant",
+        "John Quincy Adams",
+      ],
+    },
+    {
+      type: "multiple",
+      difficulty: "easy",
+      category: "General Knowledge",
+      question: "On a dartboard, what number is directly opposite No. 1?",
+      correct_answer: "19",
+      incorrect_answers: ["20", "12", "15"],
+    },
+    {
+      type: "multiple",
+      difficulty: "easy",
+      category: "General Knowledge",
+      question:
+        "Virgin Trains, Virgin Atlantic and Virgin Racing, are all companies owned by which famous entrepreneur?   ",
+      correct_answer: "Richard Branson",
+      incorrect_answers: ["Alan Sugar", "Donald Trump", "Bill Gates"],
+    },
+    {
+      type: "multiple",
+      difficulty: "easy",
+      category: "General Knowledge",
+      question:
+        "In the video-game franchise Kingdom Hearts, the main protagonist, carries a weapon with what shape?",
+      correct_answer: "Key",
+      incorrect_answers: ["Sword", "Pen", "Cellphone"],
+    },
+    {
+      type: "multiple",
+      difficulty: "easy",
+      category: "General Knowledge",
+      question:
+        "Which American-owned brewery led the country in sales by volume in 2015?",
+      correct_answer: "D. G. Yuengling and Son, Inc",
+      incorrect_answers: [
+        "Anheuser Busch",
+        "Boston Beer Company",
+        "Miller Coors",
+      ],
+    },
+    {
+      type: "multiple",
+      difficulty: "easy",
+      category: "General Knowledge",
+      question: "What was the first ever London Underground line to be built?",
+      correct_answer: "Metropolitan Line",
+      incorrect_answers: ["Circle Line", "Bakerloo Line", "Victoria Line"],
+    },
+    {
+      type: "multiple",
+      difficulty: "easy",
+      category: "General Knowledge",
+      question: "What is the official language of Brazil?",
+      correct_answer: "Portugese",
+      incorrect_answers: ["Brazilian", "Spanish", "English"],
+    },
+    {
+      type: "multiple",
+      difficulty: "easy",
+      category: "General Knowledge",
+      question: "What is the closest planet to our solar system&#039;s sun?",
+      correct_answer: "Mercury",
+      incorrect_answers: ["Mars", "Jupiter", "Earth"],
     },
   ],
 };

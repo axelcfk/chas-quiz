@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { defaultQuiz, additionalQuestion1 } from "@/default-quiz";
+import { defaultQuiz, hardQuiz, easyQuiz } from "@/default-quiz";
 
 export default function QuizPage() {
   const [index, setIndex] = useState(0);
@@ -18,11 +18,14 @@ export default function QuizPage() {
   }, [index, selectedQuiz]);
 
   const handleSelectedQuiz = (selectedQuizObject) => {
-    if (selectedQuizObject === "Default") {
+    if (selectedQuizObject === "Medium") {
       setSelectedQuiz(defaultQuiz);
       setquizIsSelected(true);
-    } else if (selectedQuizObject === "additionalQuestion1") {
-      setSelectedQuiz(additionalQuestion1);
+    } else if (selectedQuizObject === "Hard") {
+      setSelectedQuiz(hardQuiz);
+      setquizIsSelected(true);
+    } else if (selectedQuizObject === "Easy") {
+      setSelectedQuiz(easyQuiz);
       setquizIsSelected(true);
     }
   };
@@ -59,13 +62,41 @@ export default function QuizPage() {
       <h1>Quiz</h1>
       {!quizIsSelected ? (
         <div>
-          {" "}
-          <button onClick={() => handleSelectedQuiz("Default")}>
-            Medium Quiz
-          </button>
-          <button onClick={() => handleSelectedQuiz("additionalQuestion1")}>
-            Hard Quiz
-          </button>{" "}
+          <div className="flex flex-col justify-center">
+            <button
+              className="h-40 w-60"
+              onClick={() => handleSelectedQuiz("Easy")}
+            >
+              Easy Quiz
+            </button>{" "}
+            <button
+              className="h-40 w-60"
+              onClick={() => handleSelectedQuiz("Medium")}
+            >
+              Medium Quiz
+            </button>
+            <button
+              className="h-40 w-60"
+              onClick={() => handleSelectedQuiz("Hard")}
+            >
+              Hard Quiz
+            </button>{" "}
+          </div>
+          <div className="flex flex-col">
+            <h2>Your Quizzes</h2>
+            <button
+              className="h-40 w-60"
+              onClick={() => handleSelectedQuiz("")}
+            >
+              Your Quiz 1
+            </button>{" "}
+            <button
+              className="h-40 w-60"
+              onClick={() => handleSelectedQuiz("")}
+            >
+              Your Quiz 2
+            </button>{" "}
+          </div>
         </div>
       ) : (
         ""
