@@ -1,8 +1,11 @@
-// import { addCustomQuiz, editCustomQuiz, removeCustomQuiz, toggleCompleteQuiz } from "@redux/CustomQuizPage";
+import { addCustomQuiz, editCustomQuiz, removeCustomQuiz, toggleCompleteQuiz } from "@/redux/CustomQuizSlice";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
+
 export default function CustomQuizPage() {
+
+  const dispatch = useDispatch();
   const [question, setQuestion] = useState("");
 
   function handleInputChange(event) {
