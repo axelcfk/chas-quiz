@@ -3,19 +3,17 @@ import { createSlice } from "@reduxjs/toolkit";
 export const customQuizSlice = createSlice({
   name: "customQuiz",
   initialState: {
-    questions: [],
+    currentQuiz: null,
   },
   reducers: {
     addCustomQuiz: (state, action) => {
-      const newCustomQuiz = {
-        id: Date.now(),
-        question: action.payload,
-        done: false,
-      };
-      return {
-        ...state,
-        questions: [...state.questions, newCustomQuiz],
-      };
+      addCustomQuiz(state, (action) => {
+        state.quizzes.push(action.payload);
+      });
+    },
+
+    setCurrentQuiz: (state, action) => {
+      state.currentQuiz = action.payload;
     },
 
     editCustomQuiz: (state, action) => {
@@ -28,11 +26,12 @@ export const customQuizSlice = createSlice({
 
     removeCustomQuiz: (state, action) => {
       const updatedQuestions = state.questions.filter(
-        custom => custom.id !== action.payload);
-          return {
-            ...state,
-            questions: updatedQuestions,
-          };
+        (custom) => custom.id !== action.payload
+      );
+      return {
+        ...state,
+        questions: updatedQuestions,
+      };
     },
 
     toggleCompleteQuiz: (state, action) => {
@@ -51,9 +50,12 @@ export const customQuizSlice = createSlice({
 
 export const {
   addCustomQuiz,
+  setCurrentQuiz,
   editCustomQuiz,
   removeCustomQuiz,
   toggleCompleteQuiz,
 } = customQuizSlice.actions;
+
+export const selectCurrentQuiz = (state) => state.customQuiz.currentQuiz;
 
 export default customQuizSlice.reducer;
