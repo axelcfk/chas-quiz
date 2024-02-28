@@ -100,18 +100,14 @@ export const defaultQuiz = {
       ],
     },
     {
-      type: "multiple",
-      difficulty: "medium",
-      category: "General Knowledge",
-      question: "What is the worlds most expensive spice by weight?",
+   
+      question: "What is the world&#039;s most expensive spice by weight?",
       correct_answer: "Saffron",
       incorrect_answers: ["Cinnamon", "Cardamom", "Vanilla"],
     },
     {
-      type: "multiple",
-      difficulty: "medium",
-      category: "General Knowledge",
-      question: "In what year was McDonalds founded?",
+  
+      question: "In what year was McDonald&#039;s founded?",
       correct_answer: "1955",
       incorrect_answers: ["1964", "1951", "1947"],
     },
@@ -270,6 +266,21 @@ export const defaultQuiz = {
         "In &quot;Resident Evil 3&quot;, how many inventory slots does Jill have at the start of the game?",
       correct_answer: "10",
       incorrect_answers: ["6", "8", "12"],
+    },
+  ],
+};
+
+export const additionalQuestion1 = {
+  results: [
+    {
+      question: "What is the capital of Canada?",
+      correct_answer: "Ottawa",
+      incorrect_answers: ["Toronto", "Vancouver", "Montreal"],
+    },
+    {
+      question: "What is the capital of Canada?",
+      correct_answer: "Ottawa",
+      incorrect_answers: ["Toronto", "Vancouver", "Montreal"],
     },
   ],
 };

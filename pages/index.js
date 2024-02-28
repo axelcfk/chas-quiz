@@ -7,12 +7,15 @@ import Link from "next/link";
 export default function Home() {
   return (
     <main className="flex justify-center flex-col">
-      <div className="w-full bg-blue-700">
-        <nav className="flex justify-between bg-blue-500">
-          <span>Logo</span>
+      <div className="w-full bg-red-50">
+        <nav className="flex justify-between bg-red-50">
+        <span className="p-5 antialiased">Logo</span>
+
           <Link href="/highscore">High-score</Link>
         </nav>
-        <h1 className="flex justify-center bg-pink-800">Quiz Title</h1>
+        <h1 id="title" className="flex justify-center bg-red-50 ui-serif">
+          Quiz Title
+        </h1>
         <div className="flex justify-center">
           <div className="flex justify-center flex-col w-28">
             <h4>Start a quiz!</h4>
