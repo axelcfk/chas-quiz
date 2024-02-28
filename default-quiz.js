@@ -76,7 +76,7 @@ export const defaultQuiz = {
       question:
         "According to the BBPA, what is the most common pub name in the UK?",
       correct_answer: "Red Lion",
-      incorrect_answers: ["Royal Oak", "White Hart", "King&#039;s Head"],
+      incorrect_answers: ["Royal Oak", "White Hart", "Kings Head"],
     },
     {
       type: "multiple",
@@ -91,7 +91,7 @@ export const defaultQuiz = {
       difficulty: "medium",
       category: "General Knowledge",
       question:
-        "What is the name of the popular animatronic singing fish prop, singing such hits such as &quot;Don&#039;t Worry, Be Happy&quot;?",
+        "What is the name of the popular animatronic singing fish prop, singing such hits such as Dont Worry, Be Happy?",
       correct_answer: "Big Mouth Billy Bass",
       incorrect_answers: ["Big Billy Bass", "Singing Fish", "Sardeen"],
     },
@@ -130,7 +130,7 @@ export const defaultQuiz = {
       difficulty: "medium",
       category: "General Knowledge",
       question:
-        "Which slogan did the fast food company, McDonald&#039;s, use before their &quot;I&#039;m Lovin&#039; It&quot; slogan?",
+        "Which slogan did the fast food company, McDonalds, use before their 'Im Lovin It slogan?'",
       correct_answer: "We Love to See You Smile",
       incorrect_answers: [
         "Why Pay More!?",
@@ -142,7 +142,7 @@ export const defaultQuiz = {
       type: "multiple",
       difficulty: "medium",
       category: "General Knowledge",
-      question: "What is the world&#039;s most expensive spice by weight?",
+      question: "What is the worlds most expensive spice by weight?",
       correct_answer: "Saffron",
       incorrect_answers: ["Cinnamon", "Cardamom", "Vanilla"],
     },
@@ -150,7 +150,7 @@ export const defaultQuiz = {
       type: "multiple",
       difficulty: "medium",
       category: "General Knowledge",
-      question: "In what year was McDonald&#039;s founded?",
+      question: "In what year was McDonalds founded?",
       correct_answer: "1955",
       incorrect_answers: ["1964", "1951", "1947"],
     },
