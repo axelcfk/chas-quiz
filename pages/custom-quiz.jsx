@@ -14,6 +14,7 @@ export default function CustomQuizPage() {
 
   function handleAddQuestion() {
     dispatch(addCustomQuiz(question));
+    setQuestion("");
   }
 
   function toggleCompleteQuiz() {

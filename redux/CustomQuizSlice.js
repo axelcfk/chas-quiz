@@ -32,11 +32,11 @@ export const customQuizSlice = createSlice({
       }
     },
     toggleCompleteQuiz: (state, action) => {
-      const completeQuiz = state.findIndex(
-        (completeQuiz) => completeQuiz.id === action.payload
-      );
-      if (completeQuiz) {
-        completeQuiz.done = !completeQuiz.done;
+      const quizId = action.payload;
+      constcompleteQuizIndex = state.findIndex((quiz) => quiz.id === quizId);
+
+      if (completeQuizIndex !== -1) {
+        state[completeQuizIndex].done = !state[completeQuizIndex].done;
       }
     },
   },
