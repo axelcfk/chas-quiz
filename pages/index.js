@@ -21,7 +21,7 @@ export default function Home() {
             </button>
             <h4>..or make your own quiz!</h4>
             <button>
-              <Link href="/admin">make my own quiz</Link>
+              <Link href="/custom-quiz">make my own quiz</Link>
             </button>
           </div>
         </div>
