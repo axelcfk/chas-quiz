@@ -11,6 +11,8 @@ export default function QuizPage() {
   const [shuffledOptions, setShuffledOptions] = useState([]);
   const [selectedQuiz, setSelectedQuiz] = useState(null);
 
+  const [isCompleted, setIsCompleted] = useState(false);
+
   useEffect(() => {
     if (selectedQuiz) {
       shuffleAnswers();
@@ -57,41 +59,45 @@ export default function QuizPage() {
     shuffleAnswers(); // Shuffle options for the next question
   };
 
+  // if (index + 1 === selectedQuiz.length) {
+  //   setIsCompleted(true);
+  // }
+
   return (
     <div className="flex justify-center flex-col items-center mx-10 bg">
-      <h1>Quiz</h1>
+      <h1>Quizzes</h1>
       {!quizIsSelected ? (
         <div>
           <div className="flex flex-col justify-center">
             <button
-              className="h-40 w-60"
+              className="h-40 w-60 p-2 border-none font-semibold rounded-md my-5 hover:bg-green-500 hover:cursor-pointer text-xl"
               onClick={() => handleSelectedQuiz("Easy")}
             >
-              Easy Quiz
+              Easy
             </button>{" "}
             <button
-              className="h-40 w-60"
+              className="h-40 w-60 p-2 border-none font-semibold rounded-md my-5 hover:bg-green-500 hover:cursor-pointer text-xl"
               onClick={() => handleSelectedQuiz("Medium")}
             >
-              Medium Quiz
+              Medium
             </button>
             <button
-              className="h-40 w-60"
+              className="h-40 w-60 p-2 border-none font-semibold rounded-md my-5 hover:bg-green-500 hover:cursor-pointer text-xl"
               onClick={() => handleSelectedQuiz("Hard")}
             >
-              Hard Quiz
+              Hard
             </button>{" "}
           </div>
-          <div className="flex flex-col">
+          <div className="flex flex-col p-2 border-none font-semibold rounded-md hover:cursor-pointer">
             <h2>Your Quizzes</h2>
             <button
-              className="h-40 w-60"
+              className="h-40 w-60 p-2 border-none font-semibold rounded-md my-5 hover:bg-green-500 hover:cursor-pointer text-xl"
               onClick={() => handleSelectedQuiz("")}
             >
               Your Quiz 1
             </button>{" "}
             <button
-              className="h-40 w-60"
+              className="h-40 w-60 p-2 border-none font-semibold rounded-md my-5 hover:bg-green-500 hover:cursor-pointer text-xl"
               onClick={() => handleSelectedQuiz("")}
             >
               Your Quiz 2
