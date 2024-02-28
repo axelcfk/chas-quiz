@@ -57,8 +57,19 @@ export default function QuizPage() {
   return (
     <div className="flex justify-center flex-col items-center mx-10 bg">
       <h1>Quiz</h1>
-      {!quizIsSelected ? (<div> <button onClick={() => handleSelectedQuiz("Default")}>Default Quiz</button>
-      <button onClick={() => handleSelectedQuiz("additionalQuestion1")}>Additional Question1</button> </div>) : ("")}
+      {!quizIsSelected ? (
+        <div>
+          {" "}
+          <button onClick={() => handleSelectedQuiz("Default")}>
+            Medium Quiz
+          </button>
+          <button onClick={() => handleSelectedQuiz("additionalQuestion1")}>
+            Hard Quiz
+          </button>{" "}
+        </div>
+      ) : (
+        ""
+      )}
 
       {selectedQuiz && (
         <>

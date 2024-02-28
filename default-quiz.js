@@ -1,5 +1,5 @@
 export const defaultQuiz = {
-  resultsMedium: [
+  results: [
     {
       question:
         "In a 1994 CBS interview, Microsoft co-founder Bill Gates performed what unusual trick on camera?",
@@ -100,20 +100,20 @@ export const defaultQuiz = {
       ],
     },
     {
-   
       question: "What is the world&#039;s most expensive spice by weight?",
       correct_answer: "Saffron",
       incorrect_answers: ["Cinnamon", "Cardamom", "Vanilla"],
     },
     {
-  
       question: "In what year was McDonald&#039;s founded?",
       correct_answer: "1955",
       incorrect_answers: ["1964", "1951", "1947"],
     },
   ],
+};
 
-  resultsHard: [
+export const additionalQuestion1 = {
+  results: [
     {
       type: "multiple",
       difficulty: "hard",
@@ -266,21 +266,6 @@ export const defaultQuiz = {
         "In &quot;Resident Evil 3&quot;, how many inventory slots does Jill have at the start of the game?",
       correct_answer: "10",
       incorrect_answers: ["6", "8", "12"],
-    },
-  ],
-};
-
-export const additionalQuestion1 = {
-  results: [
-    {
-      question: "What is the capital of Canada?",
-      correct_answer: "Ottawa",
-      incorrect_answers: ["Toronto", "Vancouver", "Montreal"],
-    },
-    {
-      question: "What is the capital of Canada?",
-      correct_answer: "Ottawa",
-      incorrect_answers: ["Toronto", "Vancouver", "Montreal"],
     },
   ],
 };
