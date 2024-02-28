@@ -1,5 +1,4 @@
-const defaultQuiz = {
-  response_code: 0,
+export const defaultQuiz = {
   results: [
     {
       type: "multiple",
