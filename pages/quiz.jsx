@@ -1,6 +1,7 @@
 import { defaultQuiz } from "@/default-quiz";
 import { useSelectedLayoutSegment } from "next/navigation";
 import { useState } from "react";
+import QuizButtons from "./QuizButtons";
 
 const Question1 = defaultQuiz.results[0].question;
 const Answer1 = defaultQuiz.results[0].correct_answer;
@@ -35,7 +36,7 @@ export default function QuizPage() {
       <div className="grid grid-cols-2">
         {!buttonClicked ? (
           <>
-            <button onClick={handleButtonClick} className="bg-orange-500 m-5">
+           {/*  <button onClick={handleButtonClick} className="bg-orange-500 m-5">
               {question[index].incorrect_answers[0]}
             </button>
             <button onClick={handleButtonClick} className="bg-lime-900 m-5">
@@ -46,7 +47,9 @@ export default function QuizPage() {
             </button>
             <button className="bg-rose-500 m-5" onClick={handleCorrect}>
               {question[index].correct_answer}
-            </button>{" "}
+            </button>{" "} */}
+
+            <QuizButtons handleCorrect={handleCorrect} handleButtonClick={handleButtonClick} question={question[index]}></QuizButtons>
           </>
         ) : (
           <>
