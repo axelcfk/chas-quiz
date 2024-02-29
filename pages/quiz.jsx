@@ -24,6 +24,7 @@ export default function QuizPage() {
   const userQuiz = useSelector((state) => state.customQuiz.allQuizzes)
   console.log(userQuiz);
   console.log(easyQuiz);
+  
 
     
 

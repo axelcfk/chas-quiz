@@ -10,6 +10,9 @@ export default function CustomQuizPage() {
   const [questions, setQuestions] = useState([]); // State to store questions in array
 
   const dispatch = useDispatch();
+ 
+
+
 
   const handleAddQuestion = (newQuestionData) => {
     const updatedQuestions = [...questions, newQuestionData]; // Adds the new question to the list
