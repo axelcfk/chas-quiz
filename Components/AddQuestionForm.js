@@ -74,7 +74,7 @@ function AddQuestionForm({ onAddQuestion, newQuestion, setNewQuestion }) {
             <strong>Correct answer:</strong>{correctAnswer}
         </li>
         <li>
-            <strong>Wrong Answers:</strong>{wrongAnswers.filter((answer) => answer.trim()!== "").join}
+            <strong>Wrong Answers:</strong>{wrongAnswers.filter((answer) => answer.trim()!== "").join("", )}
         </li>
       </ul>
     </div>
