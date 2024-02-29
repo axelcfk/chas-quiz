@@ -3,10 +3,10 @@ import Link from "next/link";
 
 //backgrounds bilder
 const imageUrls = [
-  "/styles/images/Lake.jpg",
-  "/styles/images/SpaceMan.jpg",
-  "/styles/images/chad.jpg",
-  "/styles/images/Plan.jpg",
+  "@/styles/images/Lake.jpg",
+  "@/styles/images/SpaceMan.jpg",
+  "@/styles/images/chad.jpg",
+  "@/styles/images/Plan.jpg",
 ];
 //backgrounds bilder
 
@@ -22,7 +22,7 @@ export default function Home() {
       setCurrentImageIndex((prevIndex) =>
         prevIndex === imageUrls.length - 1 ? 0 : prevIndex + 1
       );
-    }, 5000); // Change the duration between slides in milliseconds (e.g., 5000 for 5 seconds)
+    }, 10000); // Change the duration between slides in milliseconds (e.g., 5000 for 5 seconds)
     return () => clearInterval(interval);
   }, []);
   const backgroundImageStyle = {
@@ -32,7 +32,11 @@ export default function Home() {
 
   console.log(backgroundImageStyle);
   return (
-    <main className="flex justify-center flex-col" style={backgroundImageStyle}>
+    <main
+      className="flex justify-center flex-col"
+      class="bg-cover"
+      style={backgroundImageStyle}
+    >
       <div className="w-full ">
         <nav className="flex justify-between bg-red-50">
           <span className="p-5 antialiased">Logo</span>
