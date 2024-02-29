@@ -59,13 +59,19 @@ export default function QuizPage() {
   };
 
   //check if the quiz is completed
-  // if (selectedQuiz && index === selectedQuiz.results.length - 1) {
-  //   setIsCompleted(true);
-  // }
+  useEffect(() => {
+    if (selectedQuiz && index === selectedQuiz.results.length - 1) {
+      setIsCompleted(true);
+    }
+  }, [selectedQuiz, index]);
 
   return (
     <div className="flex justify-center flex-col items-center px-10 ">
-      <h1>Take a Quiz</h1>
+      {!isCompleted && !quizIsSelected ? (
+        <div>
+          <h1>Take a Quiz</h1>
+        </div>
+      ) : null}
 
       {!quizIsSelected ? (
         <div>
@@ -109,45 +115,60 @@ export default function QuizPage() {
         ""
       )}
 
-      {selectedQuiz && (
-        <>
-          <p>Your score: {score}</p>
-          <p>
-            Question {index + 1} of {selectedQuiz.results.length}
-          </p>
-
-          <h2>{selectedQuiz.results[index].question}</h2>
-
-          <div className="grid grid-cols-2">
-            {shuffledOptions.map((option, i) => (
-              <button
-                key={i}
-                onClick={() => handleButtonClick(option)}
-                className={`m-5 h-36 w-36 p-2 border-none font-semibold rounded-md ${
-                  buttonClicked
-                    ? option === selectedQuiz.results[index].correct_answer
-                      ? "bg-green-500 text-zinc-950"
-                      : "bg-slate-200"
-                    : "hover:bg-slate-300 hover:cursor-pointer"
-                }`}
-                disabled={buttonClicked}
-              >
-                {option}
-              </button>
-            ))}
-          </div>
-          <p>
-            {buttonClicked && isCorrect
-              ? "Correct Answer"
-              : buttonClicked && !isCorrect && "Wrong Answer"}
-          </p>
-          <button
-            className="border-none h-10 w-40 rounded-md bg-amber-400 font-semibold hover:cursor-pointer"
-            onClick={buttonClicked ? handleClickNext : null}
-          >
-            Next Question
+      {isCompleted ? (
+        <div>
+          <h2 className="text-5xl">
+            You scored {score} out of {selectedQuiz.results.length}
+          </h2>
+          <h3>Your highscore is ...</h3>
+          <button className="h-40 w-60 p-2 border-none font-semibold rounded-md my-5 hover:bg-green-500 hover:cursor-pointer text-xl">
+            Take the quiz again!
           </button>
-        </>
+          <button className="h-40 w-60 p-2 border-none font-semibold rounded-md my-5 hover:bg-green-500 hover:cursor-pointer text-xl">
+            Take another quiz!
+          </button>
+        </div>
+      ) : (
+        selectedQuiz && (
+          <>
+            <p>Your score: {score}</p>
+            <p>
+              Question {index + 1} of {selectedQuiz.results.length}
+            </p>
+
+            <h2>{selectedQuiz.results[index].question}</h2>
+
+            <div className="grid grid-cols-2">
+              {shuffledOptions.map((option, i) => (
+                <button
+                  key={i}
+                  onClick={() => handleButtonClick(option)}
+                  className={`m-5 h-36 w-36 p-2 border-none font-semibold rounded-md ${
+                    buttonClicked
+                      ? option === selectedQuiz.results[index].correct_answer
+                        ? "bg-green-500 text-zinc-950"
+                        : "bg-slate-200"
+                      : "hover:bg-slate-300 hover:cursor-pointer"
+                  }`}
+                  disabled={buttonClicked}
+                >
+                  {option}
+                </button>
+              ))}
+            </div>
+            <p>
+              {buttonClicked && isCorrect
+                ? "Correct Answer"
+                : buttonClicked && !isCorrect && "Wrong Answer"}
+            </p>
+            <button
+              className="border-none h-10 w-40 rounded-md bg-amber-400 font-semibold hover:cursor-pointer"
+              onClick={buttonClicked ? handleClickNext : null}
+            >
+              Next Question
+            </button>
+          </>
+        )
       )}
     </div>
   );
