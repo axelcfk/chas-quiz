@@ -1,4 +1,3 @@
-// CustomQuizList.js
 import React from "react";
 
 function QuizList({ finishedQuizzes }) {
