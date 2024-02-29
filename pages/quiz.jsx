@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { defaultQuiz, hardQuiz, easyQuiz } from "@/default-quiz";
 import { useDispatch, useSelector } from "react-redux";
 import { updateHighscore } from "@/redux/HighScoreSlice";
+import { setCurrentQuiz } from "@/redux/CustomQuizSlice";
 
 export default function QuizPage() {
   // quiz state:
@@ -23,6 +24,8 @@ export default function QuizPage() {
   const userQuiz = useSelector((state) => state.customQuiz.allQuestions)
 
   console.log(userQuiz);
+
+  const allQuestions = useSelector((state) => state.customQuiz.allQuestions);
 
   useEffect(() => {
     if (selectedQuiz) {
@@ -81,10 +84,13 @@ export default function QuizPage() {
 
   //check if the quiz is completed
   useEffect(() => {
-    if (selectedQuiz && index >= selectedQuiz.results.length ) {
+    if (selectedQuiz && index >= selectedQuiz.results.length) {
       setIsCompleted(true);
     }
   }, [selectedQuiz, index]);
+
+  console.log(allQuestions.question);
+  
 
   return (
     <div className="flex justify-center flex-col items-center px-10 ">
@@ -161,8 +167,6 @@ export default function QuizPage() {
             <p>
               Question {index + 1} of {selectedQuiz.results.length}
             </p>
-
-            
 
             <div className="grid grid-cols-2">
               {shuffledOptions.map((option, i) => (
