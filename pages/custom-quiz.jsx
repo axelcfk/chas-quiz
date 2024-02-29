@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addCustomQuiz, setCurrentQuiz, selectAllFinishedQuizzes } from "@/redux/CustomQuizSlice";
 import AddQuestionForm from "@/Components/AddQuestionForm";
-import CustomQuizList from "@/Components/CustomQuizList";
+import CustomQuizList from "@/Components/customQuizList";
 
 export default function CustomQuizPage() {
   const dispatch = useDispatch();
