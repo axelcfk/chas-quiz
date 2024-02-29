@@ -72,7 +72,6 @@ export default function QuizPage() {
   }
 
   function handleClickDone() {
-    
     setIsCompleted(true);
     if (score > highscore) {
       dispatch(updateHighscore(score));
@@ -86,8 +85,7 @@ export default function QuizPage() {
     }
   }, [selectedQuiz, index]);
 
-  console.log(allQuestions.question);
-  
+  console.log(allQuestions);
 
   return (
     <div className="flex justify-center flex-col items-center px-10 ">
