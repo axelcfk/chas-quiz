@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { defaultQuiz, hardQuiz, easyQuiz } from "@/default-quiz";
 import { useDispatch, useSelector } from "react-redux";
 import { updateHighscore } from "@/redux/HighScoreSlice";
-import { setCurrentQuiz } from "@/redux/CustomQuizSlice";
+//import { setCurrentQuiz } from "@/redux/CustomQuizSlice";
 
 export default function QuizPage() {
   // quiz state:
@@ -21,11 +21,44 @@ export default function QuizPage() {
   // global state:
   const highscore = useSelector((state) => state.highscore.value);
   const dispatch = useDispatch();
-  const userQuiz = useSelector((state) => state.customQuiz.allQuestions);
-
+  const userQuiz = useSelector((state) => state.customQuiz.allQuizzes)
   console.log(userQuiz);
+  console.log(easyQuiz);
 
-  const allQuestions = useSelector((state) => state.customQuiz.allQuestions);
+  // TODO: convert userQuiz so we can do 'userQuiz.results' or 'userQuiz.results[0].question' for example
+  // THIS IS HOW userQuiz array looks like right now:
+  /*
+  const userQuiz = [
+     
+    {
+        "question": "a",
+        "correct_answer": "1",
+        "incorrect_answers": [
+            "1",
+            "1",
+            "2"
+        ]
+    ]
+  ]
+
+  // WE WANT IT TO LOOK LIKE THIS:
+  const userQuiz = {
+   results:  [
+    {
+        "question": "hej",
+        "correct_answer": "rätt",
+        "incorrect_answers": [
+            "fel1",
+            "fel2",
+            "fel3"
+        ]
+    }
+  ] 
+  }
+
+*/
+
+  
 
   useEffect(() => {
     if (selectedQuiz) {
@@ -42,6 +75,9 @@ export default function QuizPage() {
       setquizIsSelected(true);
     } else if (selectedQuizObject === "Easy") {
       setSelectedQuiz(easyQuiz);
+      setquizIsSelected(true);
+    } else if (selectedQuizObject === "MyCustomQuiz") {
+      setSelectedQuiz(userQuiz)
       setquizIsSelected(true);
     }
   };
@@ -88,7 +124,8 @@ export default function QuizPage() {
     }
   }, [selectedQuiz, index]);
 
-  /* console.log(allQuestions.question); */
+  
+  
 
   return (
     <div className="flex justify-center flex-col items-center px-10 ">
@@ -97,6 +134,16 @@ export default function QuizPage() {
           <h1>Take a Quiz</h1>
         </div>
       ) : null}
+
+      <div>
+        {userQuiz.map(item => (
+          <div key={item.question}>
+            <p>Question: {item.question}</p>
+            <p>Correct Answer: {item.correct_answer}</p>
+            <p>Incorrect Answers: {item.incorrect_answers.join(', ')}</p>
+          </div>
+        ))}
+      </div>
 
       {!quizIsSelected ? (
         <div>
@@ -118,6 +165,12 @@ export default function QuizPage() {
               onClick={() => handleSelectedQuiz("Hard")}
             >
               Hard
+            </button>{" "}
+            <button
+              className="h-40 w-60 p-2 border-none font-semibold rounded-md my-5 hover:bg-green-500 hover:cursor-pointer text-xl"
+              onClick={() => handleSelectedQuiz("MyCustomQuiz")}
+            >
+              Your Custom Quiz
             </button>{" "}
           </div>
           <div className="flex flex-col p-2 border-none font-semibold rounded-md hover:cursor-pointer">

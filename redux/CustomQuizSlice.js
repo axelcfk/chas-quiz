@@ -56,6 +56,7 @@ export const {
   setCurrentQuiz,
 } = customQuizSlice.actions;
 
+export const selectSubmittedQuizzes = (state) => state.customQuiz.currentQuiz ? [state.customQuiz.currentQuiz] : [];
 
 export const selectAllQuizzes = (state) => state.customQuiz.allQuizzes;
 
