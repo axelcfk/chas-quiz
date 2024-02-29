@@ -1,14 +1,40 @@
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
+
+//backgrounds bilder
+const imageUrls = [
+  "/styles/images/Lake.jpg",
+  "/styles/images/SpaceMan.jpg",
+  "/styles/images/chad.jpg",
+  "/styles/images/Plan.jpg",
+];
+//backgrounds bilder
 import Image from "next/image";
 import logoImg from "./publik/question-mark-in-a-circle-svgrepo-com.svg";
 import googleImg from "./publik/google.svg";
 import apple from "./publik/appstore.svg"
 // import logoImg from "./publik/question-mark-in-a-circle-svgrepo-com.svg"
 
+//Bildspels funktion
 export default function Home() {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) =>
+        prevIndex === imageUrls.length - 1 ? 0 : prevIndex + 1
+      );
+    }, 5000); // Change the duration between slides in milliseconds (e.g., 5000 for 5 seconds)
+    return () => clearInterval(interval);
+  }, []);
+  const backgroundImageStyle = {
+    backgroundImage: `url(${imageUrls[currentImageIndex]})`,
+  };
+  //Bildspels funktion
+
+  console.log(backgroundImageStyle);
   return (
     <div className="min-h-screen flex flex-col justify-between">
-      <main className="flex justify-center flex-col">
+      <main className="flex justify-center flex-col" style={backgroundImageStyle}>
         <div className="w-full">
           <nav className="flex justify-between">
             <span className="p-2">
@@ -37,9 +63,12 @@ export default function Home() {
               <h4 className="flex justify-center">Start a quiz!</h4>
               <button className="bg-white text-base border-solid border-0">
                 <Link
-                  href="/quiz"
-                  className="text-white font-bold no-underline bg-blue-600 rounded-2xl p-1.5 hover:bg-blue-400 px-6 py-2"
-                >
+                 
+                href="/quiz"
+                 
+                className="text-white font-bold no-underline bg-blue-600 rounded-2xl p-1.5 hover:bg-blue-400 px-6 py-2"
+                
+              >
                   Start a quiz
                 </Link>
               </button>

@@ -88,6 +88,8 @@ export default function QuizPage() {
     }
   }, [selectedQuiz, index]);
 
+  /* console.log(allQuestions.question); */
+
   return (
     <div className="flex justify-center flex-col items-center px-10 ">
       {!isCompleted && !quizIsSelected ? (
