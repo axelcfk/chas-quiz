@@ -22,15 +22,43 @@ export default function QuizPage() {
   const highscore = useSelector((state) => state.highscore.value);
   const dispatch = useDispatch();
   const userQuiz = useSelector((state) => state.customQuiz.allQuizzes)
+  console.log(userQuiz);
+  console.log(easyQuiz);
 
-  //const allQuestions = useSelector((state) => state.customQuiz.allQuestions);
-  
-  const results = {
+  // TODO: convert userQuiz so we can do 'userQuiz.results' or 'userQuiz.results[0].question' for example
+  // THIS IS HOW userQuiz array looks like right now:
+  /*
+  const userQuiz = [
+     
+    {
+        "question": "a",
+        "correct_answer": "1",
+        "incorrect_answers": [
+            "1",
+            "1",
+            "2"
+        ]
+    ]
+  ]
 
-    
-    
+  // WE WANT IT TO LOOK LIKE THIS:
+  const userQuiz = {
+   results:  [
+    {
+        "question": "hej",
+        "correct_answer": "rätt",
+        "incorrect_answers": [
+            "fel1",
+            "fel2",
+            "fel3"
+        ]
+    }
+  ] 
   }
 
+*/
+
+  
 
   useEffect(() => {
     if (selectedQuiz) {
@@ -96,9 +124,7 @@ export default function QuizPage() {
     }
   }, [selectedQuiz, index]);
 
-  //console.log(allQuestions.question);
-  console.log(userQuiz);
-  console.log(easyQuiz);
+  
   
 
   return (
