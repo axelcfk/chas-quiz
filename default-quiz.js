@@ -73,42 +73,6 @@ export const defaultQuiz = {
       correct_answer: "$12.7 Billion",
       incorrect_answers: ["$95 Million", "$956 Million", "$2.7 Billion"],
     },
-    {
-      question:
-        "Which logical fallacy means to attack the character of your opponent rather than their arguments?",
-      correct_answer: "Ad hominem",
-      incorrect_answers: [
-        "Post hoc ergo propter hoc",
-        "Tu quoque",
-        "Argumentum ad populum",
-      ],
-    },
-    {
-      question:
-        "Which item of clothing is usually worn by a Scotsman at a wedding?",
-      correct_answer: "Kilt",
-      incorrect_answers: ["Skirt", "Dress", "Rhobes"],
-    },
-    {
-      question:
-        "Which slogan did the fast food company, McDonalds, use before their 'Im Lovin It slogan?'",
-      correct_answer: "We Love to See You Smile",
-      incorrect_answers: [
-        "Why Pay More!?",
-        "Have It Your Way",
-        "Making People Happy Through Food",
-      ],
-    },
-    {
-      question: "What is the world&#039;s most expensive spice by weight?",
-      correct_answer: "Saffron",
-      incorrect_answers: ["Cinnamon", "Cardamom", "Vanilla"],
-    },
-    {
-      question: "In what year was McDonald&#039;s founded?",
-      correct_answer: "1955",
-      incorrect_answers: ["1964", "1951", "1947"],
-    },
   ],
 };
 
@@ -220,53 +184,6 @@ export const hardQuiz = {
         "The inability to stand up",
       ],
     },
-    {
-      type: "multiple",
-      difficulty: "hard",
-      category: "General Knowledge",
-      question:
-        "If someone said &quot;you are olid&quot;, what would they mean?",
-      correct_answer: "You smell extremely unpleasant.",
-      incorrect_answers: [
-        "You are out of shape/weak.",
-        "Your appearance is repulsive.",
-        "You are incomprehensible/an idiot.",
-      ],
-    },
-    {
-      type: "multiple",
-      difficulty: "hard",
-      category: "General Knowledge",
-      question: "Which of the following chemicals are found in eggplant seeds?",
-      correct_answer: "Nicotine",
-      incorrect_answers: ["Mescaline", "Cyanide", "Psilocybin"],
-    },
-    {
-      type: "multiple",
-      difficulty: "hard",
-      category: "General Knowledge",
-      question: "Named after the mallow flower, mauve is a shade of what?",
-      correct_answer: "Purple",
-      incorrect_answers: ["Red", "Brown", "Pink"],
-    },
-    {
-      type: "multiple",
-      difficulty: "hard",
-      category: "General Knowledge",
-      question:
-        "Which of the following languages does NOT use gender as a part of its grammar?",
-      correct_answer: "Turkish",
-      incorrect_answers: ["German", "Danish", "Polish"],
-    },
-    {
-      type: "multiple",
-      difficulty: "hard",
-      category: "General Knowledge",
-      question:
-        "In &quot;Resident Evil 3&quot;, how many inventory slots does Jill have at the start of the game?",
-      correct_answer: "10",
-      incorrect_answers: ["6", "8", "12"],
-    },
   ],
 };
 
@@ -290,128 +207,82 @@ export const easyQuiz = {
       correct_answer: "Liver",
       incorrect_answers: ["Heart", "Stomach", "Intestines"],
     },
-    {
-      type: "multiple",
-      difficulty: "easy",
-      category: "General Knowledge",
-      question:
-        "According to the nursery rhyme, what fruit did Little Jack Horner pull out of his Christmas pie?",
-      correct_answer: "Plum",
-      incorrect_answers: ["Apple", "Peach", "Pear"],
-    },
-    {
-      type: "multiple",
-      difficulty: "easy",
-      category: "General Knowledge",
-      question: "What does a funambulist walk on?",
-      correct_answer: "A Tight Rope",
-      incorrect_answers: ["Broken Glass", "Balls", "The Moon"],
-    },
-    {
-      type: "multiple",
-      difficulty: "easy",
-      category: "General Knowledge",
-      question:
-        "Which of these colours is NOT featured in the logo for Google?",
-      correct_answer: "Pink",
-      incorrect_answers: ["Yellow", "Blue", "Green"],
-    },
-    {
-      type: "multiple",
-      difficulty: "easy",
-      category: "General Knowledge",
-      question:
-        "The New York Times slogan is, &ldquo;All the News That&rsquo;s Fit to&hellip;&rdquo;",
-      correct_answer: "Print",
-      incorrect_answers: ["Digest", "Look", "Read"],
-    },
-    {
-      type: "multiple",
-      difficulty: "easy",
-      category: "General Knowledge",
-      question: "What is the name of the company in Lethal Company?",
-      correct_answer: "The Company",
-      incorrect_answers: [
-        "Planet Scrap Co.",
-        "Lethal Robotics",
-        "Gordian Shipping Co.",
-      ],
-    },
-    {
-      type: "multiple",
-      difficulty: "easy",
-      category: "General Knowledge",
-      question:
-        "The likeness of which president is featured on the rare $2 bill of USA currency?",
-      correct_answer: "Thomas Jefferson",
-      incorrect_answers: [
-        "Martin Van Buren",
-        "Ulysses Grant",
-        "John Quincy Adams",
-      ],
-    },
-    {
-      type: "multiple",
-      difficulty: "easy",
-      category: "General Knowledge",
-      question: "On a dartboard, what number is directly opposite No. 1?",
-      correct_answer: "19",
-      incorrect_answers: ["20", "12", "15"],
-    },
-    {
-      type: "multiple",
-      difficulty: "easy",
-      category: "General Knowledge",
-      question:
-        "Virgin Trains, Virgin Atlantic and Virgin Racing, are all companies owned by which famous entrepreneur?   ",
-      correct_answer: "Richard Branson",
-      incorrect_answers: ["Alan Sugar", "Donald Trump", "Bill Gates"],
-    },
-    {
-      type: "multiple",
-      difficulty: "easy",
-      category: "General Knowledge",
-      question:
-        "In the video-game franchise Kingdom Hearts, the main protagonist, carries a weapon with what shape?",
-      correct_answer: "Key",
-      incorrect_answers: ["Sword", "Pen", "Cellphone"],
-    },
-    {
-      type: "multiple",
-      difficulty: "easy",
-      category: "General Knowledge",
-      question:
-        "Which American-owned brewery led the country in sales by volume in 2015?",
-      correct_answer: "D. G. Yuengling and Son, Inc",
-      incorrect_answers: [
-        "Anheuser Busch",
-        "Boston Beer Company",
-        "Miller Coors",
-      ],
-    },
-    {
-      type: "multiple",
-      difficulty: "easy",
-      category: "General Knowledge",
-      question: "What was the first ever London Underground line to be built?",
-      correct_answer: "Metropolitan Line",
-      incorrect_answers: ["Circle Line", "Bakerloo Line", "Victoria Line"],
-    },
-    {
-      type: "multiple",
-      difficulty: "easy",
-      category: "General Knowledge",
-      question: "What is the official language of Brazil?",
-      correct_answer: "Portugese",
-      incorrect_answers: ["Brazilian", "Spanish", "English"],
-    },
-    {
-      type: "multiple",
-      difficulty: "easy",
-      category: "General Knowledge",
-      question: "What is the closest planet to our solar system&#039;s sun?",
-      correct_answer: "Mercury",
-      incorrect_answers: ["Mars", "Jupiter", "Earth"],
-    },
+    // {
+    //   type: "multiple",
+    //   difficulty: "easy",
+    //   category: "General Knowledge",
+    //   question:
+    //     "According to the nursery rhyme, what fruit did Little Jack Horner pull out of his Christmas pie?",
+    //   correct_answer: "Plum",
+    //   incorrect_answers: ["Apple", "Peach", "Pear"],
+    // },
+    // {
+    //   type: "multiple",
+    //   difficulty: "easy",
+    //   category: "General Knowledge",
+    //   question: "What does a funambulist walk on?",
+    //   correct_answer: "A Tight Rope",
+    //   incorrect_answers: ["Broken Glass", "Balls", "The Moon"],
+    // },
+    // {
+    //   type: "multiple",
+    //   difficulty: "easy",
+    //   category: "General Knowledge",
+    //   question:
+    //     "Which of these colours is NOT featured in the logo for Google?",
+    //   correct_answer: "Pink",
+    //   incorrect_answers: ["Yellow", "Blue", "Green"],
+    // },
+    // {
+    //   type: "multiple",
+    //   difficulty: "easy",
+    //   category: "General Knowledge",
+    //   question:
+    //     "The New York Times slogan is, &ldquo;All the News That&rsquo;s Fit to&hellip;&rdquo;",
+    //   correct_answer: "Print",
+    //   incorrect_answers: ["Digest", "Look", "Read"],
+    // },
+    // {
+    //   type: "multiple",
+    //   difficulty: "easy",
+    //   category: "General Knowledge",
+    //   question: "What is the name of the company in Lethal Company?",
+    //   correct_answer: "The Company",
+    //   incorrect_answers: [
+    //     "Planet Scrap Co.",
+    //     "Lethal Robotics",
+    //     "Gordian Shipping Co.",
+    //   ],
+    // },
+    // {
+    //   type: "multiple",
+    //   difficulty: "easy",
+    //   category: "General Knowledge",
+    //   question:
+    //     "The likeness of which president is featured on the rare $2 bill of USA currency?",
+    //   correct_answer: "Thomas Jefferson",
+    //   incorrect_answers: [
+    //     "Martin Van Buren",
+    //     "Ulysses Grant",
+    //     "John Quincy Adams",
+    //   ],
+    // },
+    // {
+    //   type: "multiple",
+    //   difficulty: "easy",
+    //   category: "General Knowledge",
+    //   question: "On a dartboard, what number is directly opposite No. 1?",
+    //   correct_answer: "19",
+    //   incorrect_answers: ["20", "12", "15"],
+    // },
+    // {
+    //   type: "multiple",
+    //   difficulty: "easy",
+    //   category: "General Knowledge",
+    //   question:
+    //     "Virgin Trains, Virgin Atlantic and Virgin Racing, are all companies owned by which famous entrepreneur?   ",
+    //   correct_answer: "Richard Branson",
+    //   incorrect_answers: ["Alan Sugar", "Donald Trump", "Bill Gates"],
+    // },
   ],
 };
