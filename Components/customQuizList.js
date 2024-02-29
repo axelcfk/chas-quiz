@@ -1,21 +1,25 @@
-import { useSelector } from "react-redux";
-import { selectAllQuestions } from "@redux/CustomQuizSlice/CustomQuestions";
+import React from "react";
 
-function QuizList() {
-  const allQuestions = useSelector(selectAllQuestions);
-
+function QuizList({ quizzes }) {
   return (
     <div>
-      <h2>Your quizzes</h2>
+      <h2>Finished Quizzes</h2>
       <ul>
-        {allQuestions.map((question, index) => (
+        {quizzes && quizzes.map((quiz, index) => (
           <li key={index}>
-            <strong>Question:</strong> {question.question}
-            <br />
-            <strong>Correct Answer:</strong> {question.correct_answer}
-            <br />
-            <strong>Wrong Answers:</strong>{" "}
-            {question.incorrect_answers.join(", ")}
+            <strong>Quiz Name:</strong> {quiz.name}
+            <ul>
+              {quiz.questions.map((question, qIndex) => (
+                <li key={qIndex}>
+                  <strong>Question:</strong> {question.question}
+                  <br />
+                  <strong>Correct Answer:</strong> {question.correct_answer}
+                  <br />
+                  <strong>Wrong Answers:</strong>{" "}
+                  {question.incorrect_answers.join(", ")}
+                </li>
+              ))}
+            </ul>
           </li>
         ))}
       </ul>
@@ -24,3 +28,4 @@ function QuizList() {
 }
 
 export default QuizList;
+
