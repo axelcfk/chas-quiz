@@ -52,8 +52,8 @@ function AddQuestionForm({ onAddQuestion, newQuestion, setNewQuestion }) {
       <label>
         Wrong Answers:
         {wrongAnswers.map((answer, index) => (
-            // creates a new <input> for each element in the array "wrongAnswers", which is 3,
-            // instead of same code 3 times
+            // creates a new <input> for each element in the array "wrongAnswers",
+            // which is 3, instead of writing same code 3 times
           <input
             key={index}
             type="text"

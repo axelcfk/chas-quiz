@@ -1,32 +1,32 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addCustomQuiz, setCurrentQuiz } from "@/redux/CustomQuizSlice";
 import AddQuestionForm from "@/Components/AddQuestionForm";
 import CustomQuizList from "@/Components/customQuizList";
 
-
 export default function CustomQuizPage() {
-  const dispatch = useDispatch();
   const [newQuestion, setNewQuestion] = useState("");
   const [quizName, setQuizName] = useState(""); // State to store quiz name
-  const [questions, setQuestions] = useState([]); // State to store questions
+  const [questions, setQuestions] = useState([]); // State to store questions in array
+
+  const dispatch = useDispatch();
 
   const handleAddQuestion = (newQuestionData) => {
     const updatedQuestions = [...questions, newQuestionData]; // Adds the new question to the list
     setQuestions(updatedQuestions); // update the state
   };
 
-
-
   const handleMakeQuiz = () => {
     if (questions.length === 0 || quizName.trim() === "") return;
 
     const newQuiz = {
       name: quizName,
-      questions: [...questions],
+      results: [...questions],
     };
 
+    dispatch(addCustomQuiz(newQuiz)); // Add quiz to redux store
     dispatch(setCurrentQuiz(newQuiz));
+    // When click on "Make Quiz" button, reset the form
     setQuizName("");
     setQuestions([]);
   };
@@ -55,7 +55,7 @@ export default function CustomQuizPage() {
         </ul>
       </div>
       <button onClick={handleMakeQuiz}>Make Quiz</button>
-      <CustomQuizList />
+      <CustomQuizList /> //? Maybe send props?
     </div>
   );
 }

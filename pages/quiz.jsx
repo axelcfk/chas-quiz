@@ -25,40 +25,7 @@ export default function QuizPage() {
   console.log(userQuiz);
   console.log(easyQuiz);
 
-  // TODO: convert userQuiz so we can do 'userQuiz.results' or 'userQuiz.results[0].question' for example
-  // THIS IS HOW userQuiz array looks like right now:
-  /*
-  const userQuiz = [
-     
-    {
-        "question": "a",
-        "correct_answer": "1",
-        "incorrect_answers": [
-            "1",
-            "1",
-            "2"
-        ]
-    ]
-  ]
-
-  // WE WANT IT TO LOOK LIKE THIS:
-  const userQuiz = {
-   results:  [
-    {
-        "question": "hej",
-        "correct_answer": "rätt",
-        "incorrect_answers": [
-            "fel1",
-            "fel2",
-            "fel3"
-        ]
-    }
-  ] 
-  }
-
-*/
-
-  
+    
 
   useEffect(() => {
     if (selectedQuiz) {
@@ -125,7 +92,31 @@ export default function QuizPage() {
   }, [selectedQuiz, index]);
 
   
-  
+  // Kontrollera om userQuiz är ett objekt
+if (typeof userQuiz === "object" && userQuiz !== null) {
+  // Kontrollera om userQuiz har en nyckel "results"
+  if ("results" in userQuiz && Array.isArray(userQuiz.results)) {
+    // Kontrollera om varje objekt i arrayen har de rätta egenskaperna
+    const isValidStructure = userQuiz.results.every(
+      (quizItem) =>
+        typeof quizItem === "object" &&
+        "question" in quizItem &&
+        "correct_answer" in quizItem &&
+        "incorrect_answers" in quizItem &&
+        Array.isArray(quizItem.incorrect_answers)
+    );
+
+    if (isValidStructure) {
+      console.log("userQuiz följer samma struktur som EasyQuiz.");
+    } else {
+      console.log("userQuiz har inte rätt struktur.");
+    }
+  } else {
+    console.log("userQuiz saknar nyckeln 'results' eller 'results' är inte en array.");
+  }
+} else {
+  console.log("userQuiz är inte ett objekt eller är null.");
+}
 
   return (
     <div className="flex justify-center flex-col items-center px-10 ">
@@ -136,7 +127,7 @@ export default function QuizPage() {
       ) : null}
 
       <div>
-        {userQuiz.map(item => (
+        {userQuiz.results && userQuiz.results.map(item => (
           <div key={item.question}>
             <p>Question: {item.question}</p>
             <p>Correct Answer: {item.correct_answer}</p>
