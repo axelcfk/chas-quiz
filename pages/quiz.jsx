@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { defaultQuiz, hardQuiz, easyQuiz } from "@/default-quiz";
 import { useDispatch, useSelector } from "react-redux";
 import { updateHighscore } from "@/redux/HighScoreSlice";
-import { setCurrentQuiz } from "@/redux/CustomQuizSlice";
+//import { setCurrentQuiz } from "@/redux/CustomQuizSlice";
 
 export default function QuizPage() {
   // quiz state:
@@ -21,8 +21,11 @@ export default function QuizPage() {
   // global state:
   const highscore = useSelector((state) => state.highscore.value);
   const dispatch = useDispatch();
+  const userQuiz = useSelector((state) => state.customQuiz.allQuizzes)
+  console.log(userQuiz);
+  console.log(easyQuiz);
 
-  const allQuestions = useSelector((state) => state.customQuiz.allQuestions);
+    
 
   useEffect(() => {
     if (selectedQuiz) {
@@ -39,6 +42,9 @@ export default function QuizPage() {
       setquizIsSelected(true);
     } else if (selectedQuizObject === "Easy") {
       setSelectedQuiz(easyQuiz);
+      setquizIsSelected(true);
+    } else if (selectedQuizObject === "MyCustomQuiz") {
+      setSelectedQuiz(userQuiz)
       setquizIsSelected(true);
     }
   };
@@ -85,7 +91,32 @@ export default function QuizPage() {
     }
   }, [selectedQuiz, index]);
 
-  console.log(allQuestions);
+  
+  // Kontrollera om userQuiz är ett objekt
+if (typeof userQuiz === "object" && userQuiz !== null) {
+  // Kontrollera om userQuiz har en nyckel "results"
+  if ("results" in userQuiz && Array.isArray(userQuiz.results)) {
+    // Kontrollera om varje objekt i arrayen har de rätta egenskaperna
+    const isValidStructure = userQuiz.results.every(
+      (quizItem) =>
+        typeof quizItem === "object" &&
+        "question" in quizItem &&
+        "correct_answer" in quizItem &&
+        "incorrect_answers" in quizItem &&
+        Array.isArray(quizItem.incorrect_answers)
+    );
+
+    if (isValidStructure) {
+      console.log("userQuiz följer samma struktur som EasyQuiz.");
+    } else {
+      console.log("userQuiz har inte rätt struktur.");
+    }
+  } else {
+    console.log("userQuiz saknar nyckeln 'results' eller 'results' är inte en array.");
+  }
+} else {
+  console.log("userQuiz är inte ett objekt eller är null.");
+}
 
   return (
     <div className="flex justify-center flex-col items-center px-10 ">
@@ -94,6 +125,16 @@ export default function QuizPage() {
           <h1>Take a Quiz</h1>
         </div>
       ) : null}
+
+      <div>
+        {userQuiz.results && userQuiz.results.map(item => (
+          <div key={item.question}>
+            <p>Question: {item.question}</p>
+            <p>Correct Answer: {item.correct_answer}</p>
+            <p>Incorrect Answers: {item.incorrect_answers.join(', ')}</p>
+          </div>
+        ))}
+      </div>
 
       {!quizIsSelected ? (
         <div>
@@ -115,6 +156,12 @@ export default function QuizPage() {
               onClick={() => handleSelectedQuiz("Hard")}
             >
               Hard
+            </button>{" "}
+            <button
+              className="h-40 w-60 p-2 border-none font-semibold rounded-md my-5 hover:bg-green-500 hover:cursor-pointer text-xl"
+              onClick={() => handleSelectedQuiz("MyCustomQuiz")}
+            >
+              Your Custom Quiz
             </button>{" "}
           </div>
           <div className="flex flex-col p-2 border-none font-semibold rounded-md hover:cursor-pointer">

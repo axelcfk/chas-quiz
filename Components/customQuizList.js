@@ -1,11 +1,16 @@
-import React from "react";
+function QuizList({ finishedQuizzes }) {
 
-function QuizList({ quizzes }) {
+
+if (!finishedQuizzes) {
+  return <div>No finished quizzes available</div>
+}
+
+
   return (
     <div>
       <h2>Finished Quizzes</h2>
       <ul>
-        {quizzes && quizzes.map((quiz, index) => (
+        {finishedQuizzes.results.map((quiz, index) => (
           <li key={index}>
             <strong>Quiz Name:</strong> {quiz.name}
             <ul>
@@ -28,4 +33,3 @@ function QuizList({ quizzes }) {
 }
 
 export default QuizList;
-

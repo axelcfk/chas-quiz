@@ -4,13 +4,18 @@ export const customQuizSlice = createSlice({
   name: "customQuiz",
   initialState: {
     currentQuiz: null,
-    allQuizzes: [], // store all the quizzes
+    allQuizzes: { results: [] }, // store all the quizzes
   },
   reducers: {
     addCustomQuiz: (state, action) => {
+      state.allQuizzes = {
+        ...state.allQuizzes,
+        results: [...state.allQuizzes.results, action.payload],
+      };
+    },
+    addFinishedQuiz: (state, action) => {
       state.allQuizzes.push(action.payload);
     },
-
     setCurrentQuiz: (state, action) => {
       state.currentQuiz = action.payload;
     },
@@ -32,31 +37,15 @@ export const customQuizSlice = createSlice({
         questions: updatedQuestions,
       };
     },
-
-    toggleCompleteQuiz: (state, action) => {
-      const quizId = action.payload;
-      const completeQuizIndex = state.questions.findIndex(
-        (quiz) => quiz.id === quizId
-      );
-
-      if (completeQuizIndex !== -1) {
-        state.questions[completeQuizIndex].done =
-          !state.questions[completeQuizIndex].done;
-      }
-    },
   },
 });
 
-export const {
-  addCustomQuiz,
-  setCurrentQuiz,
-  editCustomQuiz,
-  removeCustomQuiz,
-  toggleCompleteQuiz,
-} = customQuizSlice.actions;
+export const { addCustomQuiz, addFinishedQuiz, setCurrentQuiz } =
+  customQuizSlice.actions;
 
+export const selectSubmittedQuizzes = (state) =>
+  state.customQuiz.currentQuiz ? [state.customQuiz.currentQuiz] : [];
 
 export const selectAllQuizzes = (state) => state.customQuiz.allQuizzes;
-export const selectAllFinishedQuizzes = (state) => state.customQuiz.allQuizzes;
 
 export default customQuizSlice.reducer;
