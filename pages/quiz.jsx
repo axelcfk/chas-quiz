@@ -135,7 +135,7 @@ export default function QuizPage() {
       )}
 
       {isCompleted ? (
-        <div>
+        <div className="">
           <h2 className="text-5xl">
             You scored {score} out of {selectedQuiz.results.length}
           </h2>
@@ -143,7 +143,10 @@ export default function QuizPage() {
           <button className="h-40 w-60 p-2 border-none font-semibold rounded-md my-5 hover:bg-green-500 hover:cursor-pointer text-xl">
             Take the quiz again!
           </button>
-          <button className="h-40 w-60 p-2 border-none font-semibold rounded-md my-5 hover:bg-green-500 hover:cursor-pointer text-xl">
+          <button
+            // onClick={() => setquizIsSelected(false)}
+            className="h-40 w-60 p-2 border-none font-semibold rounded-md my-5 hover:bg-green-500 hover:cursor-pointer text-xl"
+          >
             Take another quiz!
           </button>
         </div>
@@ -151,6 +154,8 @@ export default function QuizPage() {
         selectedQuiz && (
           <>
             <p>Your score: {score}</p>
+
+            <h2>{selectedQuiz.results[index].question}</h2>
             <p>
               Question {index + 1} of {selectedQuiz.results.length}
             </p>

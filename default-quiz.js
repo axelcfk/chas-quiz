@@ -184,7 +184,6 @@ export const hardQuiz = {
         "The inability to stand up",
       ],
     },
-    
   ],
 };
 
@@ -284,52 +283,6 @@ export const easyQuiz = {
         "Virgin Trains, Virgin Atlantic and Virgin Racing, are all companies owned by which famous entrepreneur?   ",
       correct_answer: "Richard Branson",
       incorrect_answers: ["Alan Sugar", "Donald Trump", "Bill Gates"],
-    },
-    {
-      type: "multiple",
-      difficulty: "easy",
-      category: "General Knowledge",
-      question:
-        "In the video-game franchise Kingdom Hearts, the main protagonist, carries a weapon with what shape?",
-      correct_answer: "Key",
-      incorrect_answers: ["Sword", "Pen", "Cellphone"],
-    },
-    {
-      type: "multiple",
-      difficulty: "easy",
-      category: "General Knowledge",
-      question:
-        "Which American-owned brewery led the country in sales by volume in 2015?",
-      correct_answer: "D. G. Yuengling and Son, Inc",
-      incorrect_answers: [
-        "Anheuser Busch",
-        "Boston Beer Company",
-        "Miller Coors",
-      ],
-    },
-    {
-      type: "multiple",
-      difficulty: "easy",
-      category: "General Knowledge",
-      question: "What was the first ever London Underground line to be built?",
-      correct_answer: "Metropolitan Line",
-      incorrect_answers: ["Circle Line", "Bakerloo Line", "Victoria Line"],
-    },
-    {
-      type: "multiple",
-      difficulty: "easy",
-      category: "General Knowledge",
-      question: "What is the official language of Brazil?",
-      correct_answer: "Portugese",
-      incorrect_answers: ["Brazilian", "Spanish", "English"],
-    },
-    {
-      type: "multiple",
-      difficulty: "easy",
-      category: "General Knowledge",
-      question: "What is the closest planet to our solar system&#039;s sun?",
-      correct_answer: "Mercury",
-      incorrect_answers: ["Mars", "Jupiter", "Earth"],
     },
   ],
 };
