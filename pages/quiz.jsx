@@ -20,6 +20,9 @@ export default function QuizPage() {
   // global state:
   const highscore = useSelector((state) => state.highscore.value);
   const dispatch = useDispatch();
+  const userQuiz = useSelector((state) => state.customQuiz.allQuestions)
+
+  console.log(userQuiz);
 
   useEffect(() => {
     if (selectedQuiz) {
