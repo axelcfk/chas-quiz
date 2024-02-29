@@ -15,7 +15,9 @@ export default function CustomQuizPage() {
   };
 
   const handleMakeQuiz = () => {
-    //TODO: Add logic to make the quiz
+
+
+  
   };
 
   return (
