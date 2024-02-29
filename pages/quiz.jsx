@@ -83,7 +83,6 @@ export default function QuizPage() {
   }
 
   function handleClickDone() {
-    
     setIsCompleted(true);
     if (score > highscore) {
       dispatch(updateHighscore(score));
