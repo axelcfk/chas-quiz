@@ -21,7 +21,7 @@ export default function QuizPage() {
   // global state:
   const highscore = useSelector((state) => state.highscore.value);
   const dispatch = useDispatch();
-  const userQuiz = useSelector((state) => state.customQuiz.allQuestions)
+  const userQuiz = useSelector((state) => state.customQuiz.allQuestions);
 
   console.log(userQuiz);
 
@@ -75,7 +75,6 @@ export default function QuizPage() {
   }
 
   function handleClickDone() {
-    
     setIsCompleted(true);
     if (score > highscore) {
       dispatch(updateHighscore(score));
@@ -89,8 +88,7 @@ export default function QuizPage() {
     }
   }, [selectedQuiz, index]);
 
-  console.log(allQuestions.question);
-  
+  /* console.log(allQuestions.question); */
 
   return (
     <div className="flex justify-center flex-col items-center px-10 ">

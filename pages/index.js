@@ -30,7 +30,7 @@ export default function Home() {
   };
   //Bildspels funktion
 
-  console.log(Home);
+  console.log(backgroundImageStyle);
   return (
     <main className="flex justify-center flex-col" style={backgroundImageStyle}>
       <div className="w-full ">
