@@ -4,12 +4,11 @@ export const customQuizSlice = createSlice({
   name: "customQuiz",
   initialState: {
     currentQuiz: null,
+    allQuestions: [],
   },
   reducers: {
     addCustomQuiz: (state, action) => {
-      addCustomQuiz(state, (action) => {
-        state.quizzes.push(action.payload);
-      });
+      state.allQuestions.push(action.payload);
     },
 
     setCurrentQuiz: (state, action) => {
