@@ -69,8 +69,8 @@ export default function QuizPage() {
   }
 
   function handleClickDone() {
+    
     setIsCompleted(true);
-
     if (score > highscore) {
       dispatch(updateHighscore(score));
     }
@@ -184,7 +184,7 @@ export default function QuizPage() {
                 ? "Correct Answer"
                 : buttonClicked && !isCorrect && "Wrong Answer"}
             </p>
-            {index < 14 ? (
+            {index < selectedQuiz.results.length - 1 ? (
               <button
                 className="border-none h-10 w-40 rounded-md bg-amber-400 font-semibold hover:cursor-pointer"
                 onClick={buttonClicked ? handleClickNext : null}
