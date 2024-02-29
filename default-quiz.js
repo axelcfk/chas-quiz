@@ -73,42 +73,6 @@ export const defaultQuiz = {
       correct_answer: "$12.7 Billion",
       incorrect_answers: ["$95 Million", "$956 Million", "$2.7 Billion"],
     },
-    {
-      question:
-        "Which logical fallacy means to attack the character of your opponent rather than their arguments?",
-      correct_answer: "Ad hominem",
-      incorrect_answers: [
-        "Post hoc ergo propter hoc",
-        "Tu quoque",
-        "Argumentum ad populum",
-      ],
-    },
-    {
-      question:
-        "Which item of clothing is usually worn by a Scotsman at a wedding?",
-      correct_answer: "Kilt",
-      incorrect_answers: ["Skirt", "Dress", "Rhobes"],
-    },
-    {
-      question:
-        "Which slogan did the fast food company, McDonalds, use before their 'Im Lovin It slogan?'",
-      correct_answer: "We Love to See You Smile",
-      incorrect_answers: [
-        "Why Pay More!?",
-        "Have It Your Way",
-        "Making People Happy Through Food",
-      ],
-    },
-    {
-      question: "What is the world&#039;s most expensive spice by weight?",
-      correct_answer: "Saffron",
-      incorrect_answers: ["Cinnamon", "Cardamom", "Vanilla"],
-    },
-    {
-      question: "In what year was McDonald&#039;s founded?",
-      correct_answer: "1955",
-      incorrect_answers: ["1964", "1951", "1947"],
-    },
   ],
 };
 
@@ -220,53 +184,7 @@ export const hardQuiz = {
         "The inability to stand up",
       ],
     },
-    {
-      type: "multiple",
-      difficulty: "hard",
-      category: "General Knowledge",
-      question:
-        "If someone said &quot;you are olid&quot;, what would they mean?",
-      correct_answer: "You smell extremely unpleasant.",
-      incorrect_answers: [
-        "You are out of shape/weak.",
-        "Your appearance is repulsive.",
-        "You are incomprehensible/an idiot.",
-      ],
-    },
-    {
-      type: "multiple",
-      difficulty: "hard",
-      category: "General Knowledge",
-      question: "Which of the following chemicals are found in eggplant seeds?",
-      correct_answer: "Nicotine",
-      incorrect_answers: ["Mescaline", "Cyanide", "Psilocybin"],
-    },
-    {
-      type: "multiple",
-      difficulty: "hard",
-      category: "General Knowledge",
-      question: "Named after the mallow flower, mauve is a shade of what?",
-      correct_answer: "Purple",
-      incorrect_answers: ["Red", "Brown", "Pink"],
-    },
-    {
-      type: "multiple",
-      difficulty: "hard",
-      category: "General Knowledge",
-      question:
-        "Which of the following languages does NOT use gender as a part of its grammar?",
-      correct_answer: "Turkish",
-      incorrect_answers: ["German", "Danish", "Polish"],
-    },
-    {
-      type: "multiple",
-      difficulty: "hard",
-      category: "General Knowledge",
-      question:
-        "In &quot;Resident Evil 3&quot;, how many inventory slots does Jill have at the start of the game?",
-      correct_answer: "10",
-      incorrect_answers: ["6", "8", "12"],
-    },
+    
   ],
 };
 

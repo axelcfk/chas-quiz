@@ -5,13 +5,11 @@ export default function QuizPage() {
   const [index, setIndex] = useState(0);
   const [isCorrect, setIsCorrect] = useState(false);
   const [buttonClicked, setButtonClicked] = useState(false);
-
   const [quizIsSelected, setquizIsSelected] = useState(false);
-
   const [shuffledOptions, setShuffledOptions] = useState([]);
   const [selectedQuiz, setSelectedQuiz] = useState(null);
-
   const [isCompleted, setIsCompleted] = useState(false);
+  const [score, setScore] = useState(0);
 
   useEffect(() => {
     if (selectedQuiz) {
@@ -48,6 +46,7 @@ export default function QuizPage() {
   const handleButtonClick = (selectedOption) => {
     if (selectedOption === selectedQuiz.results[index].correct_answer) {
       setIsCorrect(true);
+      setScore(score + 1);
     }
     setButtonClicked(true);
   };
@@ -59,14 +58,15 @@ export default function QuizPage() {
     shuffleAnswers(); // Shuffle options for the next question
   };
 
-  // if (index + 1 === selectedQuiz.length) {
+  //check if the quiz is completed
+  // if (selectedQuiz && index === selectedQuiz.results.length - 1) {
   //   setIsCompleted(true);
   // }
 
   return (
-    <div className="flex justify-center flex-col items-center mx-10 bg">
+    <div className="flex justify-center flex-col items-center px-10 ">
       <h1>Take a Quiz</h1>
-      <p>Take one of our quizzes or one of your own!</p>
+
       {!quizIsSelected ? (
         <div>
           <div className="flex flex-col justify-center">
@@ -111,6 +111,7 @@ export default function QuizPage() {
 
       {selectedQuiz && (
         <>
+          <p>Your score: {score}</p>
           <p>
             Question {index + 1} of {selectedQuiz.results.length}
           </p>
