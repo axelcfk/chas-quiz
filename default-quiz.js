@@ -207,82 +207,82 @@ export const easyQuiz = {
       correct_answer: "Liver",
       incorrect_answers: ["Heart", "Stomach", "Intestines"],
     },
-    {
-      type: "multiple",
-      difficulty: "easy",
-      category: "General Knowledge",
-      question:
-        "According to the nursery rhyme, what fruit did Little Jack Horner pull out of his Christmas pie?",
-      correct_answer: "Plum",
-      incorrect_answers: ["Apple", "Peach", "Pear"],
-    },
-    {
-      type: "multiple",
-      difficulty: "easy",
-      category: "General Knowledge",
-      question: "What does a funambulist walk on?",
-      correct_answer: "A Tight Rope",
-      incorrect_answers: ["Broken Glass", "Balls", "The Moon"],
-    },
-    {
-      type: "multiple",
-      difficulty: "easy",
-      category: "General Knowledge",
-      question:
-        "Which of these colours is NOT featured in the logo for Google?",
-      correct_answer: "Pink",
-      incorrect_answers: ["Yellow", "Blue", "Green"],
-    },
-    {
-      type: "multiple",
-      difficulty: "easy",
-      category: "General Knowledge",
-      question:
-        "The New York Times slogan is, &ldquo;All the News That&rsquo;s Fit to&hellip;&rdquo;",
-      correct_answer: "Print",
-      incorrect_answers: ["Digest", "Look", "Read"],
-    },
-    {
-      type: "multiple",
-      difficulty: "easy",
-      category: "General Knowledge",
-      question: "What is the name of the company in Lethal Company?",
-      correct_answer: "The Company",
-      incorrect_answers: [
-        "Planet Scrap Co.",
-        "Lethal Robotics",
-        "Gordian Shipping Co.",
-      ],
-    },
-    {
-      type: "multiple",
-      difficulty: "easy",
-      category: "General Knowledge",
-      question:
-        "The likeness of which president is featured on the rare $2 bill of USA currency?",
-      correct_answer: "Thomas Jefferson",
-      incorrect_answers: [
-        "Martin Van Buren",
-        "Ulysses Grant",
-        "John Quincy Adams",
-      ],
-    },
-    {
-      type: "multiple",
-      difficulty: "easy",
-      category: "General Knowledge",
-      question: "On a dartboard, what number is directly opposite No. 1?",
-      correct_answer: "19",
-      incorrect_answers: ["20", "12", "15"],
-    },
-    {
-      type: "multiple",
-      difficulty: "easy",
-      category: "General Knowledge",
-      question:
-        "Virgin Trains, Virgin Atlantic and Virgin Racing, are all companies owned by which famous entrepreneur?   ",
-      correct_answer: "Richard Branson",
-      incorrect_answers: ["Alan Sugar", "Donald Trump", "Bill Gates"],
-    },
+    // {
+    //   type: "multiple",
+    //   difficulty: "easy",
+    //   category: "General Knowledge",
+    //   question:
+    //     "According to the nursery rhyme, what fruit did Little Jack Horner pull out of his Christmas pie?",
+    //   correct_answer: "Plum",
+    //   incorrect_answers: ["Apple", "Peach", "Pear"],
+    // },
+    // {
+    //   type: "multiple",
+    //   difficulty: "easy",
+    //   category: "General Knowledge",
+    //   question: "What does a funambulist walk on?",
+    //   correct_answer: "A Tight Rope",
+    //   incorrect_answers: ["Broken Glass", "Balls", "The Moon"],
+    // },
+    // {
+    //   type: "multiple",
+    //   difficulty: "easy",
+    //   category: "General Knowledge",
+    //   question:
+    //     "Which of these colours is NOT featured in the logo for Google?",
+    //   correct_answer: "Pink",
+    //   incorrect_answers: ["Yellow", "Blue", "Green"],
+    // },
+    // {
+    //   type: "multiple",
+    //   difficulty: "easy",
+    //   category: "General Knowledge",
+    //   question:
+    //     "The New York Times slogan is, &ldquo;All the News That&rsquo;s Fit to&hellip;&rdquo;",
+    //   correct_answer: "Print",
+    //   incorrect_answers: ["Digest", "Look", "Read"],
+    // },
+    // {
+    //   type: "multiple",
+    //   difficulty: "easy",
+    //   category: "General Knowledge",
+    //   question: "What is the name of the company in Lethal Company?",
+    //   correct_answer: "The Company",
+    //   incorrect_answers: [
+    //     "Planet Scrap Co.",
+    //     "Lethal Robotics",
+    //     "Gordian Shipping Co.",
+    //   ],
+    // },
+    // {
+    //   type: "multiple",
+    //   difficulty: "easy",
+    //   category: "General Knowledge",
+    //   question:
+    //     "The likeness of which president is featured on the rare $2 bill of USA currency?",
+    //   correct_answer: "Thomas Jefferson",
+    //   incorrect_answers: [
+    //     "Martin Van Buren",
+    //     "Ulysses Grant",
+    //     "John Quincy Adams",
+    //   ],
+    // },
+    // {
+    //   type: "multiple",
+    //   difficulty: "easy",
+    //   category: "General Knowledge",
+    //   question: "On a dartboard, what number is directly opposite No. 1?",
+    //   correct_answer: "19",
+    //   incorrect_answers: ["20", "12", "15"],
+    // },
+    // {
+    //   type: "multiple",
+    //   difficulty: "easy",
+    //   category: "General Knowledge",
+    //   question:
+    //     "Virgin Trains, Virgin Atlantic and Virgin Racing, are all companies owned by which famous entrepreneur?   ",
+    //   correct_answer: "Richard Branson",
+    //   incorrect_answers: ["Alan Sugar", "Donald Trump", "Bill Gates"],
+    // },
   ],
 };
