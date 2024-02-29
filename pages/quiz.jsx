@@ -52,6 +52,7 @@ export default function QuizPage() {
   };
 
   const handleClickNext = () => {
+    
     setIndex((prevIndex) => prevIndex + 1);
     setIsCorrect(false);
     setButtonClicked(false);
@@ -116,15 +117,18 @@ export default function QuizPage() {
       )}
 
       {isCompleted ? (
-        <div>
+        <div className="">
           <h2 className="text-5xl">
             You scored {score} out of {selectedQuiz.results.length}
           </h2>
-          <h3>Your highscore is ...</h3>
+          <h3>Your highscore is {score}</h3>
           <button className="h-40 w-60 p-2 border-none font-semibold rounded-md my-5 hover:bg-green-500 hover:cursor-pointer text-xl">
             Take the quiz again!
           </button>
-          <button className="h-40 w-60 p-2 border-none font-semibold rounded-md my-5 hover:bg-green-500 hover:cursor-pointer text-xl">
+          <button
+            // onClick={() => setquizIsSelected(false)}
+            className="h-40 w-60 p-2 border-none font-semibold rounded-md my-5 hover:bg-green-500 hover:cursor-pointer text-xl"
+          >
             Take another quiz!
           </button>
         </div>
@@ -132,11 +136,11 @@ export default function QuizPage() {
         selectedQuiz && (
           <>
             <p>Your score: {score}</p>
+
+            <h2>{selectedQuiz.results[index].question}</h2>
             <p>
               Question {index + 1} of {selectedQuiz.results.length}
             </p>
-
-            <h2>{selectedQuiz.results[index].question}</h2>
 
             <div className="grid grid-cols-2">
               {shuffledOptions.map((option, i) => (
