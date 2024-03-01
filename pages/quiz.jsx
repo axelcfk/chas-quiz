@@ -218,6 +218,8 @@ export default function QuizPage() {
             onClick={() => {
               setSelectedQuiz(null)
               setquizIsSelected(false)
+              setIndex(0)
+              setButtonClicked(false)
 
               setIsCompleted(false) 
             }}

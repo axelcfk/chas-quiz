@@ -3,8 +3,13 @@ import React, { useState } from "react";
 function AddQuestionForm({ onAddQuestion, newQuestion, setNewQuestion }) {
   const [correctAnswer, setCorrectAnswer] = useState("");
   const [wrongAnswers, setWrongAnswers] = useState(["", "", ""]);
-  const [errorMessage, setErrorMessage] = useState("");
+const [errorMessage, setErrorMessage] = useState("");
 
+  const handleInputChange = (index, value) => {
+    const newWrongAnswers = [...wrongAnswers];
+    newWrongAnswers[index] = value;
+    setWrongAnswers(newWrongAnswers);
+  };
 
   const handleAddQuestion = () => {
 
@@ -22,7 +27,7 @@ if(newQuestion.trim() === "" || correctAnswer.trim() === "" || wrongAnswers.some
     setNewQuestion("");
     setCorrectAnswer("");
     setWrongAnswers(["", "", ""]);
-    setErrorMessage("");
+setErrorMessage("");
   };
 
   const handleWrongAnswerChange = (index, value) => {
@@ -32,18 +37,21 @@ if(newQuestion.trim() === "" || correctAnswer.trim() === "" || wrongAnswers.some
   };
 
   return (
-    <div>
-      <label>
+    <div className="grid grid-cols- grid-rows- gap-4 justify-items-center">
+      <label className="text-center text-2xl mt-2 mb-2">
         Question:
         <input
+          className="w-full border-gray-300 mb-4 px-3 py-3 rounded-3xl border-solid focus:outline-none text-center mt-1"
           type="text"
           placeholder="Enter question"
           value={newQuestion}
           onChange={(e) => setNewQuestion(e.target.value)}
         />
       </label>
+    <div className="grid grid-cols-2 space-x-3">
       <label>
         <input
+          className="w-full mt-1 px- py-2.5 rounded-lg border border-gray-300 focus:outline-none border-solid"
           type="text"
           placeholder="Correct answer"
           value={correctAnswer}
@@ -52,18 +60,24 @@ if(newQuestion.trim() === "" || correctAnswer.trim() === "" || wrongAnswers.some
       </label>
       <label>
         {wrongAnswers.map((answer, index) => (
-            // creates a new <input> for each element in the array "wrongAnswers",
-            // which is 3, instead of writing same code 3 times
           <input
             key={index}
+            className="w-full mt-1 px-3 py-2 rounded-lg border border-gray-300 focus:outline-none  border-solid"
             type="text"
             value={answer}
             placeholder="Wrong answer"
-            onChange={(event) => handleWrongAnswerChange(index, event.target.value)}
+            onChange={(event) =>
+              handleWrongAnswerChange(index, event.target.value)
+            }
           />
         ))}
       </label>
-      <button class type="button" onClick={handleAddQuestion}>
+      </div>
+      <button
+        className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline border-none mt-8"
+        type="button"
+        onClick={handleAddQuestion}
+      >
         Add Question
       </button>
       {errorMessage && <p>{errorMessage}</p>}
@@ -72,4 +86,3 @@ if(newQuestion.trim() === "" || correctAnswer.trim() === "" || wrongAnswers.some
 }
 
 export default AddQuestionForm;
-
