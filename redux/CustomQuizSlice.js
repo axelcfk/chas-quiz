@@ -46,9 +46,9 @@ export const customQuizSlice = createSlice({
 export const { addCustomQuiz, addFinishedQuiz, setCurrentQuiz } =
   customQuizSlice.actions;
 
-// export const selectSubmittedQuizzes = (state) =>
-//   state.customQuiz.currentQuiz ? [state.customQuiz.currentQuiz] : [];
+export const selectSubmittedQuizzes = (state) =>
+  state.customQuiz.currentQuiz ? [state.customQuiz.currentQuiz] : [];
 
-// export const selectAllQuizzes = (state) => state.customQuiz.allQuizzes;
+export const selectAllQuizzes = (state) => state.customQuiz.allQuizzes;
 
 export default customQuizSlice.reducer;
