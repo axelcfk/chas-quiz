@@ -23,6 +23,12 @@ export default function CustomQuizPage() {
     setQuestions(updatedQuestions);
   };
 
+  const handleRemoveQuestion = (index => {
+    const updatedQuestions = [...questions];
+    updatedQuestions.splice(index, 1); // Remove the question from the array
+    setQuestions(updatedQuestions);
+  })
+
   const handleMakeQuiz = () => {
     if (questions.length === 0 || quizName.trim() === "") return;
     const newQuiz = {
@@ -61,7 +67,7 @@ export default function CustomQuizPage() {
         setNewQuestion={setNewQuestion}
       />
 
-      <div className="flex justify-center flex-col">
+      <div className="flex justify-center flex-col bg-pink-300">
         <button
           className="w-28 mt-10 bg-blue-500 hover:bg-blue-400  text-white font-bold border-none py-4 px-4 hover rounded-3xl focus:outline-none focus:shadow-outline mx-auto cursor-pointer"
           onClick={handleMakeQuiz}
@@ -69,26 +75,34 @@ export default function CustomQuizPage() {
           Make Quiz
         </button>
         <h2 className="flex justify-center pt-6">Finished Quizzes:</h2>
-        <div className="flex justify-center">      <ul className="flex justify-center list-none font-bold text-xl text-white flex-col">
-          Quizzes: &nbsp;
-          {finishedQuizzes.map((quiz, index) => (
-            <li key={index}>{quiz.name}</li>
-          ))}
-        </ul></div>
-   
+        <div className="flex justify-center">
+          {" "}
+          <ul className="flex justify-center list-none font-bold text-xl text-white flex-col">
+            Quizzes: &nbsp;
+            {finishedQuizzes.map((quiz, index) => (
+              <li key={index}>{quiz.name}</li>
+            ))}
+          </ul>
+        </div>
 
         {/* This div will only be visible on mobile devices */}
         <div className="md:hidden">
-          <ul className="grid grid-cols-2 gap-4">
+          <ul className="grid grid-cols-2 gap-4 bg-teal-800">
             {questions.map((question, index) => (
               <li key={index}>
                 <p>
                   Question {index + 1}: {question.question}
                 </p>
                 <p>Incorrect answer 1: {question.incorrect_answers[0]}</p>
+
                 <p>Incorrect answer 2: {question.incorrect_answers[1]}</p>
+
                 <p>Incorrect answer 3: {question.incorrect_answers[2]}</p>
+
                 <p>Correct: {question.correct_answer}</p>
+
+                <button>Edit</button>
+                <button onClick={() => handleRemoveQuestion(index)}>Remove question</button>
               </li>
             ))}
           </ul>
