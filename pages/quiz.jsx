@@ -153,7 +153,6 @@ console.log(easyQuiz);
       {!quizIsSelected ? (
         <div>
           <div className="flex flex-col justify-center items-center">
-          <div className="flex flex-col justify-center items-center">
             <button
               className="h-40 w-60 p-2 border-none font-semibold rounded-md my-5 hover:bg-blue-600 hover:cursor-pointer text-xl"
               onClick={() => handleSelectedQuiz("Easy")}
@@ -192,18 +191,7 @@ console.log(easyQuiz);
                 Your Custom Quiz
               </button>
             )}
-            {/* <button
-              className="h-40 w-60 p-2 border-none font-semibold rounded-md my-5 hover:bg-green-500 hover:cursor-pointer text-xl"
-              onClick={() => handleSelectedQuiz("")}
-            >
-              Your Quiz 1
-            </button>{" "}
-            <button
-              className="h-40 w-60 p-2 border-none font-semibold rounded-md my-5 hover:bg-green-500 hover:cursor-pointer text-xl"
-              onClick={() => handleSelectedQuiz("")}
-            >
-              Your Quiz 2
-            </button>{" "} */}
+          
           </div>
         </div>
       ) : (
