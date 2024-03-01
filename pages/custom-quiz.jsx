@@ -2,7 +2,8 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addCustomQuiz, selectAllQuizzes, setCurrentQuiz } from "@/redux/CustomQuizSlice";
 import AddQuestionForm from "@/Components/AddQuestionForm";
-// import CustomQuizList from "@/Components/customQuizList";
+
+
 export default function CustomQuizPage() {
   const [newQuestion, setNewQuestion] = useState("");
   const [quizName, setQuizName] = useState(""); // State to store quiz name
@@ -42,16 +43,7 @@ export default function CustomQuizPage() {
         newQuestion={newQuestion}
         setNewQuestion={setNewQuestion}
       />
-      <div>
-        <ul>
-          {questions.map((question, index) => (
-            <li key={index}>{question.question}</li> // Show the questions in the list
-          ))}
-        </ul>
-      </div>
       <button onClick={handleMakeQuiz}>Make Quiz</button>
-      {/* {finishedQuizzes.length > 0 &&  <CustomQuizList finishedQuizzes={finishedQuizzes} />} */}
-      //? Maybe send props?
       <div>
         {userQuiz.results && userQuiz.results.map(item => (
           <div key={item.question}>
