@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { defaultQuiz, hardQuiz, easyQuiz } from "@/default-quiz";
 import { useDispatch, useSelector } from "react-redux";
 import { updateHighscore } from "@/redux/HighScoreSlice";
+import Link from "next/link";
 //import { setCurrentQuiz } from "@/redux/CustomQuizSlice";
 
 export default function QuizPage() {
@@ -16,7 +17,8 @@ export default function QuizPage() {
   const [selectedQuiz, setSelectedQuiz] = useState(null);
   const [isCompleted, setIsCompleted] = useState(false);
   const [score, setScore] = useState(0);
-  const [reset, setReset] = useState(false);
+  const [clickedIncorrectIndex, setClickedIncorrectIndex] = useState(null);
+  const [wiggle, setWiggle] = useState(false);
 
   // global state:
   const dispatch = useDispatch();
@@ -60,10 +62,16 @@ export default function QuizPage() {
     setShuffledOptions(answers);
   }
 
-  function handleButtonClick(selectedOption) {
+  function handleButtonClick(selectedOption, optionIndex) {
     if (selectedOption === selectedQuiz.results[index].correct_answer) {
       setIsCorrect(true);
       setScore((score) => score + 1);
+    } else {
+      // Set the index of the clicked incorrect option
+      setClickedIncorrectIndex(optionIndex);
+      setWiggle(true);
+      // Reset wiggle after a short delay
+      setTimeout(() => setWiggle(false), 500);
     }
     setButtonClicked(true);
   }
@@ -73,6 +81,7 @@ export default function QuizPage() {
     setIsCorrect(false);
     setButtonClicked(false);
     shuffleAnswers(); // Shuffle options for the next question
+    setClickedIncorrectIndex(null);
   }
 
   function handleClickDone() {
@@ -117,6 +126,9 @@ export default function QuizPage() {
     console.log("userQuiz är inte ett objekt eller är null.");
   }
 
+  console.log(userQuiz);
+  console.log(easyQuiz);
+
   return (
     <div className="flex justify-center flex-col items-center px-10 ">
       {!isCompleted && !quizIsSelected ? (
@@ -126,58 +138,60 @@ export default function QuizPage() {
       ) : null}
 
       <div>
+        {" "}
+        {/* just to check if userQuiz looks correct  */}
         {userQuiz.results &&
           userQuiz.results.map((item) => (
             <div key={item.question}>
               <p>Question: {item.question}</p>
               <p>Correct Answer: {item.correct_answer}</p>
-              <p>Incorrect Answers: {item.incorrect_answers.join(", ")}</p>
+              <p>Incorrect Answers: {item.incorrect_answers}</p>
             </div>
           ))}
       </div>
 
       {!quizIsSelected ? (
         <div>
-          <div className="flex flex-col justify-center">
+          <div className="flex flex-col justify-center items-center">
             <button
-              className="h-40 w-60 p-2 border-none font-semibold rounded-md my-5 hover:bg-green-500 hover:cursor-pointer text-xl"
+              className="h-40 w-60 p-2 border-none font-semibold rounded-md my-5 hover:bg-blue-600 hover:cursor-pointer text-xl"
               onClick={() => handleSelectedQuiz("Easy")}
             >
               Easy
             </button>{" "}
             <button
-              className="h-40 w-60 p-2 border-none font-semibold rounded-md my-5 hover:bg-green-500 hover:cursor-pointer text-xl"
+              className="h-40 w-60 p-2 border-none font-semibold rounded-md my-5 hover:bg-blue-600 hover:cursor-pointer text-xl"
               onClick={() => handleSelectedQuiz("Medium")}
             >
               Medium
             </button>
             <button
-              className="h-40 w-60 p-2 border-none font-semibold rounded-md my-5 hover:bg-green-500 hover:cursor-pointer text-xl"
+              className="h-40 w-60 p-2 border-none font-semibold rounded-md my-5 hover:bg-blue-600 hover:cursor-pointer text-xl"
               onClick={() => handleSelectedQuiz("Hard")}
             >
               Hard
             </button>{" "}
-            <button
-              className="h-40 w-60 p-2 border-none font-semibold rounded-md my-5 hover:bg-green-500 hover:cursor-pointer text-xl"
-              onClick={() => handleSelectedQuiz("MyCustomQuiz")}
-            >
-              Your Custom Quiz
-            </button>{" "}
           </div>
-          <div className="flex flex-col p-2 border-none font-semibold rounded-md hover:cursor-pointer">
+          <div className="flex flex-col  justify-center items-center p-2 border-none font-semibold rounded-md hover:cursor-pointer">
             <h2>Your Quizzes</h2>
-            <button
-              className="h-40 w-60 p-2 border-none font-semibold rounded-md my-5 hover:bg-green-500 hover:cursor-pointer text-xl"
-              onClick={() => handleSelectedQuiz("")}
-            >
-              Your Quiz 1
-            </button>{" "}
-            <button
-              className="h-40 w-60 p-2 border-none font-semibold rounded-md my-5 hover:bg-green-500 hover:cursor-pointer text-xl"
-              onClick={() => handleSelectedQuiz("")}
-            >
-              Your Quiz 2
-            </button>{" "}
+            {userQuiz.results.length === 0 ? (
+              <>
+                <h3>You have no created quizzes yet.</h3>
+                <Link href="/custom-quiz">
+                  <button className="h-40 w-60 p-2 border-none font-semibold rounded-md my-5 hover:bg-green-500 hover:cursor-pointer text-xl">
+                    Create one here!
+                  </button>
+                </Link>
+              </>
+            ) : (
+              <button
+                className="h-40 w-60 p-2 border-none font-semibold rounded-md my-5 hover:bg-blue-600 hover:cursor-pointer text-xl"
+                onClick={() => handleSelectedQuiz("MyCustomQuiz")}
+              >
+                Your Custom Quiz
+              </button>
+            )}
+          
           </div>
         </div>
       ) : (
@@ -186,39 +200,60 @@ export default function QuizPage() {
 
       {isCompleted ? (
         <div className="flex flex-col justify-center items-center">
-          <h2 className="text-5xl text-center">
-            You scored {score} out of {selectedQuiz.results.length}
-          </h2>
-          <h3>Your highscore is {highscore}</h3>
-          <button className="h-40 w-60 p-2 border-none font-semibold rounded-md my-5 hover:bg-green-500 hover:cursor-pointer text-xl mt-10">
-            Take the quiz again!
-          </button>
+          <h1>Results</h1>
+
+          <div className="bg-slate-200 rounded-lg px-4">
+            <h2 className="text-xl text-center">
+              🟢 {score} correct 🔴 {selectedQuiz.results.length - score}{" "}
+              incorrect
+            </h2>
+          </div>
+
+          <div className="bg-slate-200 h-72 w-60 mt-24 flex flex-col justify-center items-center rounded-lg">
+            <p>Your highscore is</p>
+            <h3 className="text-4xl">{highscore}</h3>
+          </div>
+
           <button
-            // onClick={() => setquizIsSelected(false)}
-            className="h-40 w-60 p-2 border-none font-semibold rounded-md my-5 hover:bg-green-500 hover:cursor-pointer text-xl mt-10"
+            onClick={() => {
+              setSelectedQuiz(null)
+              setquizIsSelected(false)
+              setIndex(0)
+              setButtonClicked(false)
+
+              setIsCompleted(false) 
+            }}
+            className="h-16 text-slate-100 w-60 p-2 border-none font-semibold rounded-full my-5 bg-blue-600 hover:cursor-pointer text-xl mt-10"
           >
-            Take another quiz!
+            Done
           </button>
         </div>
       ) : (
+        //Här börjar quizzet
         selectedQuiz && (
           <>
-            <p>Your score: {score}</p>
+            <p className="font-bold ">Score: {score} </p>
 
-            <h2>{selectedQuiz.results[index].question}</h2>
-            <p>
-              Question {index + 1} of {selectedQuiz.results.length}
-            </p>
+            <div className="flex flex-col h-72 justify-end items-center">
+              <h2>{selectedQuiz.results[index].question}</h2>
+              <p>
+                {index + 1} / {selectedQuiz.results.length}
+              </p>
+            </div>
 
             <div className="grid grid-cols-2">
               {shuffledOptions.map((option, i) => (
                 <button
                   key={i}
-                  onClick={() => handleButtonClick(option)}
-                  className={`m-5 h-36 w-36 p-2 border-none font-semibold rounded-md ${
+                  onClick={() => handleButtonClick(option, i)}
+                  className={`m-5 h-24 w-36 p-2 border-none font-semibold rounded-md ${
                     buttonClicked
                       ? option === selectedQuiz.results[index].correct_answer
-                        ? "bg-green-500 text-zinc-950"
+                        ? "bg-green-600 text-zinc-950"
+                        : i === clickedIncorrectIndex
+                        ? `wiggle ${
+                            wiggle ? "wiggling" : ""
+                          } bg-red-500 text-black` // Use wiggleAnimation here
                         : "bg-slate-200"
                       : "hover:bg-slate-300 hover:cursor-pointer"
                   }`}
@@ -228,11 +263,13 @@ export default function QuizPage() {
                 </button>
               ))}
             </div>
-            <p>
-              {buttonClicked && isCorrect
-                ? "Correct Answer"
-                : buttonClicked && !isCorrect && "Wrong Answer"}
-            </p>
+            <div className="h-16">
+              <p>
+                {buttonClicked && isCorrect
+                  ? "Correct Answer"
+                  : buttonClicked && !isCorrect && "Wrong Answer"}
+              </p>
+            </div>
             {index < selectedQuiz.results.length - 1 ? (
               <button
                 className="border-none h-10 w-40 rounded-md bg-amber-400 font-semibold hover:cursor-pointer"

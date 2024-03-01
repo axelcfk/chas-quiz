@@ -3,14 +3,15 @@ import React, { useState } from "react";
 function AddQuestionForm({ onAddQuestion, newQuestion, setNewQuestion }) {
   const [correctAnswer, setCorrectAnswer] = useState("");
   const [wrongAnswers, setWrongAnswers] = useState(["", "", ""]);
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const handleInputChange = (index, value) => {
-    const newWrongAnswers = [...wrongAnswers];
-    newWrongAnswers[index] = value;
-    setWrongAnswers(newWrongAnswers);
-  };
 
   const handleAddQuestion = () => {
+
+if(newQuestion.trim() === "" || correctAnswer.trim() === "" || wrongAnswers.some(answer => answer.trim() === "")) {
+  setErrorMessage("Please fill in all the fields");
+  return;
+}
     const newQuestionData = {
       question: newQuestion,
       correct_answer: correctAnswer,
@@ -21,6 +22,7 @@ function AddQuestionForm({ onAddQuestion, newQuestion, setNewQuestion }) {
     setNewQuestion("");
     setCorrectAnswer("");
     setWrongAnswers(["", "", ""]);
+    setErrorMessage("");
   };
 
   const handleWrongAnswerChange = (index, value) => {
@@ -58,10 +60,7 @@ function AddQuestionForm({ onAddQuestion, newQuestion, setNewQuestion }) {
             className="w-full mt-1 px-3 py-2 rounded-lg border border-gray-300 focus:outline-none  border-solid"
             type="text"
             value={answer}
-            placeholder="Wrong answer"
-            onChange={(event) =>
-              handleWrongAnswerChange(index, event.target.value)
-            }
+            onChange={(event) => handleWrongAnswerChange(index, event.target.value)}
           />
         ))}
       </label>
@@ -73,6 +72,18 @@ function AddQuestionForm({ onAddQuestion, newQuestion, setNewQuestion }) {
       >
         Add Question
       </button>
+      
+      <ul>
+        <li>
+            <strong>Question:</strong>{newQuestion}
+        </li>
+        <li>
+            <strong>Correct answer:</strong>{correctAnswer}
+        </li>
+        <li>
+            <strong>Wrong Answers:</strong>{wrongAnswers.filter((answer) => answer.trim()!== "").join("", )}
+        </li>
+      </ul>
     </div>
   );
 }
