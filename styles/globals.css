@@ -1,3 +1,29 @@
 @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap");
 @tailwind components;
 @tailwind utilities;
+
+@keyframes wiggleAnimation {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  20% {
+    transform: rotate(3deg);
+  }
+  40% {
+    transform: rotate(-3deg);
+  }
+  60% {
+    transform: rotate(2deg);
+  }
+  80% {
+    transform: rotate(-2deg);
+  }
+}
+
+.wiggle {
+  display: inline-block;
+  transform-origin: 70% 70%;
+  transition: transform 0.3s ease-in-out;
+  animation: wiggleAnimation 0.3s;
+}
