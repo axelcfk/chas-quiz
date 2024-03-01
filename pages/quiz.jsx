@@ -251,11 +251,13 @@ export default function QuizPage() {
                 </button>
               ))}
             </div>
-            <p>
-              {buttonClicked && isCorrect
-                ? "Correct Answer"
-                : buttonClicked && !isCorrect && "Wrong Answer"}
-            </p>
+            <div className="h-16">
+              <p>
+                {buttonClicked && isCorrect
+                  ? "Correct Answer"
+                  : buttonClicked && !isCorrect && "Wrong Answer"}
+              </p>
+            </div>
             {index < selectedQuiz.results.length - 1 ? (
               <button
                 className="border-none h-10 w-40 rounded-md bg-amber-400 font-semibold hover:cursor-pointer"
