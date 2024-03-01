@@ -12,7 +12,7 @@ const imageUrls = [
 import Image from "next/image";
 import logoImg from "./publik/question-mark-in-a-circle-svgrepo-com.svg";
 import googleImg from "./publik/google.svg";
-import apple from "./publik/appstore.svg"
+import apple from "./publik/appstore.svg";
 // import logoImg from "./publik/question-mark-in-a-circle-svgrepo-com.svg"
 
 //Bildspels funktion
@@ -82,10 +82,8 @@ export default function Home() {
                 </button>
               </Link>
             </div>
-          
-
+          </div>
         </div>
-        
       </main>
       <footer className="flex justify-center">
         <footer className="flex justify-center">
