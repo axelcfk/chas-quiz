@@ -152,7 +152,7 @@ console.log(easyQuiz);
 
       {!quizIsSelected ? (
         <div>
-          <div className="flex flex-col justify-center">
+          <div className="flex flex-col justify-center items-center">
             <button
               className="h-40 w-60 p-2 border-none font-semibold rounded-md my-5 hover:bg-blue-600 hover:cursor-pointer text-xl"
               onClick={() => handleSelectedQuiz("Easy")}
@@ -215,7 +215,12 @@ console.log(easyQuiz);
             You scored {score} out of {selectedQuiz.results.length}
           </h2>
           <h3>Your highscore is {highscore}</h3>
-          <button className="h-40 w-60 p-2 border-none font-semibold rounded-md my-5 hover:bg-green-500 hover:cursor-pointer text-xl mt-10">
+          <button onClick={() => {
+            setSelectedQuiz(null)
+            setquizIsSelected(false)
+
+            setIsCompleted(false) 
+          }} className="h-40 w-60 p-2 border-none font-semibold rounded-md my-5 hover:bg-green-500 hover:cursor-pointer text-xl mt-10">
             Take the quiz again!
           </button>
           <Link href="/quiz">
