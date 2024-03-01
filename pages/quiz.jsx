@@ -221,12 +221,15 @@ export default function QuizPage() {
         //Här börjar quizzet
         selectedQuiz && (
           <>
-            <p>Your score: {score}</p>
+            <p>Score: {score} </p>
 
-            <h2>{selectedQuiz.results[index].question}</h2>
-            <p>
-              Question {index + 1} of {selectedQuiz.results.length}
-            </p>
+            <div className="flex flex-col h-72 justify-end items-center">
+
+              <h2>{selectedQuiz.results[index].question}</h2>
+              <p>
+                 {index + 1} / {selectedQuiz.results.length}
+              </p>
+            </div>
 
             <div className="grid grid-cols-2">
               {shuffledOptions.map((option, i) => (
