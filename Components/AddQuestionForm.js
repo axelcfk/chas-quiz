@@ -30,21 +30,21 @@ function AddQuestionForm({ onAddQuestion, newQuestion, setNewQuestion }) {
   };
 
   return (
-    <div className="grid grid-cols- grid-rows- gap-4 justify-items-center">
-      <label className="text-center text-2xl">
+    <div className="grid gap-4 justify-items-center">
+      <label className="text-center text-2xl mt-2 mb-2">
         Question:
         <input
-          className="w-full border-gray-300 mb-4 px-3 py-3 rounded-3xl border-solid focus:outline-none text-center"
+          className="w-full border-gray-300 mb-4 px-3 py-3 rounded-3xl border-solid focus:outline-none text-center mt-1"
           type="text"
           placeholder="Enter question"
           value={newQuestion}
           onChange={(e) => setNewQuestion(e.target.value)}
         />
       </label>
-    <div className="grid grid-cols-2">
+    <div className="grid grid-cols-2 space-x-3">
       <label>
         <input
-          className="w-full mt-1 px- py-2 rounded-lg border border-gray-300 focus:outline-none border-solid focus:border-blue-500"
+          className="w-full mt-1 px- py-2.5 rounded-lg border border-gray-300 focus:outline-none border-solid"
           type="text"
           placeholder="Correct answer"
           value={correctAnswer}
@@ -55,7 +55,7 @@ function AddQuestionForm({ onAddQuestion, newQuestion, setNewQuestion }) {
         {wrongAnswers.map((answer, index) => (
           <input
             key={index}
-            className="w-full mt-1 px-3 py-2 rounded-lg border border-gray-300 focus:outline-none focus:border-blue-500"
+            className="w-full mt-1 px-3 py-2 rounded-lg border border-gray-300 focus:outline-none  border-solid"
             type="text"
             value={answer}
             placeholder="Wrong answer"
@@ -67,7 +67,7 @@ function AddQuestionForm({ onAddQuestion, newQuestion, setNewQuestion }) {
       </label>
       </div>
       <button
-        className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline border-none"
+        className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline border-none mt-8"
         type="button"
         onClick={handleAddQuestion}
       >
