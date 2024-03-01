@@ -41,7 +41,6 @@ function AddQuestionForm({ onAddQuestion, newQuestion, setNewQuestion }) {
         />
       </label>
       <label>
-        Correct answer:
         <input
           type="text"
           placeholder="Correct answer"
@@ -50,7 +49,6 @@ function AddQuestionForm({ onAddQuestion, newQuestion, setNewQuestion }) {
         />
       </label>
       <label>
-        Wrong Answers:
         {wrongAnswers.map((answer, index) => (
             // creates a new <input> for each element in the array "wrongAnswers",
             // which is 3, instead of writing same code 3 times
@@ -58,6 +56,7 @@ function AddQuestionForm({ onAddQuestion, newQuestion, setNewQuestion }) {
             key={index}
             type="text"
             value={answer}
+            placeholder="Wrong answer"
             onChange={(event) => handleWrongAnswerChange(index, event.target.value)}
           />
         ))}
@@ -66,7 +65,7 @@ function AddQuestionForm({ onAddQuestion, newQuestion, setNewQuestion }) {
         Add Question
       </button>
       
-      <ul>
+      {/* <ul>
         <li>
             <strong>Question:</strong>{newQuestion}
         </li>
@@ -76,7 +75,7 @@ function AddQuestionForm({ onAddQuestion, newQuestion, setNewQuestion }) {
         <li>
             <strong>Wrong Answers:</strong>{wrongAnswers.filter((answer) => answer.trim()!== "").join("", )}
         </li>
-      </ul>
+      </ul> */}
     </div>
   );
 }

@@ -126,6 +126,9 @@ export default function QuizPage() {
     console.log("userQuiz är inte ett objekt eller är null.");
   }
 
+console.log(userQuiz);
+console.log(easyQuiz);
+
   return (
     <div className="flex justify-center flex-col items-center px-10 ">
       {!isCompleted && !quizIsSelected ? (
@@ -261,11 +264,13 @@ export default function QuizPage() {
                 </button>
               ))}
             </div>
-            <p>
-              {buttonClicked && isCorrect
-                ? "Correct Answer"
-                : buttonClicked && !isCorrect && "Wrong Answer"}
-            </p>
+            <div className="h-16">
+              <p>
+                {buttonClicked && isCorrect
+                  ? "Correct Answer"
+                  : buttonClicked && !isCorrect && "Wrong Answer"}
+              </p>
+            </div>
             {index < selectedQuiz.results.length - 1 ? (
               <button
                 className="border-none h-10 w-40 rounded-md bg-amber-400 font-semibold hover:cursor-pointer"
