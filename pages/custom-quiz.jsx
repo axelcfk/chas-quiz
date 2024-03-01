@@ -10,13 +10,10 @@ export default function CustomQuizPage() {
   const [questions, setQuestions] = useState([]); // State to store questions in array
 
   const dispatch = useDispatch();
- 
-
-
 
   const handleAddQuestion = (newQuestionData) => {
-    const updatedQuestions = [...questions, newQuestionData]; // Adds the new question to the list
-    setQuestions(updatedQuestions); // update the state
+    const updatedQuestions = [...questions, newQuestionData];
+    setQuestions(updatedQuestions);
   };
 
   const handleMakeQuiz = () => {
@@ -27,8 +24,9 @@ export default function CustomQuizPage() {
       results: [...questions],
     };
 
-    dispatch(addCustomQuiz(newQuiz)); // Add quiz to redux store
+    dispatch(addCustomQuiz(newQuiz));
     dispatch(setCurrentQuiz(newQuiz));
+
     // When click on "Make Quiz" button, reset the form
     setQuizName("");
     setQuestions([]);
