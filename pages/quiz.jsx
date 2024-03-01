@@ -126,8 +126,8 @@ export default function QuizPage() {
     console.log("userQuiz är inte ett objekt eller är null.");
   }
 
-console.log(userQuiz);
-console.log(easyQuiz);
+  console.log(userQuiz);
+  console.log(easyQuiz);
 
   return (
     <div className="flex justify-center flex-col items-center px-10 ">
@@ -201,13 +201,18 @@ console.log(easyQuiz);
       {isCompleted ? (
         <div className="flex flex-col justify-center items-center">
           <h1>Results</h1>
-          <div className="bg-slate-300 rounded-lg px-4">
+
+          <div className="bg-slate-200 rounded-lg px-4">
             <h2 className="text-xl text-center">
               🟢 {score} correct 🔴 {selectedQuiz.results.length - score}{" "}
               incorrect
             </h2>
           </div>
-          <h3>Your highscore is {highscore}</h3>
+
+          <div className="bg-slate-200 h-72 w-60 mt-24 flex flex-col justify-center items-center rounded-lg">
+            <p>Your highscore is</p>
+            <h3 className="text-4xl">{highscore}</h3>
+          </div>
 
           <button
             onClick={() => {
@@ -218,7 +223,7 @@ console.log(easyQuiz);
 
               setIsCompleted(false) 
             }}
-            className="h-24 w-60 p-2 border-none font-semibold rounded-md my-5 hover:bg-green-500 hover:cursor-pointer text-xl mt-10"
+            className="h-16 text-slate-100 w-60 p-2 border-none font-semibold rounded-full my-5 bg-blue-600 hover:cursor-pointer text-xl mt-10"
           >
             Done
           </button>
