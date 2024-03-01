@@ -8,8 +8,8 @@ export const highScoreSlice = createSlice({
 
   reducers: {
     updateHighscore: (state, action) => {
-      const newScore = parseFloat(action.payload);
-      if (!isNaN(newScore) && newScore > state.value) {
+      const newScore = action.payload;
+      if (typeof newScore === "number" && newScore > state.value) {
         state.value = newScore;
       }
     },

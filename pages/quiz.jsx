@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { defaultQuiz, hardQuiz, easyQuiz } from "@/default-quiz";
 import { useDispatch, useSelector } from "react-redux";
 import { updateHighscore } from "@/redux/HighScoreSlice";
+import Link from "next/link";
 //import { setCurrentQuiz } from "@/redux/CustomQuizSlice";
 
 export default function QuizPage() {
@@ -16,16 +17,15 @@ export default function QuizPage() {
   const [selectedQuiz, setSelectedQuiz] = useState(null);
   const [isCompleted, setIsCompleted] = useState(false);
   const [score, setScore] = useState(0);
-  const [reset, setReset] = useState(false);
+  const [clickedIncorrectIndex, setClickedIncorrectIndex] = useState(null);
+  const [wiggle, setWiggle] = useState(false);
 
   // global state:
-  const highscore = useSelector((state) => state.highscore.value);
   const dispatch = useDispatch();
-  const userQuiz = useSelector((state) => state.customQuiz.allQuizzes)
+  const highscore = useSelector((state) => state.highscore.value);
+  const userQuiz = useSelector((state) => state.customQuiz.allQuizzes);
   console.log(userQuiz);
   console.log(easyQuiz);
-
-    
 
   useEffect(() => {
     if (selectedQuiz) {
@@ -44,7 +44,7 @@ export default function QuizPage() {
       setSelectedQuiz(easyQuiz);
       setquizIsSelected(true);
     } else if (selectedQuizObject === "MyCustomQuiz") {
-      setSelectedQuiz(userQuiz)
+      setSelectedQuiz(userQuiz);
       setquizIsSelected(true);
     }
   };
@@ -62,10 +62,16 @@ export default function QuizPage() {
     setShuffledOptions(answers);
   }
 
-  function handleButtonClick(selectedOption) {
+  function handleButtonClick(selectedOption, optionIndex) {
     if (selectedOption === selectedQuiz.results[index].correct_answer) {
       setIsCorrect(true);
       setScore((score) => score + 1);
+    } else {
+      // Set the index of the clicked incorrect option
+      setClickedIncorrectIndex(optionIndex);
+      setWiggle(true);
+      // Reset wiggle after a short delay
+      setTimeout(() => setWiggle(false), 500);
     }
     setButtonClicked(true);
   }
@@ -75,6 +81,7 @@ export default function QuizPage() {
     setIsCorrect(false);
     setButtonClicked(false);
     shuffleAnswers(); // Shuffle options for the next question
+    setClickedIncorrectIndex(null);
   }
 
   function handleClickDone() {
@@ -91,32 +98,33 @@ export default function QuizPage() {
     }
   }, [selectedQuiz, index]);
 
-  
   // Kontrollera om userQuiz är ett objekt
-if (typeof userQuiz === "object" && userQuiz !== null) {
-  // Kontrollera om userQuiz har en nyckel "results"
-  if ("results" in userQuiz && Array.isArray(userQuiz.results)) {
-    // Kontrollera om varje objekt i arrayen har de rätta egenskaperna
-    const isValidStructure = userQuiz.results.every(
-      (quizItem) =>
-        typeof quizItem === "object" &&
-        "question" in quizItem &&
-        "correct_answer" in quizItem &&
-        "incorrect_answers" in quizItem &&
-        Array.isArray(quizItem.incorrect_answers)
-    );
+  if (typeof userQuiz === "object" && userQuiz !== null) {
+    // Kontrollera om userQuiz har en nyckel "results"
+    if ("results" in userQuiz && Array.isArray(userQuiz.results)) {
+      // Kontrollera om varje objekt i arrayen har de rätta egenskaperna
+      const isValidStructure = userQuiz.results.every(
+        (quizItem) =>
+          typeof quizItem === "object" &&
+          "question" in quizItem &&
+          "correct_answer" in quizItem &&
+          "incorrect_answers" in quizItem &&
+          Array.isArray(quizItem.incorrect_answers)
+      );
 
-    if (isValidStructure) {
-      console.log("userQuiz följer samma struktur som EasyQuiz.");
+      if (isValidStructure) {
+        console.log("userQuiz följer samma struktur som EasyQuiz.");
+      } else {
+        console.log("userQuiz har inte rätt struktur.");
+      }
     } else {
-      console.log("userQuiz har inte rätt struktur.");
+      console.log(
+        "userQuiz saknar nyckeln 'results' eller 'results' är inte en array."
+      );
     }
   } else {
-    console.log("userQuiz saknar nyckeln 'results' eller 'results' är inte en array.");
+    console.log("userQuiz är inte ett objekt eller är null.");
   }
-} else {
-  console.log("userQuiz är inte ett objekt eller är null.");
-}
 
 console.log(userQuiz);
 console.log(easyQuiz);
@@ -130,46 +138,60 @@ console.log(easyQuiz);
       ) : null}
 
       <div>
-        {userQuiz.results && userQuiz.results.map(item => (
-          <div key={item.question}>
-            <p>Question: {item.question}</p>
-            <p>Correct Answer: {item.correct_answer}</p>
-            <p>Incorrect Answers: {item.incorrect_answers.join(', ')}</p>
-          </div>
-        ))}
+        {" "}
+        {/* just to check if userQuiz looks correct  */}
+        {userQuiz.results &&
+          userQuiz.results.map((item) => (
+            <div key={item.question}>
+              <p>Question: {item.question}</p>
+              <p>Correct Answer: {item.correct_answer}</p>
+              <p>Incorrect Answers: {item.incorrect_answers}</p>
+            </div>
+          ))}
       </div>
 
       {!quizIsSelected ? (
         <div>
           <div className="flex flex-col justify-center">
             <button
-              className="h-40 w-60 p-2 border-none font-semibold rounded-md my-5 hover:bg-green-500 hover:cursor-pointer text-xl"
+              className="h-40 w-60 p-2 border-none font-semibold rounded-md my-5 hover:bg-blue-600 hover:cursor-pointer text-xl"
               onClick={() => handleSelectedQuiz("Easy")}
             >
               Easy
             </button>{" "}
             <button
-              className="h-40 w-60 p-2 border-none font-semibold rounded-md my-5 hover:bg-green-500 hover:cursor-pointer text-xl"
+              className="h-40 w-60 p-2 border-none font-semibold rounded-md my-5 hover:bg-blue-600 hover:cursor-pointer text-xl"
               onClick={() => handleSelectedQuiz("Medium")}
             >
               Medium
             </button>
             <button
-              className="h-40 w-60 p-2 border-none font-semibold rounded-md my-5 hover:bg-green-500 hover:cursor-pointer text-xl"
+              className="h-40 w-60 p-2 border-none font-semibold rounded-md my-5 hover:bg-blue-600 hover:cursor-pointer text-xl"
               onClick={() => handleSelectedQuiz("Hard")}
             >
               Hard
             </button>{" "}
-            <button
-              className="h-40 w-60 p-2 border-none font-semibold rounded-md my-5 hover:bg-green-500 hover:cursor-pointer text-xl"
-              onClick={() => handleSelectedQuiz("MyCustomQuiz")}
-            >
-              Your Custom Quiz
-            </button>{" "}
           </div>
           <div className="flex flex-col p-2 border-none font-semibold rounded-md hover:cursor-pointer">
             <h2>Your Quizzes</h2>
-            <button
+            {userQuiz.results.length === 0 ? (
+              <>
+                <h3>You have no created quizzes yet.</h3>
+                <Link href="/custom-quiz">
+                  <button className="h-40 w-60 p-2 border-none font-semibold rounded-md my-5 hover:bg-green-500 hover:cursor-pointer text-xl">
+                    Create one here!
+                  </button>
+                </Link>
+              </>
+            ) : (
+              <button
+                className="h-40 w-60 p-2 border-none font-semibold rounded-md my-5 hover:bg-blue-600 hover:cursor-pointer text-xl"
+                onClick={() => handleSelectedQuiz("MyCustomQuiz")}
+              >
+                Your Custom Quiz
+              </button>
+            )}
+            {/* <button
               className="h-40 w-60 p-2 border-none font-semibold rounded-md my-5 hover:bg-green-500 hover:cursor-pointer text-xl"
               onClick={() => handleSelectedQuiz("")}
             >
@@ -180,7 +202,7 @@ console.log(easyQuiz);
               onClick={() => handleSelectedQuiz("")}
             >
               Your Quiz 2
-            </button>{" "}
+            </button>{" "} */}
           </div>
         </div>
       ) : (
@@ -196,32 +218,42 @@ console.log(easyQuiz);
           <button className="h-40 w-60 p-2 border-none font-semibold rounded-md my-5 hover:bg-green-500 hover:cursor-pointer text-xl mt-10">
             Take the quiz again!
           </button>
-          <button
-            // onClick={() => setquizIsSelected(false)}
-            className="h-40 w-60 p-2 border-none font-semibold rounded-md my-5 hover:bg-green-500 hover:cursor-pointer text-xl mt-10"
-          >
-            Take another quiz!
-          </button>
+          <Link href="/quiz">
+            <button
+              // onClick={() => setquizIsSelected(false)}
+              className="h-40 w-60 p-2 border-none font-semibold rounded-md my-5 hover:bg-green-500 hover:cursor-pointer text-xl mt-10"
+            >
+              Take another quiz!
+            </button>
+          </Link>
         </div>
       ) : (
+        //Här börjar quizzet
         selectedQuiz && (
           <>
-            <p>Your score: {score}</p>
+            <p>Score: {score} </p>
 
-            <h2>{selectedQuiz.results[index].question}</h2>
-            <p>
-              Question {index + 1} of {selectedQuiz.results.length}
-            </p>
+            <div className="flex flex-col h-72 justify-end items-center">
+
+              <h2>{selectedQuiz.results[index].question}</h2>
+              <p>
+                 {index + 1} / {selectedQuiz.results.length}
+              </p>
+            </div>
 
             <div className="grid grid-cols-2">
               {shuffledOptions.map((option, i) => (
                 <button
                   key={i}
-                  onClick={() => handleButtonClick(option)}
-                  className={`m-5 h-36 w-36 p-2 border-none font-semibold rounded-md ${
+                  onClick={() => handleButtonClick(option, i)}
+                  className={`m-5 h-24 w-36 p-2 border-none font-semibold rounded-md ${
                     buttonClicked
                       ? option === selectedQuiz.results[index].correct_answer
-                        ? "bg-green-500 text-zinc-950"
+                        ? "bg-green-600 text-zinc-950"
+                        : i === clickedIncorrectIndex
+                        ? `wiggle ${
+                            wiggle ? "wiggling" : ""
+                          } bg-red-500 text-black` // Use wiggleAnimation here
                         : "bg-slate-200"
                       : "hover:bg-slate-300 hover:cursor-pointer"
                   }`}
