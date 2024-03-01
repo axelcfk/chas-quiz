@@ -61,15 +61,12 @@ export default function CustomQuizPage() {
           </ul>
         </div>
         <button
-          className="w-full mt-4 bg-blue-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          className="w-full mt-10 bg-blue-500 hover:bg-blue-400  text-white font-bold border-none py-3 px-4 hover rounded-3xl focus:outline-none focus:shadow-outline mx-auto"
           onClick={handleMakeQuiz}
         >
           Make Quiz
         </button>
-        <CustomQuizList />
       </div>
-      <button onClick={handleMakeQuiz}>Make Quiz</button>
-      <CustomQuizList /> //? Maybe send props?
     </div>
   );
 }
