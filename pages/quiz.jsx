@@ -23,10 +23,10 @@ export default function QuizPage() {
   // global state:
   const dispatch = useDispatch();
   const highscore = useSelector((state) => state.highscore.value);
-  const userQuiz = useSelector((state) => state.customQuiz.allQuizzes);
+  //const userQuiz = useSelector((state) => state.customQuiz.allQuizzes);
   const userQuizzes = useSelector((state) => state.customQuiz.allQuizzes2);
   console.log("User Quizzes:", userQuizzes);
-  console.log("questions:", userQuiz);
+  
 
   useEffect(() => {
     if (selectedQuiz) {
@@ -45,7 +45,7 @@ export default function QuizPage() {
       setSelectedQuiz(easyQuiz);
       setquizIsSelected(true);
     } else if (selectedQuizObject === "MyCustomQuiz") {
-      setSelectedQuiz(userQuiz);
+      setSelectedQuiz(userQuizzes[0]); // change [0] to a variable... index... in case we want multiple custom quizzes...
       setquizIsSelected(true);
     }
   };
@@ -99,35 +99,8 @@ export default function QuizPage() {
     }
   }, [selectedQuiz, index]);
 
-  // Kontrollera om userQuiz är ett objekt
-  if (typeof userQuiz === "object" && userQuiz !== null) {
-    // Kontrollera om userQuiz har en nyckel "results"
-    if ("results" in userQuiz && Array.isArray(userQuiz.results)) {
-      // Kontrollera om varje objekt i arrayen har de rätta egenskaperna
-      const isValidStructure = userQuiz.results.every(
-        (quizItem) =>
-          typeof quizItem === "object" &&
-          "question" in quizItem &&
-          "correct_answer" in quizItem &&
-          "incorrect_answers" in quizItem &&
-          Array.isArray(quizItem.incorrect_answers)
-      );
+  
 
-      if (isValidStructure) {
-        console.log("userQuiz följer samma struktur som EasyQuiz.");
-      } else {
-        console.log("userQuiz har inte rätt struktur.");
-      }
-    } else {
-      console.log(
-        "userQuiz saknar nyckeln 'results' eller 'results' är inte en array."
-      );
-    }
-  } else {
-    console.log("userQuiz är inte ett objekt eller är null.");
-  }
-
-  console.log(userQuiz);
   console.log(easyQuiz);
 
   return (
@@ -139,26 +112,22 @@ export default function QuizPage() {
       ) : null}
 
       <div>
-        {" "}
-        {/* just to check if userQuiz looks correct  */}
+        {/* just to check if userQuizzes looks correct: */}
         {/* {userQuizzes &&
           userQuizzes.map((userQuiz) => (
-            userQuiz.results.map((item) => (
+            <div>
+             <p>quiz name: {userQuiz.name}</p>
+            {userQuiz.results.map((item) => (
               <div key={item.question}>
                 <p>Question: {item.question}</p>
                 <p>Correct Answer: {item.correct_answer}</p>
                 <p>Incorrect Answers: {item.incorrect_answers}</p>
               </div>
-            ))
+              
+            ))}
+            </div> 
           ))} */}
-        {/* {userQuiz.results &&
-          userQuiz.results.map((item) => (
-            <div key={item.question}>
-              <p>Question: {item.question}</p>
-              <p>Correct Answer: {item.correct_answer}</p>
-              <p>Incorrect Answers: {item.incorrect_answers}</p>
-            </div>
-          ))} */}
+        
       </div>
 
       {!quizIsSelected ? (
@@ -185,7 +154,7 @@ export default function QuizPage() {
           </div>
           <div className="flex flex-col  justify-center items-center p-2 border-none font-semibold rounded-md hover:cursor-pointer">
             <h2>Your Quizzes</h2>
-            {userQuiz.results.length === 0 ? (
+            {userQuizzes.length === 0 ? (
               <>
                 <h3>You have no created quizzes yet.</h3>
                 <Link href="/custom-quiz">
@@ -231,6 +200,7 @@ export default function QuizPage() {
               setquizIsSelected(false)
               setIndex(0)
               setButtonClicked(false)
+              setScore(0)
 
               setIsCompleted(false) 
             }}
