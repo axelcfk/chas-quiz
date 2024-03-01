@@ -3,8 +3,13 @@ import React, { useState } from "react";
 function AddQuestionForm({ onAddQuestion, newQuestion, setNewQuestion }) {
   const [correctAnswer, setCorrectAnswer] = useState("");
   const [wrongAnswers, setWrongAnswers] = useState(["", "", ""]);
-  const [errorMessage, setErrorMessage] = useState("");
+const [errorMessage, setErrorMessage] = useState("");
 
+  const handleInputChange = (index, value) => {
+    const newWrongAnswers = [...wrongAnswers];
+    newWrongAnswers[index] = value;
+    setWrongAnswers(newWrongAnswers);
+  };
 
   const handleAddQuestion = () => {
 
@@ -22,7 +27,7 @@ if(newQuestion.trim() === "" || correctAnswer.trim() === "" || wrongAnswers.some
     setNewQuestion("");
     setCorrectAnswer("");
     setWrongAnswers(["", "", ""]);
-    setErrorMessage("");
+setErrorMessage("");
   };
 
   const handleWrongAnswerChange = (index, value) => {
@@ -32,7 +37,7 @@ if(newQuestion.trim() === "" || correctAnswer.trim() === "" || wrongAnswers.some
   };
 
   return (
-    <div className="grid gap-4 justify-items-center">
+    <div className="grid grid-cols- grid-rows- gap-4 justify-items-center">
       <label className="text-center text-2xl mt-2 mb-2">
         Question:
         <input
@@ -60,7 +65,10 @@ if(newQuestion.trim() === "" || correctAnswer.trim() === "" || wrongAnswers.some
             className="w-full mt-1 px-3 py-2 rounded-lg border border-gray-300 focus:outline-none  border-solid"
             type="text"
             value={answer}
-            onChange={(event) => handleWrongAnswerChange(index, event.target.value)}
+            placeholder="Wrong answer"
+            onChange={(event) =>
+              handleWrongAnswerChange(index, event.target.value)
+            }
           />
         ))}
       </label>
@@ -72,18 +80,7 @@ if(newQuestion.trim() === "" || correctAnswer.trim() === "" || wrongAnswers.some
       >
         Add Question
       </button>
-      
-      <ul>
-        <li>
-            <strong>Question:</strong>{newQuestion}
-        </li>
-        <li>
-            <strong>Correct answer:</strong>{correctAnswer}
-        </li>
-        <li>
-            <strong>Wrong Answers:</strong>{wrongAnswers.filter((answer) => answer.trim()!== "").join("", )}
-        </li>
-      </ul>
+      {errorMessage && <p>{errorMessage}</p>}
     </div>
   );
 }
