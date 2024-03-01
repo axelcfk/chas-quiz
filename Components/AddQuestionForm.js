@@ -62,7 +62,7 @@ function AddQuestionForm({ onAddQuestion, newQuestion, setNewQuestion }) {
           />
         ))}
       </label>
-      <button type="button" onClick={handleAddQuestion}>
+      <button class type="button" onClick={handleAddQuestion}>
         Add Question
       </button>
       
