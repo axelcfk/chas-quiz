@@ -69,14 +69,15 @@ export default function CustomQuizPage() {
           Make Quiz
         </button>
         <h2 className="flex justify-center pt-6">Finished Quizzes:</h2>
-        <ul className="flex justify-center list-none font-bold text-xl text-white">
-          Quiz name: &nbsp;
+        <div className="flex justify-center">      <ul className="flex justify-center list-none font-bold text-xl text-white flex-col">
+          Quizzes: &nbsp;
           {finishedQuizzes.map((quiz, index) => (
             <li key={index}>{quiz.name}</li>
           ))}
-        </ul>
+        </ul></div>
+   
 
-        {/* This div will only be visible on mobile devices*/}
+        {/* This div will only be visible on mobile devices */}
         <div className="md:hidden">
           <ul className="grid grid-cols-2 gap-4">
             {questions.map((question, index) => (
