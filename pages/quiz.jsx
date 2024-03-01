@@ -17,8 +17,8 @@ export default function QuizPage() {
   const [selectedQuiz, setSelectedQuiz] = useState(null);
   const [isCompleted, setIsCompleted] = useState(false);
   const [score, setScore] = useState(0);
-  const [reset, setReset] = useState(false);
   const [clickedIncorrectIndex, setClickedIncorrectIndex] = useState(null);
+  const [wiggle, setWiggle] = useState(false);
 
   // global state:
   const dispatch = useDispatch();
@@ -69,6 +69,9 @@ export default function QuizPage() {
     } else {
       // Set the index of the clicked incorrect option
       setClickedIncorrectIndex(optionIndex);
+      setWiggle(true);
+      // Reset wiggle after a short delay
+      setTimeout(() => setWiggle(false), 500);
     }
     setButtonClicked(true);
   }
@@ -131,7 +134,9 @@ export default function QuizPage() {
         </div>
       ) : null}
 
-      <div> {/* just to check if userQuiz looks correct  */}
+      <div>
+        {" "}
+        {/* just to check if userQuiz looks correct  */}
         {userQuiz.results &&
           userQuiz.results.map((item) => (
             <div key={item.question}>
@@ -210,12 +215,14 @@ export default function QuizPage() {
           <button className="h-40 w-60 p-2 border-none font-semibold rounded-md my-5 hover:bg-green-500 hover:cursor-pointer text-xl mt-10">
             Take the quiz again!
           </button>
-          <button
-            // onClick={() => setquizIsSelected(false)}
-            className="h-40 w-60 p-2 border-none font-semibold rounded-md my-5 hover:bg-green-500 hover:cursor-pointer text-xl mt-10"
-          >
-            Take another quiz!
-          </button>
+          <Link href="/quiz">
+            <button
+              // onClick={() => setquizIsSelected(false)}
+              className="h-40 w-60 p-2 border-none font-semibold rounded-md my-5 hover:bg-green-500 hover:cursor-pointer text-xl mt-10"
+            >
+              Take another quiz!
+            </button>
+          </Link>
         </div>
       ) : (
         //Här börjar quizzet
@@ -233,12 +240,14 @@ export default function QuizPage() {
                 <button
                   key={i}
                   onClick={() => handleButtonClick(option, i)}
-                  className={`m-5 h-36 w-36 p-2 border-none font-semibold rounded-md ${
+                  className={`m-5 h-24 w-36 p-2 border-none font-semibold rounded-md ${
                     buttonClicked
                       ? option === selectedQuiz.results[index].correct_answer
                         ? "bg-green-600 text-zinc-950"
                         : i === clickedIncorrectIndex
-                        ? "bg-red-500 text-black" // Make clicked incorrect option red
+                        ? `wiggle ${
+                            wiggle ? "wiggling" : ""
+                          } bg-red-500 text-black` // Use wiggleAnimation here
                         : "bg-slate-200"
                       : "hover:bg-slate-300 hover:cursor-pointer"
                   }`}
