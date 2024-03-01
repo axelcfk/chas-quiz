@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { defaultQuiz, hardQuiz, easyQuiz } from "@/default-quiz";
 import { useDispatch, useSelector } from "react-redux";
 import { updateHighscore } from "@/redux/HighScoreSlice";
+import Link from "next/link";
 //import { setCurrentQuiz } from "@/redux/CustomQuizSlice";
 
 export default function QuizPage() {
@@ -140,33 +141,44 @@ export default function QuizPage() {
         <div>
           <div className="flex flex-col justify-center">
             <button
-              className="h-40 w-60 p-2 border-none font-semibold rounded-md my-5 hover:bg-green-500 hover:cursor-pointer text-xl"
+              className="h-40 w-60 p-2 border-none font-semibold rounded-md my-5 hover:bg-blue-600 hover:cursor-pointer text-xl"
               onClick={() => handleSelectedQuiz("Easy")}
             >
               Easy
             </button>{" "}
             <button
-              className="h-40 w-60 p-2 border-none font-semibold rounded-md my-5 hover:bg-green-500 hover:cursor-pointer text-xl"
+              className="h-40 w-60 p-2 border-none font-semibold rounded-md my-5 hover:bg-blue-600 hover:cursor-pointer text-xl"
               onClick={() => handleSelectedQuiz("Medium")}
             >
               Medium
             </button>
             <button
-              className="h-40 w-60 p-2 border-none font-semibold rounded-md my-5 hover:bg-green-500 hover:cursor-pointer text-xl"
+              className="h-40 w-60 p-2 border-none font-semibold rounded-md my-5 hover:bg-blue-600 hover:cursor-pointer text-xl"
               onClick={() => handleSelectedQuiz("Hard")}
             >
               Hard
             </button>{" "}
-            <button
-              className="h-40 w-60 p-2 border-none font-semibold rounded-md my-5 hover:bg-green-500 hover:cursor-pointer text-xl"
-              onClick={() => handleSelectedQuiz("MyCustomQuiz")}
-            >
-              Your Custom Quiz
-            </button>{" "}
           </div>
           <div className="flex flex-col p-2 border-none font-semibold rounded-md hover:cursor-pointer">
             <h2>Your Quizzes</h2>
-            <button
+            {userQuiz.results.length === 0 ? (
+              <>
+                <h3>You have no created quizzes yet.</h3>
+                <Link href="/custom-quiz">
+                  <button className="h-40 w-60 p-2 border-none font-semibold rounded-md my-5 hover:bg-green-500 hover:cursor-pointer text-xl">
+                    Create one here!
+                  </button>
+                </Link>
+              </>
+            ) : (
+              <button
+                className="h-40 w-60 p-2 border-none font-semibold rounded-md my-5 hover:bg-blue-600 hover:cursor-pointer text-xl"
+                onClick={() => handleSelectedQuiz("MyCustomQuiz")}
+              >
+                Your Custom Quiz
+              </button>
+            )}
+            {/* <button
               className="h-40 w-60 p-2 border-none font-semibold rounded-md my-5 hover:bg-green-500 hover:cursor-pointer text-xl"
               onClick={() => handleSelectedQuiz("")}
             >
@@ -177,7 +189,7 @@ export default function QuizPage() {
               onClick={() => handleSelectedQuiz("")}
             >
               Your Quiz 2
-            </button>{" "}
+            </button>{" "} */}
           </div>
         </div>
       ) : (
@@ -218,7 +230,7 @@ export default function QuizPage() {
                   className={`m-5 h-36 w-36 p-2 border-none font-semibold rounded-md ${
                     buttonClicked
                       ? option === selectedQuiz.results[index].correct_answer
-                        ? "bg-green-500 text-zinc-950"
+                        ? "border-blue-600 text-zinc-950"
                         : "bg-slate-200"
                       : "hover:bg-slate-300 hover:cursor-pointer"
                   }`}

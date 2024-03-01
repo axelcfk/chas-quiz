@@ -16,9 +16,12 @@ export const customQuizSlice = createSlice({
     addFinishedQuiz: (state, action) => {
       return {
         ...state,
-        allQuizzes: [...state.allQuizzes, action.payload],
+        allQuizzes: {
+          results: [...state.allQuizzes.results, action.payload],
+        },
       };
     },
+
     setCurrentQuiz: (state, action) => {
       state.currentQuiz = action.payload;
     },
