@@ -18,6 +18,7 @@ export default function QuizPage() {
   const [isCompleted, setIsCompleted] = useState(false);
   const [score, setScore] = useState(0);
   const [reset, setReset] = useState(false);
+  const [clickedIncorrectIndex, setClickedIncorrectIndex] = useState(null);
 
   // global state:
   const dispatch = useDispatch();
@@ -61,10 +62,13 @@ export default function QuizPage() {
     setShuffledOptions(answers);
   }
 
-  function handleButtonClick(selectedOption) {
+  function handleButtonClick(selectedOption, optionIndex) {
     if (selectedOption === selectedQuiz.results[index].correct_answer) {
       setIsCorrect(true);
       setScore((score) => score + 1);
+    } else {
+      // Set the index of the clicked incorrect option
+      setClickedIncorrectIndex(optionIndex);
     }
     setButtonClicked(true);
   }
@@ -74,6 +78,7 @@ export default function QuizPage() {
     setIsCorrect(false);
     setButtonClicked(false);
     shuffleAnswers(); // Shuffle options for the next question
+    setClickedIncorrectIndex(null)
   }
 
   function handleClickDone() {
@@ -213,6 +218,7 @@ export default function QuizPage() {
           </button>
         </div>
       ) : (
+        //Här börjar quizzet
         selectedQuiz && (
           <>
             <p>Your score: {score}</p>
@@ -226,11 +232,13 @@ export default function QuizPage() {
               {shuffledOptions.map((option, i) => (
                 <button
                   key={i}
-                  onClick={() => handleButtonClick(option)}
+                  onClick={() => handleButtonClick(option, i)}
                   className={`m-5 h-36 w-36 p-2 border-none font-semibold rounded-md ${
                     buttonClicked
                       ? option === selectedQuiz.results[index].correct_answer
-                        ? "border-blue-600 text-zinc-950"
+                        ? "bg-green-600 text-zinc-950"
+                        : i === clickedIncorrectIndex
+                        ? "bg-red-500 text-white" // Make clicked incorrect option red
                         : "bg-slate-200"
                       : "hover:bg-slate-300 hover:cursor-pointer"
                   }`}
