@@ -23,9 +23,10 @@ export default function QuizPage() {
   // global state:
   const dispatch = useDispatch();
   const highscore = useSelector((state) => state.highscore.value);
-  const userQuiz = useSelector((state) => state.customQuiz.allQuizzes);
-  console.log(userQuiz);
-  console.log(easyQuiz);
+  //const userQuiz = useSelector((state) => state.customQuiz.allQuizzes);
+  const userQuizzes = useSelector((state) => state.customQuiz.allQuizzes2);
+  console.log("User Quizzes:", userQuizzes);
+  
 
   useEffect(() => {
     if (selectedQuiz) {
@@ -44,7 +45,7 @@ export default function QuizPage() {
       setSelectedQuiz(easyQuiz);
       setquizIsSelected(true);
     } else if (selectedQuizObject === "MyCustomQuiz") {
-      setSelectedQuiz(userQuiz);
+      setSelectedQuiz(userQuizzes[0]); // change [0] to a variable... index... in case we want multiple custom quizzes...
       setquizIsSelected(true);
     }
   };
@@ -98,35 +99,8 @@ export default function QuizPage() {
     }
   }, [selectedQuiz, index]);
 
-  // Kontrollera om userQuiz är ett objekt
-  if (typeof userQuiz === "object" && userQuiz !== null) {
-    // Kontrollera om userQuiz har en nyckel "results"
-    if ("results" in userQuiz && Array.isArray(userQuiz.results)) {
-      // Kontrollera om varje objekt i arrayen har de rätta egenskaperna
-      const isValidStructure = userQuiz.results.every(
-        (quizItem) =>
-          typeof quizItem === "object" &&
-          "question" in quizItem &&
-          "correct_answer" in quizItem &&
-          "incorrect_answers" in quizItem &&
-          Array.isArray(quizItem.incorrect_answers)
-      );
+  
 
-      if (isValidStructure) {
-        console.log("userQuiz följer samma struktur som EasyQuiz.");
-      } else {
-        console.log("userQuiz har inte rätt struktur.");
-      }
-    } else {
-      console.log(
-        "userQuiz saknar nyckeln 'results' eller 'results' är inte en array."
-      );
-    }
-  } else {
-    console.log("userQuiz är inte ett objekt eller är null.");
-  }
-
-  console.log(userQuiz);
   console.log(easyQuiz);
 
   return (
@@ -138,64 +112,67 @@ export default function QuizPage() {
           </div>
         ) : null}
 
-        <div>
-          {" "}
-          {/* just to check if userQuiz looks correct  */}
-          {userQuiz.results &&
-            userQuiz.results.map((item) => (
+      <div>
+        {/* just to check if userQuizzes looks correct: */}
+        {/* {userQuizzes &&
+          userQuizzes.map((userQuiz) => (
+            <div>
+             <p>quiz name: {userQuiz.name}</p>
+            {userQuiz.results.map((item) => (
               <div key={item.question}>
                 <p>Question: {item.question}</p>
                 <p>Correct Answer: {item.correct_answer}</p>
                 <p>Incorrect Answers: {item.incorrect_answers}</p>
               </div>
+              
             ))}
-        </div>
+            </div> 
+          ))} */}
+        
+      </div>
 
-        {!quizIsSelected ? (
-          <div>
-            <div className="flex flex-col justify-center items-center mt-20">
+      {!quizIsSelected ? (
+        <div>
+          <div className="flex flex-col justify-center items-center">
+            <button
+              className="h-40 w-60 p-2 border-none font-semibold rounded-md my-5 hover:bg-blue-600 hover:cursor-pointer text-xl"
+              onClick={() => handleSelectedQuiz("Easy")}
+            >
+              Easy
+            </button>{" "}
+            <button
+              className="h-40 w-60 p-2 border-none font-semibold rounded-md my-5 hover:bg-blue-600 hover:cursor-pointer text-xl"
+              onClick={() => handleSelectedQuiz("Medium")}
+            >
+              Medium
+            </button>
+            <button
+              className="h-40 w-60 p-2 border-none font-semibold rounded-md my-5 hover:bg-blue-600 hover:cursor-pointer text-xl"
+              onClick={() => handleSelectedQuiz("Hard")}
+            >
+              Hard
+            </button>{" "}
+          </div>
+          <div className="flex flex-col  justify-center items-center p-2 border-none font-semibold rounded-md hover:cursor-pointer">
+            <h2>Your Quizzes</h2>
+            {userQuizzes.length === 0 ? (
+              <>
+                <h3>You have no created quizzes yet.</h3>
+                <Link href="/custom-quiz">
+                  <button className="h-40 w-60 p-2 border-none font-semibold rounded-md my-5 hover:bg-green-500 hover:cursor-pointer text-xl">
+                    Create one here!
+                  </button>
+                </Link>
+              </>
+            ) : (
               <button
-                className="h-16 text-slate-100 w-60 p-2 border-none font-semibold rounded-full  bg-green-600 hover:cursor-pointer text-xl mb-9"
-                onClick={() => handleSelectedQuiz("Easy")}
+                className="h-40 w-60 p-2 border-none font-semibold rounded-md my-5 hover:bg-blue-600 hover:cursor-pointer text-xl"
+                onClick={() => handleSelectedQuiz("MyCustomQuiz")}
               >
-                Easy
-              </button>{" "}
-              <button
-                className="h-16 text-slate-100 w-60 p-2 border-none font-semibold rounded-full  bg-yellow-500 hover:cursor-pointer text-xl mb-9"
-                onClick={() => handleSelectedQuiz("Medium")}
-              >
-                Medium
+                Your Custom Quiz
               </button>
-              <button
-                className="h-16 text-slate-100 w-60 p-2 border-none font-semibold rounded-full  bg-red-600 hover:cursor-pointer text-xl mb-9"
-                onClick={() => handleSelectedQuiz("Hard")}
-              >
-                Hard
-              </button>{" "}
-            </div>
-            <div className="flex flex-col  justify-center items-center">
-              <h2 className="text-3xl">Your Quizzes</h2>
-              {userQuiz.results.length === 0 ? (
-                <>
-                  <h3>
-                    You have no created <br />
-                    quizzes yet.
-                  </h3>
-                  <Link href="/custom-quiz">
-                    <button className="h-16 text-slate-100 w-60 p-2 border-none font-semibold rounded-full my-5 bg-blue-600 hover:cursor-pointer text-xl mt-10">
-                      Create one here!
-                    </button>
-                  </Link>
-                </>
-              ) : (
-                <button
-                  className="h-40 w-60 p-2 border-none font-semibold rounded-md my-5 hover:bg-blue-600 hover:cursor-pointer text-xl"
-                  onClick={() => handleSelectedQuiz("MyCustomQuiz")}
-                >
-                  Your Custom Quiz
-                </button>
-              )}
-            </div>
+            )}
+          
           </div>
         ) : (
           ""
@@ -217,24 +194,26 @@ export default function QuizPage() {
               <h3 className="text-4xl">{highscore}</h3>
             </div>
 
-            <button
-              onClick={() => {
-                setSelectedQuiz(null);
-                setquizIsSelected(false);
-                setIndex(0);
-                setButtonClicked(false);
-                setIsCompleted(false);
-              }}
-              className="h-16 text-slate-100 w-60 p-2 border-none font-semibold rounded-full my-5 bg-blue-600 hover:cursor-pointer text-xl mt-10"
-            >
-              Done
-            </button>
-          </div>
-        ) : (
-          //Här börjar quizzet
-          selectedQuiz && (
-            <>
-              <p className="font-bold ">Score: {score} </p>
+          <button
+            onClick={() => {
+              setSelectedQuiz(null)
+              setquizIsSelected(false)
+              setIndex(0)
+              setButtonClicked(false)
+              setScore(0)
+
+              setIsCompleted(false) 
+            }}
+            className="h-16 text-slate-100 w-60 p-2 border-none font-semibold rounded-full my-5 bg-blue-600 hover:cursor-pointer text-xl mt-10"
+          >
+            Done
+          </button>
+        </div>
+      ) : (
+        //Här börjar quizzet
+        selectedQuiz && (
+          <>
+            <p className="font-bold ">Score: {score} </p>
 
               <div className="flex flex-col h-72 justify-end items-center">
                 <h2>{selectedQuiz.results[index].question}</h2>

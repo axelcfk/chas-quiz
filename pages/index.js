@@ -3,16 +3,16 @@ import Link from "next/link";
 
 //backgrounds bilder
 const imageUrls = [
-  "@/styles/images/Lake.jpg",
-  "@/styles/images/SpaceMan.jpg",
-  "@/styles/images/chad.jpg",
-  "@/styles/images/Plan.jpg",
+  "/styles/images/Lake.jpg",
+  "/styles/images/SpaceMan.jpg",
+  "/styles/images/chad.jpg",
+  "/styles/images/Plan.jpg",
 ];
 //backgrounds bilder
 import Image from "next/image";
 import logoImg from "./publik/question-mark-in-a-circle-svgrepo-com.svg";
 import googleImg from "./publik/google.svg";
-import apple from "./publik/appstore.svg";
+import apple from "./publik/appstore.svg"
 // import logoImg from "./publik/question-mark-in-a-circle-svgrepo-com.svg"
 
 //Bildspels funktion
@@ -23,7 +23,7 @@ export default function Home() {
       setCurrentImageIndex((prevIndex) =>
         prevIndex === imageUrls.length - 1 ? 0 : prevIndex + 1
       );
-    }, 10000); // Change the duration between slides in milliseconds (e.g., 5000 for 5 seconds)
+    }, 5000); // Change the duration between slides in milliseconds (e.g., 5000 for 5 seconds)
     return () => clearInterval(interval);
   }, []);
   const backgroundImageStyle = {
@@ -82,11 +82,10 @@ export default function Home() {
                 </button>
               </Link>
             </div>
-          </div>
+          
+
         </div>
-        <div className="flex justify-center mt-10">
-          Will make an accordion here
-        </div>
+        
       </main>
       <footer className="flex justify-center">
         <footer className="flex justify-center">
