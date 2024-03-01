@@ -1,6 +1,10 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addCustomQuiz, selectAllQuizzes, setCurrentQuiz } from "@/redux/CustomQuizSlice";
+import {
+  addCustomQuiz,
+  selectAllQuizzes,
+  setCurrentQuiz,
+} from "@/redux/CustomQuizSlice";
 import AddQuestionForm from "@/Components/AddQuestionForm";
 // import CustomQuizList from "@/Components/customQuizList";
 export default function CustomQuizPage() {
@@ -9,7 +13,7 @@ export default function CustomQuizPage() {
   const [questions, setQuestions] = useState([]); // State to store questions in array
   const dispatch = useDispatch();
   const finishedQuizzes = useSelector(selectAllQuizzes);
-  const userQuiz = useSelector((state) => state.customQuiz.allQuizzes)
+  const userQuiz = useSelector((state) => state.customQuiz.allQuizzes);
   const handleAddQuestion = (newQuestionData) => {
     const updatedQuestions = [...questions, newQuestionData]; // Adds the new question to the list
     setQuestions(updatedQuestions); // update the state
@@ -53,25 +57,15 @@ export default function CustomQuizPage() {
       {/* {finishedQuizzes.length > 0 &&  <CustomQuizList finishedQuizzes={finishedQuizzes} />} */}
       //? Maybe send props?
       <div>
-        {userQuiz.results && userQuiz.results.map(item => (
-          <div key={item.question}>
-            <p>Question: {item.question}</p>
-            <p>Correct Answer: {item.correct_answer}</p>
-            <p>Incorrect Answers: {item.incorrect_answers.join(', ')}</p>
-          </div>
-        ))}
+        {userQuiz.results &&
+          userQuiz.results.map((item) => (
+            <div key={item.question}>
+              <p>Question: {item.question}</p>
+              <p>Correct Answer: {item.correct_answer}</p>
+              <p>Incorrect Answers: {item.incorrect_answers.join(", ")}</p>
+            </div>
+          ))}
       </div>
     </div>
   );
 }
-
-
-
-
-
-
-
-
-
-
-

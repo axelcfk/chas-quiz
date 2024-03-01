@@ -6,10 +6,14 @@ import Link from "next/link";
 function App({ Component, pageProps }) {
   return (
     <Provider store={store}>
-      <Link href="/">Home</Link>
-      <Link href="/quiz">quiz</Link>
-      <Link href="/custom-quiz">custom quiz</Link>
-      <Component {...pageProps} />
+      <div className="full-page-background">
+        <div className="overlay">
+          <Link href="/">Home</Link>
+          <Link href="/quiz">quiz</Link>
+          <Link href="/custom-quiz">custom quiz</Link>
+          <Component {...pageProps} />
+        </div>
+      </div>
     </Provider>
   );
 }

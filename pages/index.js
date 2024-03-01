@@ -33,9 +33,9 @@ export default function Home() {
 
   console.log(backgroundImageStyle);
   return (
-    <div className="min-h-screen flex flex-col justify-between">
+    <div className="min-h-screen flex flex-col justify-between items">
       <main
-        className="bg-cover flex justify-center flex-col"
+        className=" flex justify-center flex-col items-center"
         style={backgroundImageStyle}
       >
         <div className="w-full">
@@ -47,7 +47,7 @@ export default function Home() {
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
-                fill="currentColor"
+                fill="rgb(248 250 252)"
                 class="w-6 h-6"
               >
                 <path
@@ -58,29 +58,29 @@ export default function Home() {
               </svg>
             </Link>
           </nav>
-          <h1 id="title" className="flex justify-center">
-            Quiz Title
+          <h1 id="title" className="flex justify-center text-6xl">
+            Chas Quiz
           </h1>
-          <div className="flex justify-center">
-            <div className="flex justify-center flex-col">
-              <h4 className="flex justify-center">Start a quiz!</h4>
-              <button className="bg-white text-base border-solid border-0">
-                <Link
-                  href="/quiz"
-                  className="text-white font-bold no-underline bg-blue-600 rounded-2xl p-1.5 hover:bg-blue-400 px-6 py-2"
-                >
+          <div>
+            <div className="flex justify-center items-center flex-col">
+              <p className="flex justify-center font-semibold">Start a quiz!</p>
+              <Link
+                href="/quiz"
+                // className="text-white font-bold no-underline bg-blue-600 rounded-2xl p-1.5 hover:bg-blue-400 px-6 py-2"
+              >
+                <button className="h-16 text-slate-100 w-60 p-2 border-none font-semibold rounded-full my-5 bg-blue-600 hover:bg-blue-700 hover:cursor-pointer text-xl mt-10">
                   Start a quiz
-                </Link>
-              </button>
-              <h4>..or make your own quiz!</h4>
-              <button className="rounded-2xl border-solid border-blue-600 bg-white hover:bg-blue-50 py-1.5">
-                <Link
-                  className="no-underline text-blue-600 font-semibold "
-                  href="/custom-quiz"
-                >
-                  make my own quiz
-                </Link>
-              </button>
+                </button>
+              </Link>
+              <p className="font-semibold">..or make your own quiz!</p>
+              <Link
+                className="no-underline text-blue-600 font-semibold "
+                href="/custom-quiz"
+              >
+                <button className="h-16 text-blue-600 hover:text-slate-50 w-60 p-2 border-none font-semibold rounded-full my-5 bg-slate-50 hover:bg-blue-700 hover:cursor-pointer text-xl mt-10">
+                  Create a quiz
+                </button>
+              </Link>
             </div>
           </div>
         </div>
