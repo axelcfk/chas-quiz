@@ -78,7 +78,7 @@ export default function QuizPage() {
     setIsCorrect(false);
     setButtonClicked(false);
     shuffleAnswers(); // Shuffle options for the next question
-    setClickedIncorrectIndex(null)
+    setClickedIncorrectIndex(null);
   }
 
   function handleClickDone() {
@@ -238,7 +238,7 @@ export default function QuizPage() {
                       ? option === selectedQuiz.results[index].correct_answer
                         ? "bg-green-600 text-zinc-950"
                         : i === clickedIncorrectIndex
-                        ? "bg-red-500 text-white" // Make clicked incorrect option red
+                        ? "bg-red-500 text-black" // Make clicked incorrect option red
                         : "bg-slate-200"
                       : "hover:bg-slate-300 hover:cursor-pointer"
                   }`}
