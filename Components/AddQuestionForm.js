@@ -41,10 +41,10 @@ function AddQuestionForm({ onAddQuestion, newQuestion, setNewQuestion }) {
 
   return (
     <div className="grid gap-4 justify-items-center">
-      <label className="text-center text-2xl mt-2 mb-2 ">
+      <label className="text-center text-2xl mt-6 mb-4 font-semibold">
         Question:
         <input
-          className="w-full border-gray-300 mb-4 px-3 py-3 rounded-3xl border-solid focus:outline-none text-center mt-1"
+          className="w-full border-gray-300 mb-4 px-3 py-3 rounded-3xl border-solid focus:outline-none text-center mt-2"
           type="text"
           placeholder="Enter question"
           value={newQuestion}
@@ -77,7 +77,7 @@ function AddQuestionForm({ onAddQuestion, newQuestion, setNewQuestion }) {
         </label>
       </div>
       <button
-        className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline border-none mt-8"
+        className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-4 px-10 rounded-3xl focus:outline-none focus:shadow-outline border-none mt-10"
         type="button"
         onClick={handleAddQuestion}
       >

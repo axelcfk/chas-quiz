@@ -37,9 +37,9 @@ export default function CustomQuizPage() {
   };
   return (
     <div className="flex justify-center items-center h-screen">
-      <div className="w-full max-w-md p-40 bg-white rounded-lg shadow-md">
+      <div className="w-full h-full mt-40 max-w-md p-20 bg-white rounded-lg shadow-md">
         <input
-          className="w-full mb-4 px-3 py-2 rounded-lg border-solid border-green-400 focus:outline-none"
+          className="w-full mb-10 px-3 py-3 text-center rounded-3xl border-solid border-blue-400 focus:outline-none"
             type="text"
             placeholder="Enter Quiz Name"
             value={quizName}
@@ -53,7 +53,7 @@ export default function CustomQuizPage() {
           newQuestion={newQuestion}
           setNewQuestion={setNewQuestion}
         />
-        <div className="mt-4">
+        <div className="mt-5">
           <ul>
             {questions.map((question, index) => (
               <li key={index}>{question.question}</li>
@@ -61,7 +61,7 @@ export default function CustomQuizPage() {
           </ul>
         </div>
         <button
-          className="w-full mt-10 bg-blue-500 hover:bg-blue-400  text-white font-bold border-none py-3 px-4 hover rounded-3xl focus:outline-none focus:shadow-outline mx-auto"
+          className="w-full mt-10 bg-blue-500 hover:bg-blue-400  text-white font-bold border-none py-4 px-4 hover rounded-3xl focus:outline-none focus:shadow-outline mx-auto"
           onClick={handleMakeQuiz}
         >
           Make Quiz

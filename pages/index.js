@@ -33,7 +33,7 @@ export default function Home() {
 
   console.log(backgroundImageStyle);
   return (
-    <div className="min-h-screen flex flex-col justify-between">
+    <div className="min-h-screen grid grid-cols-1 ">
       <main
         className="bg-cover flex justify-center flex-col"
         style={backgroundImageStyle}
