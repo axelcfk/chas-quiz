@@ -2,11 +2,12 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addCustomQuiz,
-  setCurrentQuiz,
+  addFinishedQuiz,
+  selectAllQuizzes,
   selectAllFinishedQuizzes,
+  setCurrentQuiz,
 } from "@/redux/CustomQuizSlice";
 import AddQuestionForm from "@/Components/AddQuestionForm";
-
 
 export default function CustomQuizPage() {
   const [newQuestion, setNewQuestion] = useState("");
@@ -14,14 +15,14 @@ export default function CustomQuizPage() {
   const [questions, setQuestions] = useState([]); // State to store questions in array
 
   const dispatch = useDispatch();
- 
-
-
+  const userQuiz = useSelector(selectAllQuizzes);
+  const finishedQuizzes = useSelector(selectAllFinishedQuizzes);
 
   const handleAddQuestion = (newQuestionData) => {
     const updatedQuestions = [...questions, newQuestionData];
     setQuestions(updatedQuestions);
   };
+
   const handleMakeQuiz = () => {
     if (questions.length === 0 || quizName.trim() === "") return;
     const newQuiz = {
@@ -29,12 +30,16 @@ export default function CustomQuizPage() {
       results: [...questions]
     };
 
-    dispatch(addCustomQuiz(newQuiz)); // Add quiz to redux store
+    dispatch(addFinishedQuiz(newQuiz)); // Add finished quiz to redux store
     dispatch(setCurrentQuiz(newQuiz));
 
     setQuizName("");
     setQuestions([]);
   };
+
+console.log(finishedQuizzes);
+console.log(questions);
+
   return (
     <div className="flex justify-center items-center h-screen">
       <div className="w-full max-w-md p-40 bg-white rounded-lg shadow-md">
@@ -67,17 +72,25 @@ export default function CustomQuizPage() {
           Make Quiz
         </button>
       </div>
+      <div>
+        <h2>Finished Quizzes</h2>
+        <ul>
+          {finishedQuizzes.map((quiz, index) => (
+            <li key={index}>{quiz.name}</li>
+          ))}
+        </ul>
+        {userQuiz.results &&
+          userQuiz.results.map((item) => (
+            <div key={item.question}>
+              <p>Question: {item.question}</p>
+              <p>Correct Answer: {item.correct_answer}</p>
+              <p>
+                Incorrect Answers:{" "}
+                {item.incorrect_answers && item.incorrect_answers.join(", ")}
+              </p>
+            </div>
+          ))}
+      </div>
     </div>
   );
 }
-
-
-
-
-
-
-
-
-
-
-
