@@ -61,6 +61,12 @@ console.log(questions);
        
 
       <div>
+      <button
+          className="w-full mt-10 bg-blue-500 hover:bg-blue-400  text-white font-bold border-none py-4 px-4 hover rounded-3xl focus:outline-none focus:shadow-outline mx-auto"
+          onClick={handleMakeQuiz}
+        >
+          Make Quiz
+        </button>
         <h2>Finished Quizzes</h2>
         <ul>
           {finishedQuizzes.map((quiz, index) => (
@@ -79,12 +85,7 @@ console.log(questions);
             ))}
           </ul>
       </div>
-        <button
-          className="w-full mt-10 bg-blue-500 hover:bg-blue-400  text-white font-bold border-none py-4 px-4 hover rounded-3xl focus:outline-none focus:shadow-outline mx-auto"
-          onClick={handleMakeQuiz}
-        >
-          Make Quiz
-        </button>
+       
       </div>
     
     </div>
