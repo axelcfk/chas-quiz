@@ -131,7 +131,7 @@ export default function QuizPage() {
         </div>
       ) : null}
 
-      <div>
+      <div> {/* just to check if userQuiz looks correct  */}
         {userQuiz.results &&
           userQuiz.results.map((item) => (
             <div key={item.question}>
