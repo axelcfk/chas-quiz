@@ -1,16 +1,13 @@
 function QuizList({ finishedQuizzes }) {
-
-
-if (!finishedQuizzes) {
-  return <div>No finished quizzes available</div>
-}
-
+  if (!finishedQuizzes || finishedQuizzes.length === 0) {
+    return <div>No finished quizzes available</div>;
+  }
 
   return (
     <div>
       <h2>Finished Quizzes</h2>
       <ul>
-        {finishedQuizzes.results.map((quiz, index) => (
+        {finishedQuizzes.map((quiz, index) => (
           <li key={index}>
             <strong>Quiz Name:</strong> {quiz.name}
             <ul>
@@ -32,4 +29,3 @@ if (!finishedQuizzes) {
   );
 }
 
-export default QuizList;

@@ -118,6 +118,9 @@ if (typeof userQuiz === "object" && userQuiz !== null) {
   console.log("userQuiz är inte ett objekt eller är null.");
 }
 
+console.log(userQuiz);
+console.log(easyQuiz);
+
   return (
     <div className="flex justify-center flex-col items-center px-10 ">
       {!isCompleted && !quizIsSelected ? (

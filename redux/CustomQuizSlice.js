@@ -4,7 +4,8 @@ export const customQuizSlice = createSlice({
   name: "customQuiz",
   initialState: {
     currentQuiz: null,
-    allQuizzes: { results: [] }, // store all the quizzes
+    allQuizzes: { results: [] },
+    allQuizzes2: { results: [] }, // store all the quizzes
   },
   reducers: {
     addCustomQuiz: (state, action) => {
