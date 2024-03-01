@@ -24,8 +24,9 @@ export default function QuizPage() {
   const dispatch = useDispatch();
   const highscore = useSelector((state) => state.highscore.value);
   const userQuiz = useSelector((state) => state.customQuiz.allQuizzes);
-  console.log(userQuiz);
-  console.log(easyQuiz);
+  const userQuizzes = useSelector((state) => state.customQuiz.allQuizzes2);
+  console.log("User Quizzes:", userQuizzes);
+  console.log("questions:", userQuiz);
 
   useEffect(() => {
     if (selectedQuiz) {
@@ -140,14 +141,24 @@ export default function QuizPage() {
       <div>
         {" "}
         {/* just to check if userQuiz looks correct  */}
-        {userQuiz.results &&
+        {/* {userQuizzes &&
+          userQuizzes.map((userQuiz) => (
+            userQuiz.results.map((item) => (
+              <div key={item.question}>
+                <p>Question: {item.question}</p>
+                <p>Correct Answer: {item.correct_answer}</p>
+                <p>Incorrect Answers: {item.incorrect_answers}</p>
+              </div>
+            ))
+          ))} */}
+        {/* {userQuiz.results &&
           userQuiz.results.map((item) => (
             <div key={item.question}>
               <p>Question: {item.question}</p>
               <p>Correct Answer: {item.correct_answer}</p>
               <p>Incorrect Answers: {item.incorrect_answers}</p>
             </div>
-          ))}
+          ))} */}
       </div>
 
       {!quizIsSelected ? (
