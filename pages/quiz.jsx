@@ -213,6 +213,8 @@ console.log(easyQuiz);
             onClick={() => {
               setSelectedQuiz(null)
               setquizIsSelected(false)
+              setIndex(0)
+              setButtonClicked(false)
 
               setIsCompleted(false) 
             }}
