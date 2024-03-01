@@ -125,13 +125,13 @@ export default function QuizPage() {
         </div>
       ) : null}
 
-      <div>
+      <div> {/* just to check if userQuiz looks correct  */}
         {userQuiz.results &&
           userQuiz.results.map((item) => (
             <div key={item.question}>
               <p>Question: {item.question}</p>
               <p>Correct Answer: {item.correct_answer}</p>
-              <p>Incorrect Answers: {item.incorrect_answers.join(", ")}</p>
+              <p>Incorrect Answers: {item.incorrect_answers}</p>
             </div>
           ))}
       </div>
