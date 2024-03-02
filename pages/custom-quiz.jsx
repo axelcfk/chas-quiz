@@ -6,6 +6,8 @@ import {
   selectAllQuizzes,
   selectAllFinishedQuizzes,
   setCurrentQuiz,
+  editCustomQuiz,
+  removeCustomQuiz,
 } from "@/redux/CustomQuizSlice";
 import AddQuestionForm from "@/Components/AddQuestionForm";
 
@@ -13,24 +15,42 @@ export default function CustomQuizPage() {
   const [newQuestion, setNewQuestion] = useState("");
   const [quizName, setQuizName] = useState(""); // State to store quiz name
   const [questions, setQuestions] = useState([]); // State to store questions in array
+  const [editingIndex, setEditingIndex] = useState(null);
+  const [modalVisible, setModalVisible] = useState(false);
 
   const dispatch = useDispatch();
   const userQuiz = useSelector(selectAllQuizzes);
   const finishedQuizzes = useSelector(selectAllFinishedQuizzes);
 
   const handleAddQuestion = (newQuestionData) => {
-    const updatedQuestions = [...questions, newQuestionData];
+    const updatedQuestions = [
+      ...questions,
+      { id: Date.now(), ...newQuestionData },
+    ];
     setQuestions(updatedQuestions);
   };
 
-  const handleRemoveQuestion = (index => {
-    const updatedQuestions = [...questions];
-    updatedQuestions.splice(index, 1); // Remove the question from the array
-    setQuestions(updatedQuestions);
-  })
+  const handleRemoveQuestion = (questionToRemove) => {
+    dispatch(removeCustomQuiz({ id: questionToRemove.id }));
+  };
+
+  const handleEditQuestion = (index) => {
+    setEditingIndex(index);
+  };
+
+  const handleSaveEdit = () => {
+    dispatch(
+      editCustomQuiz({
+        id: questions[editingIndex].id,
+        updatedQuestion: questions[editingIndex],
+      })
+    );
+    setEditingIndex(null);
+  };
 
   const handleMakeQuiz = () => {
     if (questions.length === 0 || quizName.trim() === "") return;
+    
     const newQuiz = {
       name: quizName,
       results: [...questions],
@@ -42,9 +62,6 @@ export default function CustomQuizPage() {
     setQuizName("");
     setQuestions([]);
   };
-
-  console.log(finishedQuizzes);
-  console.log(questions);
 
   return (
     <div className="flex justify-center flex-col">
@@ -76,7 +93,6 @@ export default function CustomQuizPage() {
         </button>
         <h2 className="flex justify-center pt-6">Finished Quizzes:</h2>
         <div className="flex justify-center">
-          {" "}
           <ul className="flex justify-center list-none font-bold text-xl text-white flex-col">
             Quizzes: &nbsp;
             {finishedQuizzes.map((quiz, index) => (
@@ -85,45 +101,126 @@ export default function CustomQuizPage() {
           </ul>
         </div>
 
-        {/* This div will only be visible on mobile devices */}
-        <div className="md:hidden">
-          <ul className="grid grid-cols-2 gap-4 bg-teal-800">
-            {questions.map((question, index) => (
-              <li key={index}>
-                <p>
-                  Question {index + 1}: {question.question}
-                </p>
-                <p>Incorrect answer 1: {question.incorrect_answers[0]}</p>
+        <ul>
+          {questions.map((question, index) => (
+            <li key={index}>
+              {editingIndex === index ? (
+                <>
+                  <input
+                    type="text"
+                    value={question.question}
+                    onChange={(e) => {
+                      const updatedQuestion = e.target.value;
+                      setQuestions((prevQuestions) => {
+                        const updatedQuestions = [...prevQuestions];
+                        updatedQuestions[index].question = updatedQuestion;
+                        return updatedQuestions;
+                      });
+                    }}
+                  />
+                  <input
+                    type="text"
+                    value={question.incorrect_answers[0]}
+                    onChange={(e) => {
+                      const updatedAnswer = e.target.value;
+                      setQuestions((prevQuestions) => {
+                        const updatedQuestions = prevQuestions.map((q, i) => {
+                          if (i === index) {
+                            return {
+                              ...q,
+                              incorrect_answers: [
+                                updatedAnswer,
+                                q.incorrect_answers[1],
+                                q.incorrect_answers[2],
+                              ],
+                            };
+                          }
+                          return q;
+                        });
+                        return updatedQuestions;
+                      });
+                    }}
+                  />
+                  <input
+                    type="text"
+                    value={question.incorrect_answers[1]}
+                    onChange={(e) => {
+                      const updatedAnswer = e.target.value;
+                      setQuestions((prevQuestions) => {
+                        const updatedQuestions = prevQuestions.map((q, i) => {
+                          if (i === index) {
+                            return {
+                              ...q,
+                              incorrect_answers: [
+                                q.incorrect_answers[0],
+                                updatedAnswer,
+                                q.incorrect_answers[2],
+                              ],
+                            };
+                          }
+                          return q;
+                        });
+                        return updatedQuestions;
+                      });
+                    }}
+                  />
 
-                <p>Incorrect answer 2: {question.incorrect_answers[1]}</p>
+                  <input
+                    type="text"
+                    value={question.incorrect_answers[2]}
+                    onChange={(e) => {
+                      const updatedAnswer = e.target.value;
+                      setQuestions((prevQuestions) => {
+                        const updatedQuestions = prevQuestions.map((q, i) => {
+                          if (i === index) {
+                            return {
+                              ...q,
+                              incorrect_answers: [
+                                q.incorrect_answers[0],
+                                q.incorrect_answers[1],
+                                updatedAnswer,
+                              ],
+                            };
+                          }
+                          return q;
+                        });
+                        return updatedQuestions;
+                      });
+                    }}
+                  />
 
-                <p>Incorrect answer 3: {question.incorrect_answers[2]}</p>
-
-                <p>Correct: {question.correct_answer}</p>
-
-                <button>Edit</button>
-                <button onClick={() => handleRemoveQuestion(index)}>Remove question</button>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* This div will only be visible on desktop screens */}
-        <div className="hidden md:block">
-          <ul className="grid grid-cols-4 gap-4">
-            {questions.map((question, index) => (
-              <li key={index}>
-                <p>
-                  Question {index + 1}: {question.question}
-                </p>
-                <p>Incorrect answer 1: {question.incorrect_answers[0]}</p>
-                <p>Incorrect answer 2: {question.incorrect_answers[1]}</p>
-                <p>Incorrect answer 3: {question.incorrect_answers[2]}</p>
-                <p>Correct: {question.correct_answer}</p>
-              </li>
-            ))}
-          </ul>
-        </div>
+                  <input
+                    type="text"
+                    value={question.correct_answer}
+                    onChange={(e) => {
+                      const updatedAnswer = e.target.value;
+                      setQuestions((prevQuestions) => {
+                        const updatedQuestions = [...prevQuestions];
+                        updatedQuestions[index].correct_answer = updatedAnswer;
+                        return updatedQuestions;
+                      });
+                    }}
+                  />
+                  <button onClick={handleSaveEdit}>Save</button>
+                </>
+              ) : (
+                <>
+                  <p>Question: {question.question}</p>
+                  <p>Incorrect answer 1: {question.incorrect_answers[0]}</p>
+                  <p>Incorrect answer 2: {question.incorrect_answers[1]}</p>
+                  <p>Incorrect answer 3: {question.incorrect_answers[2]}</p>
+                  <p>Correct: {question.correct_answer}</p>
+                  <button onClick={() => handleEditQuestion(index)}>
+                    Edit
+                  </button>
+                  <button onClick={() => handleRemoveQuestion(question)}>
+                    Remove
+                  </button>
+                </>
+              )}
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   );
