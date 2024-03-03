@@ -29,6 +29,7 @@ export default function CustomQuizPage() {
 
   const dispatch = useDispatch();
   const finishedQuizzes = useSelector(selectAllFinishedQuizzes);
+  const userQuiz = useSelector((state) => state.customQuiz.allQuizzes);
 
   const handleAddQuestion = (newQuestionData) => {
     const updatedQuestions = [
@@ -46,6 +47,7 @@ export default function CustomQuizPage() {
   };
 
   const handleEditQuestion = (index) => {
+    dispatch;
     setEditingIndex(index);
   };
 
