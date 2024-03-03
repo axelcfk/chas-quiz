@@ -34,21 +34,16 @@ html {
   animation: wiggleAnimation 0.3s;
 }
 
-.full-page-background {
-  position: relative;
+:root {
   background-image: url("/color.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   min-height: 100vh;
+  position: relative;
 }
 
 .overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
   background-color: rgba(
     0,
     0,

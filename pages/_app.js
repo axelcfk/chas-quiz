@@ -9,7 +9,7 @@ import Link from "next/link";
 function App({ Component, pageProps }) {
   return (
     <Provider store={store}>
-      <div className="full-page-background">
+      <div>
         <div className="overlay">
           <div className="pl-4 pt-2 space-x-4">
             <Link className="text-white no-underline cursor-pointer hover:underline" href="/">
