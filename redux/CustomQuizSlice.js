@@ -1,3 +1,8 @@
+// TODO: Clean this code up
+
+// TODO: Need help to update the finished quiz so that the
+// TODO: deleted and updated questions are up to date.
+
 import { createSlice } from "@reduxjs/toolkit";
 
 export const customQuizSlice = createSlice({
@@ -5,7 +10,7 @@ export const customQuizSlice = createSlice({
   initialState: {
     currentQuiz: null,
     allQuizzes: { results: [] },
-    allQuizzes2: [] , // store all the quizzes
+    allQuizzes2: [], // store all the quizzes
   },
   reducers: {
     addCustomQuiz: (state, action) => {
@@ -15,7 +20,7 @@ export const customQuizSlice = createSlice({
       };
     },
     addFinishedQuiz: (state, action) => {
-state.allQuizzes2.push(action.payload);
+      state.allQuizzes2.push(action.payload);
     },
 
     setCurrentQuiz: (state, action) => {
@@ -23,27 +28,40 @@ state.allQuizzes2.push(action.payload);
     },
 
     editCustomQuiz: (state, action) => {
-      const { id, newTitle } = action.payload;
-      const editQuiz = state.questions.find((quiz) => quiz.id === id);
-      if (editQuiz) {
-        editQuiz.customQuizTitle = newTitle;
+      const { id, updatedQuestion } = action.payload;
+      const questionIndex = state.allQuizzes.results.findIndex(
+        (question) => question.id === id
+      );
+      if (questionIndex !== -1) {
+        state.allQuizzes.results[questionIndex] = updatedQuestion;
       }
     },
 
     removeCustomQuiz: (state, action) => {
-      const updatedQuestions = state.questions.filter(
-        (custom) => custom.id !== action.payload
+      const questionIdToRemove = action.payload.id;
+      state.allQuizzes.results = state.allQuizzes.results.filter(
+        (question) => question.id !== questionIdToRemove
       );
-      return {
-        ...state,
-        questions: updatedQuestions,
-      };
     },
+
+    removeCustomQuestion: (state, action) => {
+      const questionIdToRemove = action.payload;
+      state.allQuizzes.results = state.allQuizzes.results.filter(
+        (question) => question.id!== questionIdToRemove
+      );
+    }
   },
 });
 
-export const { addCustomQuiz, addFinishedQuiz, setCurrentQuiz } =
-  customQuizSlice.actions;
+// Exportera de åtgärder jag vill använda (alla såklart)
+export const {
+  addCustomQuiz,
+  addFinishedQuiz,
+  setCurrentQuiz,
+  editCustomQuiz,
+  removeCustomQuiz,
+  removeCustomQuestion
+} = customQuizSlice.actions;
 
 export const selectSubmittedQuizzes = (state) =>
   state.customQuiz.currentQuiz ? [state.customQuiz.currentQuiz] : [];
