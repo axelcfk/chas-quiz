@@ -41,7 +41,7 @@ export default function Home() {
         <div className="w-full">
           <nav className="flex justify-between">
             <span className="p-2">
-              <Image src={logoImg} alt="logo" width={28} height={29} />
+              <Image src={logoImg} alt="logo" width={50} height={50} />
             </span>
             <Link className="p-2 text-black" href="/highscore ">
               <svg
@@ -87,8 +87,6 @@ export default function Home() {
       </main>
       <footer className="flex justify-center">
         <footer className="flex justify-center">
-          <Image src={googleImg} alt="logo" width={78} height={78} />
-          <Image src={apple} alt="logo" width={78} height={78} />
         </footer>
       </footer>
     </div>

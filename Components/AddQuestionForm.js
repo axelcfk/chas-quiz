@@ -44,7 +44,7 @@ function AddQuestionForm({ onAddQuestion, newQuestion, setNewQuestion }) {
       <label className="flex justify-center flex-col text-center text-2xl mt-6 font-semibold ">
           <p className="mb-2">Question:</p>
         <input
-          className="w-full border-gray-300 mb-4 px-3 py-3 rounded-3xl border-solid focus:outline-none text-center mt-2"
+          className="w-80 border-gray-300 mb-4 px-3 py-3 rounded-3xl border-solid focus:outline-none text-center mt-2"
           type="text"
           placeholder="Enter question"
           value={newQuestion}

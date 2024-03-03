@@ -1,3 +1,9 @@
+// TODO: Clean this code up
+
+// TODO: When the question is long, the box will not align properly, fix!
+
+// TODO: Fix issue of updated and deleted questions not registering to the final Quiz
+
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -7,7 +13,8 @@ import {
   selectAllFinishedQuizzes,
   setCurrentQuiz,
   editCustomQuiz,
-  removeCustomQuiz,
+  removeCustomQuiz, // if we want to use redux for removing questions
+  //(if we have time to fix that)
 } from "@/redux/CustomQuizSlice";
 import AddQuestionForm from "@/Components/AddQuestionForm";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -32,10 +39,12 @@ export default function CustomQuizPage() {
   };
 
   const handleRemoveQuestion = (questionIdToRemove) => {
-    const updatedQuestions = questions.filter(question => question.id !== questionIdToRemove);
+    const updatedQuestions = questions.filter(
+      (question) => question.id !== questionIdToRemove
+    );
     setQuestions(updatedQuestions);
   };
-  
+
   const handleEditQuestion = (index) => {
     setEditingIndex(index);
   };
@@ -78,13 +87,16 @@ export default function CustomQuizPage() {
     <div className="flex justify-center flex-col">
       <h1 className="flex justify-center">Make your own quiz!</h1>
       <div className="flex justify-center mt-16">
-        <input
-          className="w-64 mb-10 px-3 py-3 text-center rounded-3xl border-solid border-blue-400 focus:outline-none"
-          type="text"
-          placeholder="Enter Quiz Name"
-          value={quizName}
-          onChange={(e) => setQuizName(e.target.value)}
-        />
+        <div className="flex flex-col">
+          <p className="flex justify-center">Quiz Name:</p>
+          <input
+            className="w-64 mb-10 px-3 py-3 text-center rounded-3xl border-solid border-blue-400 focus:outline-none"
+            type="text"
+            placeholder="Enter Quiz Name"
+            value={quizName}
+            onChange={(e) => setQuizName(e.target.value)}
+          />
+        </div>
       </div>
       <AddQuestionForm
         onAddQuestion={(newQuestionData) => {
@@ -95,27 +107,28 @@ export default function CustomQuizPage() {
         setNewQuestion={setNewQuestion}
       />
 
-      <div className="flex justify-center flex-col bg-pink-300">
+      <div className="flex justify-center flex-col">
         <button
           className="w-28 mt-10 bg-blue-500 hover:bg-blue-400  text-white font-bold border-none py-4 px-4 hover rounded-3xl focus:outline-none focus:shadow-outline mx-auto cursor-pointer"
           onClick={handleMakeQuiz}
         >
           Make Quiz
         </button>
-        <h2 className="flex justify-center pt-6">Finished Quizzes:</h2>
+        <h2 className="flex justify-center pt-6">Quizzes:</h2>
         <div className="flex justify-center">
           <ul className="flex justify-center font-bold text-xl text-white flex-col">
-            Quizzes: &nbsp;
             {finishedQuizzes.map((quiz, index) => (
               <li key={index}>{quiz.name}</li>
             ))}
           </ul>
         </div>
 
-
-        <ul>
+        <ul className="grid grid-cols-2 gap-4 md:grid-cols-4">
           {questions.map((question, index) => (
-            <li key={index}>
+            <li
+              key={index}
+              className="p-4 border rounded-lg shadow-xl border-blue-900 border-solid shadow-outline bg-indigo-900 overflow-hidden"
+            >
               {editingIndex === index ? (
                 <>
                   <input
@@ -217,13 +230,31 @@ export default function CustomQuizPage() {
                 </>
               ) : (
                 <>
-                  <p>Question: {question.question}</p>
-                  <p>Incorrect answer 1: {question.incorrect_answers[0]}</p>
-                  <p>Incorrect answer 2: {question.incorrect_answers[1]}</p>
-                  <p>Incorrect answer 3: {question.incorrect_answers[2]}</p>
+                  <div className="flex space-x-2">
+                    <p className="font-bold">{question.question}</p>
+                  </div>
 
-                  <p>Correct: {question.correct_answer}</p>
-                  <div className="flex">
+                  <div className="flex space-x-2">
+                    <p className="text-green-600 font-bold">Correct: </p>
+                    <p>{question.correct_answer}</p>
+                  </div>
+
+                  <div className="flex space-x-2">
+                    <p className="text-red-600 font-bold">Incorrect 1: </p>
+                    <p>{question.incorrect_answers[0]}</p>
+                  </div>
+
+                  <div className="flex space-x-2">
+                    <p className="text-red-600 font-bold">Incorrect 2: </p>
+                    <p>{question.incorrect_answers[1]}</p>
+                  </div>
+
+                  <div className="flex space-x-2">
+                    <p className="text-red-600 font-bold">Incorrect 3: </p>
+                    <p>{question.incorrect_answers[2]}</p>
+                  </div>
+
+                  <div className="buttons flex">
                     <button
                       className="flex items-center justify-center md:flex"
                       onClick={() => handleEditQuestion(index)}
@@ -235,7 +266,7 @@ export default function CustomQuizPage() {
                     </button>
                     <button
                       className="hidden md:flex"
-                      onClick={() => handleRemoveQuestion(question)}
+                      onClick={() => handleRemoveQuestion(question.id)}
                     >
                       <p className="text-black">remove</p>
                       <FontAwesomeIcon icon={faTrash} />

@@ -1,3 +1,8 @@
+// TODO: Clean this code up
+
+// TODO: Need help to update the finished quiz so that the
+// TODO: deleted and updated questions are up to date.
+
 import { createSlice } from "@reduxjs/toolkit";
 
 export const customQuizSlice = createSlice({
