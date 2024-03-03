@@ -4,6 +4,8 @@
 
 // TODO: Fix issue of updated and deleted questions not registering to the final Quiz
 
+//TODO: When click on the quiz name, go to Quiz link
+
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -20,6 +22,7 @@ import AddQuestionForm from "@/Components/AddQuestionForm";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-regular-svg-icons";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import Link from "next/link";
 
 export default function CustomQuizPage() {
   const [newQuestion, setNewQuestion] = useState("");
@@ -116,9 +119,9 @@ export default function CustomQuizPage() {
         >
           Make Quiz
         </button>
-        <h2 className="flex justify-center pt-6">Quizzes:</h2>
+        <h2 className="flex justify-center pt-6">Your quizzes:</h2>
         <div className="flex justify-center m-0 p-0">
-          <ul className="flex justify-center font-bold text-xl text-white flex-col">
+          <ul className="flex justify-center font-bold text-xl text-white flex-col hover:cursor-pointer">
             {finishedQuizzes.map((quiz, index) => (
               <li key={index}>{quiz.name}</li>
             ))}
@@ -129,136 +132,149 @@ export default function CustomQuizPage() {
           {questions.map((question, index) => (
             <li
               key={index}
-              className="px-4 pb-4 border rounded-lg shadow-xl border-blue-900 border-solid shadow-outline bg-blue-900 overflow-hidden"
+              className="flex flex-col content-center px-4 pb-4 border rounded-lg shadow-xl border-blue-900 border-solid shadow-outline bg-indigo-800 overflow-hidden h-80"
             >
               {editingIndex === index ? (
                 <>
-                  <input
-                    type="text"
-                    value={question.question}
-                    onChange={(e) => {
-                      const updatedQuestion = e.target.value;
-                      setQuestions((prevQuestions) => {
-                        const updatedQuestions = [...prevQuestions];
-                        updatedQuestions[index].question = updatedQuestion;
-                        return updatedQuestions;
-                      });
-                    }}
-                  />
-                  <input
-                    type="text"
-                    value={question.incorrect_answers[0]}
-                    onChange={(e) => {
-                      const updatedAnswer = e.target.value;
-                      setQuestions((prevQuestions) => {
-                        const updatedQuestions = prevQuestions.map((q, i) => {
-                          if (i === index) {
-                            return {
-                              ...q,
-                              incorrect_answers: [
-                                updatedAnswer,
-                                q.incorrect_answers[1],
-                                q.incorrect_answers[2],
-                              ],
-                            };
-                          }
-                          return q;
+                  <div className="flex flex-col w-full h-full justify-center space-y-6">
+                    <input
+                      className="w-full mt-1 py-2 rounded-lg border border-gray-300 focus:outline-none border-solid"
+                      type="text"
+                      value={question.question}
+                      onChange={(e) => {
+                        const updatedQuestion = e.target.value;
+                        setQuestions((prevQuestions) => {
+                          const updatedQuestions = [...prevQuestions];
+                          updatedQuestions[index].question = updatedQuestion;
+                          return updatedQuestions;
                         });
-                        return updatedQuestions;
-                      });
-                    }}
-                  />
-                  <input
-                    type="text"
-                    value={question.incorrect_answers[1]}
-                    onChange={(e) => {
-                      const updatedAnswer = e.target.value;
-                      setQuestions((prevQuestions) => {
-                        const updatedQuestions = prevQuestions.map((q, i) => {
-                          if (i === index) {
-                            return {
-                              ...q,
-                              incorrect_answers: [
-                                q.incorrect_answers[0],
-                                updatedAnswer,
-                                q.incorrect_answers[2],
-                              ],
-                            };
-                          }
-                          return q;
+                      }}
+                    />
+                    <input
+                      className="w-full mt-1 py-2 rounded-lg border border-gray-300 focus:outline-none border-solid"
+                      type="text"
+                      value={question.incorrect_answers[0]}
+                      onChange={(e) => {
+                        const updatedAnswer = e.target.value;
+                        setQuestions((prevQuestions) => {
+                          const updatedQuestions = prevQuestions.map((q, i) => {
+                            if (i === index) {
+                              return {
+                                ...q,
+                                incorrect_answers: [
+                                  updatedAnswer,
+                                  q.incorrect_answers[1],
+                                  q.incorrect_answers[2],
+                                ],
+                              };
+                            }
+                            return q;
+                          });
+                          return updatedQuestions;
                         });
-                        return updatedQuestions;
-                      });
-                    }}
-                  />
+                      }}
+                    />
+                    <input
+                      className="w-full mt-1 py-2 rounded-lg border border-gray-300 focus:outline-none border-solid"
+                      type="text"
+                      value={question.incorrect_answers[1]}
+                      onChange={(e) => {
+                        const updatedAnswer = e.target.value;
+                        setQuestions((prevQuestions) => {
+                          const updatedQuestions = prevQuestions.map((q, i) => {
+                            if (i === index) {
+                              return {
+                                ...q,
+                                incorrect_answers: [
+                                  q.incorrect_answers[0],
+                                  updatedAnswer,
+                                  q.incorrect_answers[2],
+                                ],
+                              };
+                            }
+                            return q;
+                          });
+                          return updatedQuestions;
+                        });
+                      }}
+                    />
 
-                  <input
-                    type="text"
-                    value={question.incorrect_answers[2]}
-                    onChange={(e) => {
-                      const updatedAnswer = e.target.value;
-                      setQuestions((prevQuestions) => {
-                        const updatedQuestions = prevQuestions.map((q, i) => {
-                          if (i === index) {
-                            return {
-                              ...q,
-                              incorrect_answers: [
-                                q.incorrect_answers[0],
-                                q.incorrect_answers[1],
-                                updatedAnswer,
-                              ],
-                            };
-                          }
-                          return q;
+                    <input
+                      className="w-full mt-1 py-2 rounded-lg border border-gray-300 focus:outline-none border-solid"
+                      type="text"
+                      value={question.incorrect_answers[2]}
+                      onChange={(e) => {
+                        const updatedAnswer = e.target.value;
+                        setQuestions((prevQuestions) => {
+                          const updatedQuestions = prevQuestions.map((q, i) => {
+                            if (i === index) {
+                              return {
+                                ...q,
+                                incorrect_answers: [
+                                  q.incorrect_answers[0],
+                                  q.incorrect_answers[1],
+                                  updatedAnswer,
+                                ],
+                              };
+                            }
+                            return q;
+                          });
+                          return updatedQuestions;
                         });
-                        return updatedQuestions;
-                      });
-                    }}
-                  />
+                      }}
+                    />
 
-                  <input
-                    type="text"
-                    value={question.correct_answer}
-                    onChange={(e) => {
-                      const updatedAnswer = e.target.value;
-                      setQuestions((prevQuestions) => {
-                        const updatedQuestions = [...prevQuestions];
-                        updatedQuestions[index].correct_answer = updatedAnswer;
-                        return updatedQuestions;
-                      });
-                    }}
-                  />
-                  <button onClick={handleSaveEdit}>Save</button>
+                    <input
+                      className="w-full mt-1 py-2 rounded-lg border border-gray-300 focus:outline-none border-solid"
+                      type="text"
+                      value={question.correct_answer}
+                      onChange={(e) => {
+                        const updatedAnswer = e.target.value;
+                        setQuestions((prevQuestions) => {
+                          const updatedQuestions = [...prevQuestions];
+                          updatedQuestions[index].correct_answer =
+                            updatedAnswer;
+                          return updatedQuestions;
+                        });
+                      }}
+                    />
+                  </div>
+                  <button
+                    className="rounded-lg shadow-lg w-16"
+                    onClick={handleSaveEdit}
+                  >
+                    Save
+                  </button>
                 </>
               ) : (
                 <>
-                  <div className="flex space-x-2">
+                  <div className="flex justify-center">
                     <p className="font-bold">{question.question}</p>
                   </div>
+                  <div>
+                    <div className="flex space-x-2">
+                      <p className="text-green-600 font-bold">Correct: </p>
+                      <p>{question.correct_answer}</p>
+                    </div>
 
-                  <div className="flex space-x-2">
-                    <p className="text-green-600 font-bold">Correct: </p>
-                    <p>{question.correct_answer}</p>
+                    <div className="flex space-x-2">
+                      <p className="text-red-600 font-bold">Incorrect: </p>
+                      <p>{question.incorrect_answers[0]}</p>
+                    </div>
+
+                    <div className="flex space-x-2">
+                      <p className="text-red-600 font-bold">Incorrect: </p>
+                      <p>{question.incorrect_answers[1]}</p>
+                    </div>
+
+                    <div className="flex space-x-2">
+                      <p className="text-red-600 font-bold">Incorrect: </p>
+                      <p>{question.incorrect_answers[2]}</p>
+                    </div>
                   </div>
-
-                  <div className="flex space-x-2">
-                    <p className="text-red-600 font-bold">Incorrect 1: </p>
-                    <p>{question.incorrect_answers[0]}</p>
-                  </div>
-
-                  <div className="flex space-x-2">
-                    <p className="text-red-600 font-bold">Incorrect 2: </p>
-                    <p>{question.incorrect_answers[1]}</p>
-                  </div>
-
-                  <div className="flex space-x-2">
-                    <p className="text-red-600 font-bold">Incorrect 3: </p>
-                    <p>{question.incorrect_answers[2]}</p>
-                  </div>
-
-                  <div className="buttons flex">
+                  <div className="buttons flex place-content-end">
                     <button
-                      className="flex items-center justify-center md:flex"
+                      className="flex items-center justify-center rounded md:flex"
                       onClick={() => handleEditQuestion(index)}
                     >
                       <p className="text-black hidden md:flex ">edit</p>
@@ -267,14 +283,14 @@ export default function CustomQuizPage() {
                       </div>
                     </button>
                     <button
-                      className="hidden md:flex"
+                      className="rounded hidden md:flex"
                       onClick={() => handleRemoveQuestion(question.id)}
                     >
                       <p className="text-black">remove</p>
                       <FontAwesomeIcon icon={faTrash} />
                     </button>
                     <button
-                      className="md:hidden"
+                      className="rounded md:hidden"
                       onClick={() => handleRemoveQuestion(question.id)}
                     >
                       <FontAwesomeIcon icon={faTrash} />
