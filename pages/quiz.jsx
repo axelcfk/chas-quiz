@@ -184,7 +184,7 @@ export default function QuizPage() {
                       quizzes yet.
                     </p>
                     <Link href="/custom-quiz">
-                      <button className="h-16 text-slate-100 w-60 p-2 border-none font-semibold rounded-full  bg-blue-600 hover:cursor-pointer text-xl ">
+                      <button className="h-16 text-slate-100 w-60 p-2 border-none font-semibold rounded-full  bg-blue-600 hover:cursor-pointer text-xl mb-30">
                         Create one here!
                       </button>
                     </Link>
@@ -296,7 +296,6 @@ export default function QuizPage() {
             )
           )}
         </div>
-        {/* <Footer /> */}
       </div>
     </>
   );
