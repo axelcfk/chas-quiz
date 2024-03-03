@@ -33,7 +33,7 @@ export default function Home() {
 
   console.log(backgroundImageStyle);
   return (
-    <div className="min-h-screen flex flex-col justify-between items">
+    <div className="min-h-screen flex flex-col justify-evenly items-center">
       <main
         className=" flex justify-center flex-col items-center"
         style={backgroundImageStyle}
@@ -41,9 +41,9 @@ export default function Home() {
         <div className="w-full">
           <nav className="flex justify-between">
             <span className="p-2">
-              <Image src={logoImg} alt="logo" width={50} height={50} />
+              {/* <Image src={logoImg} alt="logo" width={50} height={50} /> */}
             </span>
-            <Link className="p-2 text-black" href="/highscore ">
+            {/* <Link className="p-2 text-black" href="/highscore ">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -56,7 +56,7 @@ export default function Home() {
                   clip-rule="evenodd"
                 />
               </svg>
-            </Link>
+            </Link> */}
           </nav>
           <h1 id="title" className="flex justify-center text-6xl">
             Chas Quiz
@@ -86,8 +86,7 @@ export default function Home() {
         </div>
       </main>
       <footer className="flex justify-center">
-        <footer className="flex justify-center">
-        </footer>
+        <footer className="flex justify-center"></footer>
       </footer>
     </div>
   );

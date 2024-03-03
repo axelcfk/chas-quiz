@@ -87,8 +87,8 @@ export default function CustomQuizPage() {
 
   return (
     <div className="flex justify-center flex-col">
-      <h1 className="flex justify-center">Make your own quiz!</h1>
-      <div className="flex justify-center mt-16">
+      <h1 className="text-center mt-20">Make your own quiz!</h1>
+      <div className="flex justify-center ">
         <div className="flex flex-col">
           <p className="flex justify-center">Quiz Name:</p>
           <input
@@ -111,7 +111,7 @@ export default function CustomQuizPage() {
 
       <div className="flex justify-center flex-col">
         <button
-          className="w-28 mt-10 bg-blue-500 hover:bg-blue-400  text-white font-bold border-none py-4 px-4 hover rounded-3xl focus:outline-none focus:shadow-outline mx-auto cursor-pointer"
+          className="w-28 mt-4 bg-blue-500 hover:bg-blue-400  text-white font-bold border-none py-4 px-4 hover rounded-3xl focus:outline-none focus:shadow-outline mx-auto cursor-pointer"
           onClick={handleMakeQuiz}
         >
           Make Quiz
