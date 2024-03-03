@@ -115,7 +115,7 @@ export default function CustomQuizPage() {
           Make Quiz
         </button>
         <h2 className="flex justify-center pt-6">Quizzes:</h2>
-        <div className="flex justify-center">
+        <div className="flex justify-center m-0 p-0">
           <ul className="flex justify-center font-bold text-xl text-white flex-col">
             {finishedQuizzes.map((quiz, index) => (
               <li key={index}>{quiz.name}</li>
@@ -127,7 +127,7 @@ export default function CustomQuizPage() {
           {questions.map((question, index) => (
             <li
               key={index}
-              className="p-4 border rounded-lg shadow-xl border-blue-900 border-solid shadow-outline bg-indigo-900 overflow-hidden"
+              className="px-4 pb-4 border rounded-lg shadow-xl border-blue-900 border-solid shadow-outline bg-blue-900 overflow-hidden"
             >
               {editingIndex === index ? (
                 <>
