@@ -10,16 +10,17 @@ import {
   removeCustomQuiz,
 } from "@/redux/CustomQuizSlice";
 import AddQuestionForm from "@/Components/AddQuestionForm";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPenToSquare } from "@fortawesome/free-regular-svg-icons";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 export default function CustomQuizPage() {
   const [newQuestion, setNewQuestion] = useState("");
   const [quizName, setQuizName] = useState(""); // State to store quiz name
   const [questions, setQuestions] = useState([]); // State to store questions in array
   const [editingIndex, setEditingIndex] = useState(null);
-  const [modalVisible, setModalVisible] = useState(false);
 
   const dispatch = useDispatch();
-  const userQuiz = useSelector(selectAllQuizzes);
   const finishedQuizzes = useSelector(selectAllFinishedQuizzes);
 
   const handleAddQuestion = (newQuestionData) => {
@@ -30,19 +31,27 @@ export default function CustomQuizPage() {
     setQuestions(updatedQuestions);
   };
 
-  const handleRemoveQuestion = (questionToRemove) => {
-    dispatch(removeCustomQuiz({ id: questionToRemove.id }));
+  const handleRemoveQuestion = (questionIdToRemove) => {
+    const updatedQuestions = questions.filter(question => question.id !== questionIdToRemove);
+    setQuestions(updatedQuestions);
   };
-
+  
   const handleEditQuestion = (index) => {
     setEditingIndex(index);
   };
 
   const handleSaveEdit = () => {
+    if (editingIndex === null) return;
+    const updatedQuestions = [...questions];
+    updatedQuestions[editingIndex] = {
+      ...updatedQuestions[editingIndex],
+      id: Date.now(), // Generate a new ID for the updated question
+    };
+    // Make sure the updated questions are saved in Redux
     dispatch(
       editCustomQuiz({
-        id: questions[editingIndex].id,
-        updatedQuestion: questions[editingIndex],
+        id: updatedQuestions[editingIndex].id,
+        updatedQuestion: updatedQuestions[editingIndex],
       })
     );
     setEditingIndex(null);
@@ -50,7 +59,7 @@ export default function CustomQuizPage() {
 
   const handleMakeQuiz = () => {
     if (questions.length === 0 || quizName.trim() === "") return;
-    
+
     const newQuiz = {
       name: quizName,
       results: [...questions],
@@ -62,6 +71,8 @@ export default function CustomQuizPage() {
     setQuizName("");
     setQuestions([]);
   };
+
+  console.log(questions);
 
   return (
     <div className="flex justify-center flex-col">
@@ -93,13 +104,14 @@ export default function CustomQuizPage() {
         </button>
         <h2 className="flex justify-center pt-6">Finished Quizzes:</h2>
         <div className="flex justify-center">
-          <ul className="flex justify-center list-none font-bold text-xl text-white flex-col">
+          <ul className="flex justify-center font-bold text-xl text-white flex-col">
             Quizzes: &nbsp;
             {finishedQuizzes.map((quiz, index) => (
               <li key={index}>{quiz.name}</li>
             ))}
           </ul>
         </div>
+
 
         <ul>
           {questions.map((question, index) => (
@@ -209,13 +221,32 @@ export default function CustomQuizPage() {
                   <p>Incorrect answer 1: {question.incorrect_answers[0]}</p>
                   <p>Incorrect answer 2: {question.incorrect_answers[1]}</p>
                   <p>Incorrect answer 3: {question.incorrect_answers[2]}</p>
+
                   <p>Correct: {question.correct_answer}</p>
-                  <button onClick={() => handleEditQuestion(index)}>
-                    Edit
-                  </button>
-                  <button onClick={() => handleRemoveQuestion(question)}>
-                    Remove
-                  </button>
+                  <div className="flex">
+                    <button
+                      className="flex items-center justify-center md:flex"
+                      onClick={() => handleEditQuestion(index)}
+                    >
+                      <p className="text-black hidden md:flex ">edit</p>
+                      <div className="flex flex-row space-x-2">
+                        <FontAwesomeIcon icon={faPenToSquare} />
+                      </div>
+                    </button>
+                    <button
+                      className="hidden md:flex"
+                      onClick={() => handleRemoveQuestion(question)}
+                    >
+                      <p className="text-black">remove</p>
+                      <FontAwesomeIcon icon={faTrash} />
+                    </button>
+                    <button
+                      className="md:hidden"
+                      onClick={() => handleRemoveQuestion(question.id)}
+                    >
+                      <FontAwesomeIcon icon={faTrash} />
+                    </button>
+                  </div>
                 </>
               )}
             </li>

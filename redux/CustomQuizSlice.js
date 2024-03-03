@@ -38,15 +38,24 @@ export const customQuizSlice = createSlice({
         (question) => question.id !== questionIdToRemove
       );
     },
+
+    removeCustomQuestion: (state, action) => {
+      const questionIdToRemove = action.payload;
+      state.allQuizzes.results = state.allQuizzes.results.filter(
+        (question) => question.id!== questionIdToRemove
+      );
+    }
   },
 });
 
+// Exportera de åtgärder jag vill använda (alla såklart)
 export const {
   addCustomQuiz,
   addFinishedQuiz,
   setCurrentQuiz,
   editCustomQuiz,
   removeCustomQuiz,
+  removeCustomQuestion
 } = customQuizSlice.actions;
 
 export const selectSubmittedQuizzes = (state) =>
