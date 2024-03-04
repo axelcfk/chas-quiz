@@ -68,7 +68,10 @@ export default function CustomQuizPage() {
   const handleMakeQuiz = () => {
     if (questions.length === 0 || quizName.trim() === "") return;
 
+const newQuizId = Date.now();
+
     const newQuiz = {
+      id: newQuizId,
       name: quizName,
       results: [...questions],
     };
@@ -110,12 +113,6 @@ export default function CustomQuizPage() {
       />
 
       <div className="flex justify-center flex-col mb-40">
-        {/* <button
-          className="w-28 mt-4 bg-blue-600 hover:bg-blue-700 hover:cursor-pointer   text-white font-bold border-none py-4 px-4 hover rounded-3xl focus:outline-none focus:shadow-outline mx-auto cursor-pointer"
-          onClick={handleMakeQuiz}
-        >
-          Make Quiz
-        </button> */}
 
         <ul className="grid grid-cols-2 gap-4 md:grid-cols-4 p-6">
           {questions.map((question, index) => (
@@ -312,14 +309,13 @@ export default function CustomQuizPage() {
                 className="list-none flex flex-col justify-center"
                 key={index}
               >
-                <div className="flex">
+                <div className="flex justify-center">
                   <Link
                     className="flex justify-center no-underline text-black hover:underline hover:text-white mr-4"
                     href={"/quiz/"}
                   >
                     {quiz.name}
                   </Link>
-                  <button className="">Delete</button>
                 </div>
 
                 <Link className="pb-7 pt-2" href={"/quiz"}>
