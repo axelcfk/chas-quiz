@@ -3,7 +3,6 @@ import { defaultQuiz, hardQuiz, easyQuiz } from "@/default-quiz";
 import { useDispatch, useSelector } from "react-redux";
 import { updateHighscore } from "@/redux/HighScoreSlice";
 import Link from "next/link";
-import Footer from "@/Components/footer";
 //import { setCurrentQuiz } from "@/redux/CustomQuizSlice";
 
 export default function QuizPage() {
