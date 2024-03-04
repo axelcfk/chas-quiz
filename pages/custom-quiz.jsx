@@ -119,11 +119,11 @@ export default function CustomQuizPage() {
           Make Quiz
         </button>
         {finishedQuizzes.length > 0 ? (
-          <h2 className="flex justify-center pt-6">Your quizzes:</h2>
+          <h2 className="flex justify-center pt-8">Your quizzes:</h2>
         ) : null}
 
         <div className="flex items-center justify-center m-0 p-0">
-          <ul className="flex justify-center font-bold text-xl text-white flex-col hover:cursor-pointer">
+          <ul className="flex justify-center font-bold text-xl text-white flex-col m-0 p-0">
             {finishedQuizzes.map((quiz, index) => (
               <li className="list-none flex flex-col justify-center" key={index}>
                 <Link className="flex justify-center" href={"/quiz/"}>
