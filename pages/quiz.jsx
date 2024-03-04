@@ -275,8 +275,8 @@ export default function QuizPage() {
                 <div className="h-16">
                   <p>
                     {buttonClicked && isCorrect
-                      ? "Correct Answer"
-                      : buttonClicked && !isCorrect && "Wrong Answer"}
+                      ? "You're correct!"
+                      : buttonClicked && !isCorrect && "Sorry, wrong answer!"}
                   </p>
                 </div>
                 {index < selectedQuiz.results.length - 1 ? (
