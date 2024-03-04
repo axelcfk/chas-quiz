@@ -113,14 +113,17 @@ export default function CustomQuizPage() {
         setNewQuestion={setNewQuestion}
       />
 
-      <div className="flex justify-center flex-col">
+      <div className="flex justify-center flex-col mb-40">
         <button
-          className="w-28 mt-4 bg-blue-500 hover:bg-blue-400  text-white font-bold border-none py-4 px-4 hover rounded-3xl focus:outline-none focus:shadow-outline mx-auto cursor-pointer"
+          className="w-28 mt-4 bg-blue-600 hover:bg-blue-700 hover:cursor-pointer   text-white font-bold border-none py-4 px-4 hover rounded-3xl focus:outline-none focus:shadow-outline mx-auto cursor-pointer"
           onClick={handleMakeQuiz}
         >
           Make Quiz
         </button>
-        <h2 className="flex justify-center pt-6">Your quizzes:</h2>
+        {finishedQuizzes.length > 0 ? (
+          <h2 className="flex justify-center pt-6">Your quizzes:</h2>
+        ) : null}
+
         <div className="flex justify-center m-0 p-0">
           <ul className="flex justify-center font-bold text-xl text-white flex-col hover:cursor-pointer">
             {finishedQuizzes.map((quiz, index) => (
