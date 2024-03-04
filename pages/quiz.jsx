@@ -3,7 +3,6 @@ import { defaultQuiz, hardQuiz, easyQuiz } from "@/default-quiz";
 import { useDispatch, useSelector } from "react-redux";
 import { updateHighscore } from "@/redux/HighScoreSlice";
 import Link from "next/link";
-import Footer from "@/Components/footer";
 //import { setCurrentQuiz } from "@/redux/CustomQuizSlice";
 
 export default function QuizPage() {
@@ -24,9 +23,10 @@ export default function QuizPage() {
   // global state:
   const dispatch = useDispatch();
   const highscore = useSelector((state) => state.highscore.value);
-  const userQuiz = useSelector((state) => state.customQuiz.allQuizzes);
-  console.log(userQuiz);
-  console.log(easyQuiz);
+  //const userQuiz = useSelector((state) => state.customQuiz.allQuizzes);
+  const userQuizzes = useSelector((state) => state.customQuiz.allQuizzes2);
+  console.log("User Quizzes:", userQuizzes);
+  
 
   useEffect(() => {
     if (selectedQuiz) {
@@ -45,7 +45,7 @@ export default function QuizPage() {
       setSelectedQuiz(easyQuiz);
       setquizIsSelected(true);
     } else if (selectedQuizObject === "MyCustomQuiz") {
-      setSelectedQuiz(userQuiz);
+      setSelectedQuiz(userQuizzes[0]); // change [0] to a variable... index... in case we want multiple custom quizzes...
       setquizIsSelected(true);
     }
   };
@@ -99,7 +99,7 @@ export default function QuizPage() {
     }
   }, [selectedQuiz, index]);
 
-  // Kontrollera om userQuiz är ett objekt
+  /* // Kontrollera om userQuiz är ett objekt
   if (typeof userQuiz === "object" && userQuiz !== null) {
     // Kontrollera om userQuiz har en nyckel "results"
     if ("results" in userQuiz && Array.isArray(userQuiz.results)) {
@@ -125,10 +125,7 @@ export default function QuizPage() {
     }
   } else {
     console.log("userQuiz är inte ett objekt eller är null.");
-  }
-
-  console.log(userQuiz);
-  console.log(easyQuiz);
+  } */
 
   return (
     <>
@@ -140,16 +137,21 @@ export default function QuizPage() {
             </div>
           ) : null}
 
-          <div>
-            {userQuiz.results &&
-              userQuiz.results.map((item) => (
-                <div key={item.question}>
-                  <p>Question: {item.question}</p>
-                  <p>Correct Answer: {item.correct_answer}</p>
-                  <p>Incorrect Answers: {item.incorrect_answers}</p>
-                </div>
-              ))}
-          </div>
+          {/* just to check if userQuizzes looks correct: */}
+        {/* {userQuizzes &&
+          userQuizzes.map((userQuiz) => (
+            <div>
+             <p>quiz name: {userQuiz.name}</p>
+            {userQuiz.results.map((item) => (
+              <div key={item.question}>
+                <p>Question: {item.question}</p>
+                <p>Correct Answer: {item.correct_answer}</p>
+                <p>Incorrect Answers: {item.incorrect_answers}</p>
+              </div>
+              
+            ))}
+            </div> 
+          ))} */}
 
           {!quizIsSelected ? (
             <div>
@@ -175,7 +177,7 @@ export default function QuizPage() {
               </div>
               <div className="flex flex-col  justify-center items-center">
                 <h2 className="text-4xl">Your Quizzes</h2>
-                {userQuiz.results.length === 0 ? (
+                {userQuizzes.length === 0 ? (
                   <>
                     <p className="font-semibold">
                       You have no created <br />

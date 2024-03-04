@@ -124,10 +124,17 @@ export default function CustomQuizPage() {
           <h2 className="flex justify-center pt-6">Your quizzes:</h2>
         ) : null}
 
-        <div className="flex justify-center m-0 p-0">
-          <ul className="flex justify-center font-bold text-xl text-white flex-col hover:cursor-pointer">
+        <div className="flex items-center justify-center m-0 p-0">
+          <ul className="flex   justify-center font-bold text-xl text-white flex-col hover:cursor-pointer">
             {finishedQuizzes.map((quiz, index) => (
-              <li key={index}>{quiz.name}</li>
+              <li className="list-none  flex flex-col" key={index}>
+                {quiz.name}{" "}
+                <Link href={"/quiz"}>
+                  <button className="text-slate-100 w-40 p-4 border-none font-semibold rounded-full  bg-blue-600 hover:bg-blue-700 hover:cursor-pointer ">
+                    Play quiz
+                  </button>
+                </Link>
+              </li>
             ))}
           </ul>
         </div>
