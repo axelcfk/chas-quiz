@@ -79,27 +79,21 @@ export const defaultQuiz = {
 export const hardQuiz = {
   results: [
     {
-      type: "multiple",
       difficulty: "hard",
-      category: "General Knowledge",
       question:
         "Which of these banks are NOT authorized to issue currency notes in Hong Kong?",
       correct_answer: "OCBC",
       incorrect_answers: ["HSBC", "Standard Chartered", "Bank of China"],
     },
     {
-      type: "multiple",
       difficulty: "hard",
-      category: "General Knowledge",
       question:
-        "Disney&#039;s Haunted Mansion is home to a trio of Hitchhiking Ghosts. Which of these is NOT one of them?",
+        "Disney's Haunted Mansion is home to a trio of Hitchhiking Ghosts. Which of these is NOT one of them?",
       correct_answer: "Harry",
       incorrect_answers: ["Gus", "Phineas", "Ezra"],
     },
     {
-      type: "multiple",
       difficulty: "hard",
-      category: "General Knowledge",
       question:
         "Which of these cities does NOT have a United States Minting location?",
       correct_answer: "St. Louis, MO",
@@ -110,12 +104,10 @@ export const hardQuiz = {
       ],
     },
     {
-      type: "multiple",
       difficulty: "hard",
-      category: "General Knowledge",
       question:
-        "Which church&#039;s interior in Vatican City was designed in 1503 by renaissance architects including Bramante, Michelangelo and Bernini?",
-      correct_answer: "St. Peter&#039;s Basilica",
+        "Which church's interior in Vatican City was designed in 1503 by renaissance architects including Bramante, Michelangelo and Bernini?",
+      correct_answer: "St. Peter's Basilica",
       incorrect_answers: [
         "Catania Cathedral",
         "St. Mark&rsquo;s Basilica",
@@ -123,17 +115,13 @@ export const hardQuiz = {
       ],
     },
     {
-      type: "multiple",
       difficulty: "hard",
-      category: "General Knowledge",
       question: "Which film star has his statue in Leicester Square?",
       correct_answer: "Charlie Chaplin",
       incorrect_answers: ["Paul Newman", "Rowan Atkinson ", "Alfred Hitchcock"],
     },
     {
-      type: "multiple",
       difficulty: "hard",
-      category: "General Knowledge",
       question:
         "The Quadrangularis Reversum is best described as which of the following?",
       correct_answer: "A percussion instrument",
@@ -144,43 +132,35 @@ export const hardQuiz = {
       ],
     },
     {
-      type: "multiple",
       difficulty: "hard",
-      category: "General Knowledge",
       question: "How many calories are in a 355 ml can of Pepsi Cola?",
       correct_answer: "150",
       incorrect_answers: ["200", "100", "155"],
     },
     {
-      type: "multiple",
       difficulty: "hard",
-      category: "General Knowledge",
       question:
-        "Virtual reality company Oculus VR lost which of it&#039;s co-founders in a freak car accident in 2013?",
+        "Virtual reality company Oculus VR lost which of it's co-founders in a freak car accident in 2013?",
       correct_answer: "Andrew Scott Reisse",
       incorrect_answers: ["Nate Mitchell", "Jack McCauley", "Palmer Luckey"],
     },
     {
-      type: "multiple",
       difficulty: "hard",
-      category: "General Knowledge",
       question: "The word &quot;abulia&quot; means which of the following?",
       correct_answer: "The inability to make decisions",
       incorrect_answers: [
         "The inability to stand up",
         "The inability to concentrate on anything",
-        "A feverish desire to rip one&#039;s clothes off",
+        "A feverish desire to rip one's clothes off",
       ],
     },
     {
-      type: "multiple",
       difficulty: "hard",
-      category: "General Knowledge",
       question: "The word &quot;aprosexia&quot; means which of the following?",
       correct_answer: "The inability to concentrate on anything",
       incorrect_answers: [
         "The inability to make decisions",
-        "A feverish desire to rip one&#039;s clothes off",
+        "A feverish desire to rip one's clothes off",
         "The inability to stand up",
       ],
     },
@@ -190,99 +170,78 @@ export const hardQuiz = {
 export const easyQuiz = {
   results: [
     {
-      type: "multiple",
       difficulty: "easy",
-      category: "General Knowledge",
       question:
         "What machine element is located in the center of fidget spinners?",
       correct_answer: "Bearings",
       incorrect_answers: ["Axles", "Gears", "Belts"],
     },
     {
-      type: "multiple",
       difficulty: "easy",
-      category: "General Knowledge",
       question:
         "Foie gras is a French delicacy typically made from what part of a duck or goose?",
       correct_answer: "Liver",
       incorrect_answers: ["Heart", "Stomach", "Intestines"],
     },
-     {
-       type: "multiple",
-       difficulty: "easy",
-       category: "General Knowledge",
-       question:
-         "According to the nursery rhyme, what fruit did Little Jack Horner pull out of his Christmas pie?",
-       correct_answer: "Plum",
-       incorrect_answers: ["Apple", "Peach", "Pear"],
-     },
-     {
-       type: "multiple",
-       difficulty: "easy",
-       category: "General Knowledge",
-       question: "What does a funambulist walk on?",
-       correct_answer: "A Tight Rope",
-       incorrect_answers: ["Broken Glass", "Balls", "The Moon"],
-     },
-     {
-       type: "multiple",
-       difficulty: "easy",
-       category: "General Knowledge",
-       question:
-         "Which of these colours is NOT featured in the logo for Google?",
-       correct_answer: "Pink",
-       incorrect_answers: ["Yellow", "Blue", "Green"],
-     },
-     {
-       type: "multiple",
-       difficulty: "easy",
-       category: "General Knowledge",
-       question:
-         "The New York Times slogan is, &ldquo;All the News That&rsquo;s Fit to&hellip;&rdquo;",
-       correct_answer: "Print",
-       incorrect_answers: ["Digest", "Look", "Read"],
-     },
-     {
-       type: "multiple",
-       difficulty: "easy",
-       category: "General Knowledge",
-       question: "What is the name of the company in Lethal Company?",
-       correct_answer: "The Company",
-       incorrect_answers: [
-         "Planet Scrap Co.",
-         "Lethal Robotics",
-         "Gordian Shipping Co.",
-       ],
-     },
-     {
-       type: "multiple",
-       difficulty: "easy",
-       category: "General Knowledge",
-       question:
-         "The likeness of which president is featured on the rare $2 bill of USA currency?",
-       correct_answer: "Thomas Jefferson",
-       incorrect_answers: [
-         "Martin Van Buren",
-         "Ulysses Grant",
-         "John Quincy Adams",
-       ],
-     },
-     {
-       type: "multiple",
-       difficulty: "easy",
-       category: "General Knowledge",
-       question: "On a dartboard, what number is directly opposite No. 1?",
-       correct_answer: "19",
-       incorrect_answers: ["20", "12", "15"],
-     },
-     {
-       type: "multiple",
-       difficulty: "easy",
-       category: "General Knowledge",
-       question:
-         "Virgin Trains, Virgin Atlantic and Virgin Racing, are all companies owned by which famous entrepreneur?   ",
-       correct_answer: "Richard Branson",
-       incorrect_answers: ["Alan Sugar", "Donald Trump", "Bill Gates"],
-     },
+    {
+      difficulty: "easy",
+      question:
+        "According to the nursery rhyme, what fruit did Little Jack Horner pull out of his Christmas pie?",
+      correct_answer: "Plum",
+      incorrect_answers: ["Apple", "Peach", "Pear"],
+    },
+    {
+      difficulty: "easy",
+      question: "What does a funambulist walk on?",
+      correct_answer: "A Tight Rope",
+      incorrect_answers: ["Broken Glass", "Balls", "The Moon"],
+    },
+    {
+      difficulty: "easy",
+      question:
+        "Which of these colours is NOT featured in the logo for Google?",
+      correct_answer: "Pink",
+      incorrect_answers: ["Yellow", "Blue", "Green"],
+    },
+    {
+      difficulty: "easy",
+      question: `The New York Times slogan is, "All the News That's Fit to ..."`,
+      correct_answer: "Print",
+      incorrect_answers: ["Digest", "Look", "Read"],
+    },
+    {
+      difficulty: "easy",
+      question: "What is the name of the company in Lethal Company?",
+      correct_answer: "The Company",
+      incorrect_answers: [
+        "Planet Scrap Co.",
+        "Lethal Robotics",
+        "Gordian Shipping Co.",
+      ],
+    },
+    {
+      difficulty: "easy",
+      question:
+        "The likeness of which president is featured on the rare $2 bill of USA currency?",
+      correct_answer: "Thomas Jefferson",
+      incorrect_answers: [
+        "Martin Van Buren",
+        "Ulysses Grant",
+        "John Quincy Adams",
+      ],
+    },
+    {
+      difficulty: "easy",
+      question: "On a dartboard, what number is directly opposite No. 1?",
+      correct_answer: "19",
+      incorrect_answers: ["20", "12", "15"],
+    },
+    {
+      difficulty: "easy",
+      question:
+        "Virgin Trains, Virgin Atlantic and Virgin Racing, are all companies owned by which famous entrepreneur?   ",
+      correct_answer: "Richard Branson",
+      incorrect_answers: ["Alan Sugar", "Donald Trump", "Bill Gates"],
+    },
   ],
 };

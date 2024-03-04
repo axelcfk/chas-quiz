@@ -140,9 +140,8 @@ export default function QuizPage() {
             </div>
           ) : null}
 
-          <div>
+          {/* <div>
             {" "}
-            {/* just to check if userQuiz looks correct  */}
             {userQuiz.results &&
               userQuiz.results.map((item) => (
                 <div key={item.question}>
@@ -151,7 +150,7 @@ export default function QuizPage() {
                   <p>Incorrect Answers: {item.incorrect_answers}</p>
                 </div>
               ))}
-          </div>
+          </div> */}
 
           {!quizIsSelected ? (
             <div>
@@ -184,17 +183,17 @@ export default function QuizPage() {
                       quizzes yet.
                     </p>
                     <Link href="/custom-quiz">
-                      <button className="h-16 text-slate-100 w-60 p-2 border-none font-semibold rounded-full  bg-blue-600 hover:cursor-pointer text-xl mb-30">
+                      <button className="h-16 text-slate-100 w-60 p-2 border-none font-semibold rounded-full  bg-blue-600 hover:bg-blue-700 hover:cursor-pointer  text-xl mb-30">
                         Create one here!
                       </button>
                     </Link>
                   </>
                 ) : (
                   <button
-                    className="h-16 text-slate-100 w-60 p-2 border-none font-semibold rounded-full  bg-blue-600 hover:cursor-pointer text-xl mb-9"
+                    className="h-16 text-slate-100 w-60 p-2 border-none font-semibold rounded-full  bg-blue-600 hover:bg-blue-700 hover:cursor-pointer  text-xl mb-9"
                     onClick={() => handleSelectedQuiz("MyCustomQuiz")}
                   >
-                    Your Custom Quiz
+                    Your Quiz
                   </button>
                 )}
               </div>
@@ -244,7 +243,7 @@ export default function QuizPage() {
                     {selectedQuiz.results[index].question}
                   </h2>
                   <div>
-                    <p>
+                    <p className="font-semibold">
                       {index + 1} / {selectedQuiz.results.length}
                     </p>
                   </div>
@@ -274,7 +273,7 @@ export default function QuizPage() {
                   ))}
                 </div>
                 <div className="h-16">
-                  <p>
+                  <p className="font-semibold">
                     {buttonClicked && isCorrect
                       ? "You're correct!"
                       : buttonClicked && !isCorrect && "Sorry, wrong answer!"}
