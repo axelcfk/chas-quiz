@@ -5,12 +5,6 @@ function AddQuestionForm({ onAddQuestion, newQuestion, setNewQuestion }) {
   const [wrongAnswers, setWrongAnswers] = useState(["", "", ""]);
   const [errorMessage, setErrorMessage] = useState("");
 
-  const handleInputChange = (index, value) => {
-    const newWrongAnswers = [...wrongAnswers];
-    newWrongAnswers[index] = value;
-    setWrongAnswers(newWrongAnswers);
-  };
-
   const handleAddQuestion = () => {
     if (
       newQuestion.trim() === "" ||
