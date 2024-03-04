@@ -156,19 +156,19 @@ export default function QuizPage() {
             <div>
               <div className="flex flex-col justify-center items-center ">
                 <button
-                  className="h-16 text-slate-100 w-60 p-2 border-none font-semibold rounded-full  bg-green-600 hover:cursor-pointer text-xl mb-9"
+                  className="h-16 text-slate-100 w-60 p-2 border-none font-semibold rounded-full  bg-green-600 hover:bg-green-700  hover:cursor-pointer text-xl mb-9"
                   onClick={() => handleSelectedQuiz("Easy")}
                 >
                   Easy
                 </button>{" "}
                 <button
-                  className="h-16 text-slate-100 w-60 p-2 border-none font-semibold rounded-full  bg-yellow-500 hover:cursor-pointer text-xl mb-9"
+                  className="h-16 text-slate-100 w-60 p-2 border-none font-semibold rounded-full  bg-yellow-500 hover:bg-yellow-600 hover:cursor-pointer text-xl mb-9"
                   onClick={() => handleSelectedQuiz("Medium")}
                 >
                   Medium
                 </button>
                 <button
-                  className="h-16 text-slate-100 w-60 p-2 border-none font-semibold rounded-full  bg-red-600 hover:cursor-pointer text-xl "
+                  className="h-16 text-slate-100 w-60 p-2 border-none font-semibold rounded-full  bg-red-600 hover:bg-red-700 hover:cursor-pointer text-xl "
                   onClick={() => handleSelectedQuiz("Hard")}
                 >
                   Hard
