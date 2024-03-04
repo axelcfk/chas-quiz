@@ -2,10 +2,6 @@
 
 // TODO: When the question is long, the box will not align properly, fix!
 
-// TODO: Fix issue of updated and deleted questions not registering to the final Quiz
-
-//TODO: When click on the quiz name, go to Quiz link
-
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -15,8 +11,6 @@ import {
   selectAllFinishedQuizzes,
   setCurrentQuiz,
   editCustomQuiz,
-  removeCustomQuiz, // if we want to use redux for removing questions
-  //(if we have time to fix that)
 } from "@/redux/CustomQuizSlice";
 import AddQuestionForm from "@/Components/AddQuestionForm";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -82,6 +76,8 @@ export default function CustomQuizPage() {
     dispatch(addFinishedQuiz(newQuiz)); // Add finished quiz to redux store
     dispatch(setCurrentQuiz(newQuiz));
 
+    // Reset quiz name and empty the array of questions
+    // when click on "Make Quiz" button
     setQuizName("");
     setQuestions([]);
   };
@@ -114,32 +110,14 @@ export default function CustomQuizPage() {
       />
 
       <div className="flex justify-center flex-col mb-40">
-        <button
+        {/* <button
           className="w-28 mt-4 bg-blue-600 hover:bg-blue-700 hover:cursor-pointer   text-white font-bold border-none py-4 px-4 hover rounded-3xl focus:outline-none focus:shadow-outline mx-auto cursor-pointer"
           onClick={handleMakeQuiz}
         >
           Make Quiz
-        </button>
-        {finishedQuizzes.length > 0 ? (
-          <h2 className="flex justify-center pt-6">Your quizzes:</h2>
-        ) : null}
+        </button> */}
 
-        <div className="flex items-center justify-center m-0 p-0">
-          <ul className="flex   justify-center font-bold text-xl text-white flex-col hover:cursor-pointer">
-            {finishedQuizzes.map((quiz, index) => (
-              <li className="list-none  flex flex-col" key={index}>
-                {quiz.name}{" "}
-                <Link href={"/quiz"}>
-                  <button className="text-slate-100 w-40 p-4 border-none font-semibold rounded-full  bg-blue-600 hover:bg-blue-700 hover:cursor-pointer ">
-                    Play quiz
-                  </button>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <ul className="grid grid-cols-2 gap-4 md:grid-cols-4">
+        <ul className="grid grid-cols-2 gap-4 md:grid-cols-4 p-6">
           {questions.map((question, index) => (
             <li
               key={index}
@@ -312,6 +290,47 @@ export default function CustomQuizPage() {
             </li>
           ))}
         </ul>
+
+        {/* Om ingen fråga har lagts till, knappen är dold, annars synlig*/}
+        {questions.length > 0 && (
+          <button
+            className="w-30 mt-4 bg-blue-600 hover:bg-blue-700 hover:cursor-pointer text-white font-bold border-none py-4 px-4 hover rounded-3xl focus:outline-none focus:shadow-outline mx-auto cursor-pointer"
+            onClick={handleMakeQuiz}
+          >
+            Make my Quiz
+          </button>
+        )}
+
+        {finishedQuizzes.length > 0 ? (
+          <h2 className="flex justify-center pt-8">Your quizzes:</h2>
+        ) : null}
+
+        <div className="flex items-center justify-center m-0 p-0">
+          <ul className="flex justify-center font-bold text-xl text-white flex-col m-0 p-0">
+            {finishedQuizzes.map((quiz, index) => (
+              <li
+                className="list-none flex flex-col justify-center"
+                key={index}
+              >
+                <div className="flex">
+                  <Link
+                    className="flex justify-center no-underline text-black hover:underline hover:text-white mr-4"
+                    href={"/quiz/"}
+                  >
+                    {quiz.name}
+                  </Link>
+                  <button className="">Delete</button>
+                </div>
+
+                <Link className="pb-7 pt-2" href={"/quiz"}>
+                  <button className="text-slate-100 w-32 p-4 border-none font-semibold rounded-full  bg-blue-600 hover:bg-blue-700 hover:cursor-pointer ">
+                    Play quiz
+                  </button>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   );

@@ -1,3 +1,4 @@
+import Footer from "@/Components/footer";
 import { Html, Head, Main, NextScript } from "next/document";
 
 export default function Document() {
@@ -17,6 +18,7 @@ export default function Document() {
       <body className="font-quicksand antialiased">
         <Main />
         <NextScript />
+        <Footer></Footer>
       </body>
     </Html>
   );

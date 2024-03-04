@@ -3,9 +3,18 @@ import { defaultQuiz, hardQuiz, easyQuiz } from "@/default-quiz";
 import { useDispatch, useSelector } from "react-redux";
 import { updateHighscore } from "@/redux/HighScoreSlice";
 import Link from "next/link";
+import { preloadedState } from "@/redux/store";
+import Footer from "@/Components/footer";
 //import { setCurrentQuiz } from "@/redux/CustomQuizSlice";
 
 export default function QuizPage() {
+
+  useEffect(() => {
+    //const initialState = preloadedState === undefined ? 0 : preloadedState;
+    const initialState = preloadedState;
+    dispatch(updateHighscore(initialState));
+  }, []);
+
   // quiz state:
   const [index, setIndex] = useState(0);
   const [isCorrect, setIsCorrect] = useState(false);
@@ -22,11 +31,12 @@ export default function QuizPage() {
 
   // global state:
   const dispatch = useDispatch();
-  const highscore = useSelector((state) => state.highscore.value);
+  const highscore = useSelector((state) => state.highscore);
   //const userQuiz = useSelector((state) => state.customQuiz.allQuizzes);
   const userQuizzes = useSelector((state) => state.customQuiz.allQuizzes2);
   console.log("User Quizzes:", userQuizzes);
-  
+
+ 
 
   useEffect(() => {
     if (selectedQuiz) {
@@ -129,7 +139,7 @@ export default function QuizPage() {
 
   return (
     <>
-      <div className="flex  flex-col justify-center items-center">
+      <div className="flex flex-col justify-center items-center pb-8">
         <div className="flex justify-center flex-col items-center px-10 rounded-xl w-1/2  pt-6">
           {!isCompleted && !quizIsSelected ? (
             <div>
@@ -214,7 +224,7 @@ export default function QuizPage() {
                 </h2>
               </div>
 
-              <div className=" h-72 w-60 mt-24 flex flex-col justify-center items-center rounded-lg">
+              <div className=" h-72 w-60 mt-4 flex flex-col justify-center items-center rounded-lg">
                 <h2>Your highscore is:</h2>
                 <h3 className="text-7xl">{highscore}</h3>
               </div>
@@ -236,11 +246,11 @@ export default function QuizPage() {
           ) : (
             //Här börjar quizzet
             selectedQuiz && (
-              <>
-                <p className="font-bold ">Score: {score} </p>
+              <div className="flex flex-col items-center">
+              {/*   <p className="font-bold ">Score: {score} </p> */}
 
-                <div className="flex flex-col h-72 justify-center  items-center text-center  w-80 ">
-                  <h2 className="text-xl ">
+                <div className="flex flex-col h-56 justify-center items-center text-center w-80 ">
+                  <h2 className="text-xl p-0 m-0">
                     {selectedQuiz.results[index].question}
                   </h2>
                   <div>
@@ -273,13 +283,7 @@ export default function QuizPage() {
                     </button>
                   ))}
                 </div>
-                <div className="h-16">
-                  <p className="font-semibold">
-                    {buttonClicked && isCorrect
-                      ? "You're correct!"
-                      : buttonClicked && !isCorrect && "Sorry, wrong answer!"}
-                  </p>
-                </div>
+                <div className="mt-4">
                 {index < selectedQuiz.results.length - 1 ? (
                   <button
                     className="border-none h-10 w-40 rounded-md bg-amber-400 font-semibold hover:cursor-pointer"
@@ -295,7 +299,15 @@ export default function QuizPage() {
                     FINISH QUIZ
                   </button>
                 )}
-              </>
+                </div>
+                <div className="h-16">
+                  <p className="font-semibold">
+                    {buttonClicked && isCorrect
+                      ? "You're correct!"
+                      : buttonClicked && !isCorrect && "Sorry, wrong answer!"}
+                  </p>
+                </div>
+              </div>
             )
           )}
         </div>
