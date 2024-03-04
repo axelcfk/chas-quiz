@@ -224,7 +224,7 @@ export default function QuizPage() {
                 </h2>
               </div>
 
-              <div className=" h-72 w-60 mt-24 flex flex-col justify-center items-center rounded-lg">
+              <div className=" h-72 w-60 mt-4 flex flex-col justify-center items-center rounded-lg">
                 <h2>Your highscore is:</h2>
                 <h3 className="text-7xl">{highscore}</h3>
               </div>
@@ -246,11 +246,11 @@ export default function QuizPage() {
           ) : (
             //Här börjar quizzet
             selectedQuiz && (
-              <>
+              <div className="flex flex-col items-center">
               {/*   <p className="font-bold ">Score: {score} </p> */}
 
-                <div className="flex flex-col h-52 justify-center  items-center text-center  w-80 ">
-                  <h2 className="text-xl ">
+                <div className="flex flex-col h-56 justify-center items-center text-center w-80 ">
+                  <h2 className="text-xl p-0 m-0">
                     {selectedQuiz.results[index].question}
                   </h2>
                   <div>
@@ -283,13 +283,7 @@ export default function QuizPage() {
                     </button>
                   ))}
                 </div>
-                <div className="h-16">
-                  <p className="font-semibold">
-                    {buttonClicked && isCorrect
-                      ? "You're correct!"
-                      : buttonClicked && !isCorrect && "Sorry, wrong answer!"}
-                  </p>
-                </div>
+                <div className="mt-4">
                 {index < selectedQuiz.results.length - 1 ? (
                   <button
                     className="border-none h-10 w-40 rounded-md bg-amber-400 font-semibold hover:cursor-pointer"
@@ -305,7 +299,15 @@ export default function QuizPage() {
                     FINISH QUIZ
                   </button>
                 )}
-              </>
+                </div>
+                <div className="h-16">
+                  <p className="font-semibold">
+                    {buttonClicked && isCorrect
+                      ? "You're correct!"
+                      : buttonClicked && !isCorrect && "Sorry, wrong answer!"}
+                  </p>
+                </div>
+              </div>
             )
           )}
         </div>
