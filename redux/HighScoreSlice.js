@@ -2,16 +2,15 @@ import { createSlice } from "@reduxjs/toolkit";
 
 export const highScoreSlice = createSlice({
   name: "highscore",
-  initialState: {
-    value: 0,
-  },
+  initialState: 0, // originally we used this: initialState: { value: 0 }, but it made it confusing when updating localStorage?
 
   reducers: {
     updateHighscore: (state, action) => {
       const newScore = action.payload;
-      if (typeof newScore === "number" && newScore > state.value) {
-        state.value = newScore;
+      if (typeof newScore === "number" && newScore > state) {
+        return newScore;
       }
+      return state;
     },
   },
 });

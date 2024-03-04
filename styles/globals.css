@@ -8,6 +8,15 @@ html {
   padding: 0;
 }
 
+body {
+  background-image: url("/color.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+ /*  min-height: 100vh; */
+  /* position: relative; */
+}
+
 @keyframes wiggleAnimation {
   0%,
   100% {
@@ -35,12 +44,12 @@ html {
 }
 
 :root {
-  background-image: url("/color.jpg");
+ /*  background-image: url("/color.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   min-height: 100vh;
-  position: relative;
+  position: relative; */
 }
 
 /*.overlay {

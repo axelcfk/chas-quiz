@@ -32,17 +32,11 @@ export default function Home() {
   //   //Bildspels funktion
 
   // console.log(backgroundImageStyle);
+
   return (
-    <div className="min-h-screen flex flex-col justify-evenly items-center">
-      <main
-        className=" flex justify-center flex-col items-center"
-        // style={backgroundImageStyle}
-      >
         <div className="w-full">
           <nav className="flex justify-between">
-            <span className="p-2">
-              {/* <Image src={logoImg} alt="logo" width={50} height={50} /> */}
-            </span>
+           
           </nav>
           <h1 id="title" className="flex justify-center text-6xl">
             Chas Quiz
@@ -67,10 +61,5 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </main>
-      <footer className="flex justify-center">
-        <footer className="flex justify-center"></footer>
-      </footer>
-    </div>
   );
 }

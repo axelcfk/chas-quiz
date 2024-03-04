@@ -3,10 +3,18 @@ import { defaultQuiz, hardQuiz, easyQuiz } from "@/default-quiz";
 import { useDispatch, useSelector } from "react-redux";
 import { updateHighscore } from "@/redux/HighScoreSlice";
 import Link from "next/link";
+import { preloadedState } from "@/redux/store";
 import Footer from "@/Components/footer";
 //import { setCurrentQuiz } from "@/redux/CustomQuizSlice";
 
 export default function QuizPage() {
+
+  useEffect(() => {
+    //const initialState = preloadedState === undefined ? 0 : preloadedState;
+    const initialState = preloadedState;
+    dispatch(updateHighscore(initialState));
+  }, []);
+
   // quiz state:
   const [index, setIndex] = useState(0);
   const [isCorrect, setIsCorrect] = useState(false);
@@ -23,11 +31,12 @@ export default function QuizPage() {
 
   // global state:
   const dispatch = useDispatch();
-  const highscore = useSelector((state) => state.highscore.value);
+  const highscore = useSelector((state) => state.highscore);
   //const userQuiz = useSelector((state) => state.customQuiz.allQuizzes);
   const userQuizzes = useSelector((state) => state.customQuiz.allQuizzes2);
   console.log("User Quizzes:", userQuizzes);
-  
+
+ 
 
   useEffect(() => {
     if (selectedQuiz) {
@@ -130,7 +139,7 @@ export default function QuizPage() {
 
   return (
     <>
-      <div className="flex  flex-col justify-center items-center">
+      <div className="flex flex-col justify-center items-center pb-8">
         <div className="flex justify-center flex-col items-center px-10 rounded-xl w-1/2  pt-6">
           {!isCompleted && !quizIsSelected ? (
             <div>
@@ -238,9 +247,9 @@ export default function QuizPage() {
             //Här börjar quizzet
             selectedQuiz && (
               <>
-                <p className="font-bold ">Score: {score} </p>
+              {/*   <p className="font-bold ">Score: {score} </p> */}
 
-                <div className="flex flex-col h-72 justify-center  items-center text-center  w-80 ">
+                <div className="flex flex-col h-52 justify-center  items-center text-center  w-80 ">
                   <h2 className="text-xl ">
                     {selectedQuiz.results[index].question}
                   </h2>
