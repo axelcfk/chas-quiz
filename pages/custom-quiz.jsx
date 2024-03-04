@@ -87,6 +87,7 @@ export default function CustomQuizPage() {
   };
 
   console.log(questions);
+  console.log(finishedQuizzes);
 
   return (
     <div className="flex justify-center flex-col">
