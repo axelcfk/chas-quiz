@@ -1,17 +1,15 @@
 import { Provider } from "react-redux";
 import store from "@/redux/store";
 import "@/styles/globals.css";
-import Link from "next/link";
+import Footer from "@/Components/footer";
 
-function App({ Component, pageProps }) {
+export default function App({ Component, pageProps }) {
   return (
     <Provider store={store}>
-      <Link href="/">Home</Link>
-      <Link href="/quiz">quiz</Link>
-      <Link href="/custom-quiz">custom quiz</Link>
-      <Component {...pageProps} />
+      <div className="full-page-background">
+        <Component {...pageProps} />
+        <Footer />
+      </div>
     </Provider>
   );
 }
-
-export default App;
