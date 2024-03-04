@@ -225,6 +225,7 @@ export default function QuizPage() {
                   setquizIsSelected(false);
                   setIndex(0);
                   setButtonClicked(false);
+                  setScore(0);
                   setIsCompleted(false);
                 }}
                 className="h-16 text-slate-100 w-60 p-2 border-none font-semibold rounded-full  bg-blue-600 hover:cursor-pointer text-xl "
