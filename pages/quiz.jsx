@@ -136,7 +136,7 @@ export default function QuizPage() {
         <div className="flex justify-center flex-col items-center px-10 rounded-xl w-1/2  pt-6">
           {!isCompleted && !quizIsSelected ? (
             <div>
-              <h2 className="text-3xl text-slate-50">Take a Quiz</h2>
+              <h2 className="text-4xl text-slate-50">Take a Quiz</h2>
             </div>
           ) : null}
 
@@ -169,17 +169,17 @@ export default function QuizPage() {
                   Medium
                 </button>
                 <button
-                  className="h-16 text-slate-100 w-60 p-2 border-none font-semibold rounded-full  bg-red-600 hover:cursor-pointer text-xl mb-9"
+                  className="h-16 text-slate-100 w-60 p-2 border-none font-semibold rounded-full  bg-red-600 hover:cursor-pointer text-xl "
                   onClick={() => handleSelectedQuiz("Hard")}
                 >
                   Hard
                 </button>{" "}
               </div>
               <div className="flex flex-col  justify-center items-center">
-                <h2 className="text-3xl">Your Quizzes</h2>
+                <h2 className="text-4xl">Your Quizzes</h2>
                 {userQuiz.results.length === 0 ? (
                   <>
-                    <p>
+                    <p className="font-semibold">
                       You have no created <br />
                       quizzes yet.
                     </p>
@@ -207,16 +207,16 @@ export default function QuizPage() {
             <div className="flex flex-col justify-center items-center">
               <h1>Results</h1>
 
-              <div className="bg-slate-200 rounded-lg px-4">
+              <div className=" rounded-lg px-4">
+                <h2 className="text-xl text-center">🟢 {score} correct</h2>
                 <h2 className="text-xl text-center">
-                  🟢 {score} correct 🔴 {selectedQuiz.results.length - score}{" "}
-                  incorrect
+                  🔴 {selectedQuiz.results.length - score} incorrect
                 </h2>
               </div>
 
-              <div className="bg-slate-200 h-72 w-60 mt-24 flex flex-col justify-center items-center rounded-lg">
-                <p>Your highscore is</p>
-                <h3 className="text-4xl">{highscore}</h3>
+              <div className=" h-72 w-60 mt-24 flex flex-col justify-center items-center rounded-lg">
+                <h2>Your highscore is:</h2>
+                <h3 className="text-7xl">{highscore}</h3>
               </div>
 
               <button
@@ -227,7 +227,7 @@ export default function QuizPage() {
                   setButtonClicked(false);
                   setIsCompleted(false);
                 }}
-                className="h-16 text-slate-100 w-60 p-2 border-none font-semibold rounded-full my-5 bg-blue-600 hover:cursor-pointer text-xl mt-10"
+                className="h-16 text-slate-100 w-60 p-2 border-none font-semibold rounded-full  bg-blue-600 hover:cursor-pointer text-xl "
               >
                 Done
               </button>
@@ -238,21 +238,23 @@ export default function QuizPage() {
               <>
                 <p className="font-bold ">Score: {score} </p>
 
-                <div className="flex flex-col h-72  items-center text-center">
-                  <h2 className="text-xl">
+                <div className="flex flex-col h-72 justify-center  items-center text-center  w-80 ">
+                  <h2 className="text-xl ">
                     {selectedQuiz.results[index].question}
                   </h2>
-                  <p>
-                    {index + 1} / {selectedQuiz.results.length}
-                  </p>
+                  <div>
+                    <p>
+                      {index + 1} / {selectedQuiz.results.length}
+                    </p>
+                  </div>
                 </div>
 
-                <div className="grid grid-cols-2 ">
+                <div className="grid grid-cols-2  w-96 h-72   -mt-10">
                   {shuffledOptions.map((option, i) => (
                     <button
                       key={i}
                       onClick={() => handleButtonClick(option, i)}
-                      className={`p-2 h-20 w-20 m-2 border-none font-semibold rounded-md ${
+                      className={`p-3 h-30 w-30 m-2 border-none font-semibold rounded-md ${
                         buttonClicked
                           ? option ===
                             selectedQuiz.results[index].correct_answer

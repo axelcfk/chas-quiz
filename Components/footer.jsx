@@ -5,8 +5,8 @@ import React from "react";
 
 export default function Footer() {
   return (
-    <nav className="  absolute  left-0 right-0 bg-white text-slate-950 h-20 flex justify-center items-center">
-      <ul className="flex p-4 justify-between space-x-24">
+    <nav className="  fixed bottom-0  left-0 right-0 bg-white text-slate-950 h-20 flex justify-center items-center">
+      <ul className=" flex p-4 justify-between space-x-24">
         <li className="list-none ">
           <Link href="/">
             <svg
