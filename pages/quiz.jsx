@@ -140,8 +140,7 @@ export default function QuizPage() {
             </div>
           ) : null}
 
-          {/* <div>
-            {" "}
+          <div>
             {userQuiz.results &&
               userQuiz.results.map((item) => (
                 <div key={item.question}>
@@ -150,7 +149,7 @@ export default function QuizPage() {
                   <p>Incorrect Answers: {item.incorrect_answers}</p>
                 </div>
               ))}
-          </div> */}
+          </div>
 
           {!quizIsSelected ? (
             <div>
