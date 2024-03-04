@@ -25,6 +25,7 @@ export default function QuizPage() {
   const highscore = useSelector((state) => state.highscore.value);
   //const userQuiz = useSelector((state) => state.customQuiz.allQuizzes);
   const userQuizzes = useSelector((state) => state.customQuiz.allQuizzes2);
+  //const userQuizzes = useSelector((state) => state.customQuiz.allQuizzes2);
   console.log("User Quizzes:", userQuizzes);
   
 
@@ -46,6 +47,7 @@ export default function QuizPage() {
       setquizIsSelected(true);
     } else if (selectedQuizObject === "MyCustomQuiz") {
       setSelectedQuiz(userQuizzes[0]); // change [0] to a variable... index... in case we want multiple custom quizzes...
+      //setSelectedQuiz(userQuizzes[0]); // change [0] to a variable... index... in case we want multiple custom quizzes...
       setquizIsSelected(true);
     }
   };
