@@ -110,7 +110,7 @@ export const hardQuiz = {
       correct_answer: "St. Peter's Basilica",
       incorrect_answers: [
         "Catania Cathedral",
-        "St. Mark&rsquo;s Basilica",
+        "St. Mark's Basilica",
         "The Duomo of Florence",
       ],
     },
@@ -146,7 +146,7 @@ export const hardQuiz = {
     },
     {
       difficulty: "hard",
-      question: "The word &quot;abulia&quot; means which of the following?",
+      question: `The word "abulia" means which of the following?`,
       correct_answer: "The inability to make decisions",
       incorrect_answers: [
         "The inability to stand up",
@@ -156,7 +156,7 @@ export const hardQuiz = {
     },
     {
       difficulty: "hard",
-      question: "The word &quot;aprosexia&quot; means which of the following?",
+      question: `The word "aprosexia" means which of the following?`,
       correct_answer: "The inability to concentrate on anything",
       incorrect_answers: [
         "The inability to make decisions",
