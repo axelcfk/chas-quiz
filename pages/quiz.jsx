@@ -36,8 +36,6 @@ export default function QuizPage() {
   const userQuizzes = useSelector((state) => state.customQuiz.allQuizzes2);
   console.log("User Quizzes:", userQuizzes);
 
- 
-
   useEffect(() => {
     if (selectedQuiz) {
       shuffleAnswers();
