@@ -137,7 +137,7 @@ export default function QuizPage() {
 
   return (
     <>
-      <div className="flex flex-col justify-center items-center pb-8">
+      <div className="flex flex-col justify-center items-center pb-8 pt-10">
         <div className="flex justify-center flex-col items-center px-10 rounded-xl w-1/2  pt-6">
           {!isCompleted && !quizIsSelected ? (
             <div>
