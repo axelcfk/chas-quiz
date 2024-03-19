@@ -8,7 +8,7 @@ import Footer from "@/Components/footer";
 export default function App({ Component, pageProps }) {
   return (
     <Provider store={store}>
-      <div className="relative min-h-screen">
+      <div className="relative h-screen">
         <Component {...pageProps} />
       </div>
     </Provider>
