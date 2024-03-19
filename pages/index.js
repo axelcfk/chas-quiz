@@ -2,11 +2,14 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 
 export default function Home() {
- 
+  
 
   return (
-        <div >
-          <h1 id="title" className="flex justify-center text-6xl pt-32">
+        <div className="w-full ">
+          <nav className="flex justify-between">
+           
+          </nav>
+          <h1 id="title" className="flex justify-center text-6xl">
             Chas Quiz
           </h1>
           <div>
