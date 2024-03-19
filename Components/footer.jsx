@@ -31,7 +31,7 @@ export default function Footer() {
             </svg>
           </Link>
         </li>
-        <li className="list-none">
+        <li className="list-none mx-20">
           <Link href="/quiz">
             <svg
               xmlns="http://www.w3.org/2000/svg"
