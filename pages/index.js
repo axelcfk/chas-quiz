@@ -34,7 +34,7 @@ export default function Home() {
   // console.log(backgroundImageStyle);
 
   return (
-        <div className="w-full pt-40">
+        <div className="w-full ">
           <nav className="flex justify-between">
            
           </nav>
