@@ -5,10 +5,8 @@ export default function Home() {
   
 
   return (
-        <div className="w-full ">
-          <nav className="flex justify-between">
-           
-          </nav>
+        <div className="w-full pt-20">
+        
           <h1 id="title" className="flex justify-center text-6xl">
             Chas Quiz
           </h1>
