@@ -68,7 +68,7 @@ export default function CustomQuizPage() {
   const handleMakeQuiz = () => {
     if (questions.length === 0 || quizName.trim() === "") return;
 
-const newQuizId = Date.now();
+    const newQuizId = Date.now();
 
     const newQuiz = {
       id: newQuizId,
@@ -89,7 +89,7 @@ const newQuizId = Date.now();
   console.log(finishedQuizzes);
 
   return (
-    <div className="flex justify-center flex-col">
+    <div className="flex justify-center flex-col ">
       <h1 className="text-center mt-20">Make your own quiz!</h1>
       <div className="flex justify-center ">
         <div className="flex flex-col">
@@ -113,7 +113,6 @@ const newQuizId = Date.now();
       />
 
       <div className="flex justify-center flex-col mb-40">
-
         <ul className="grid grid-cols-2 gap-4 md:grid-cols-4 p-6">
           {questions.map((question, index) => (
             <li
@@ -234,7 +233,7 @@ const newQuizId = Date.now();
                 </>
               ) : (
                 <>
-                  <div className="flex justify-center">
+                  <div className="flex justify-center h-full">
                     <p className="font-bold">{question.question}</p>
                   </div>
                   <div>
@@ -309,9 +308,9 @@ const newQuizId = Date.now();
                 className="list-none flex flex-col justify-center"
                 key={index}
               >
-                <div className="flex justify-center">
+                <div className="flex justify-center ">
                   <Link
-                    className="flex justify-center no-underline text-black hover:underline hover:text-white mr-4"
+                    className="flex justify-center no-underline text-slate-50 hover:underline hover:text-white mr-4"
                     href={"/quiz/"}
                   >
                     {quiz.name}

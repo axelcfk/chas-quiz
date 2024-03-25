@@ -9,11 +9,12 @@ html {
 }
 
 body {
-  background-image: url("/color.jpg");
+  background-color: rgb(18, 30, 61);
+  /* background-image: url("/color.jpg"); */
   background-size: cover;
-  background-position: center;
+  /* background-position: center; */
   background-repeat: no-repeat;
- /*  min-height: 100vh; */
+  /*  min-height: 100vh; */
   /* position: relative; */
 }
 
@@ -44,7 +45,7 @@ body {
 }
 
 :root {
- /*  background-image: url("/color.jpg");
+  /*  background-image: url("/color.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
